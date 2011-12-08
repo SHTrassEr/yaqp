@@ -48,6 +48,10 @@ YAQP.Classes.Room = function(room, id) {
 		if (r != "obj") {
 			this[r] = room[r];
 		} else {
+			/** 
+			 * объекты лучше добавлять
+			 * через метод add
+			 */
 			for (var o in room.obj) {
 				this.obj.add(room.obj[o]);
 			}
