@@ -1,5 +1,5 @@
 /**
- * @author vladimir
+ * @author SHTrassEr
  */
 
 YAQP.Classes.Obj = function(obj, id) {

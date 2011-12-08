@@ -1,5 +1,5 @@
 /**
- * @author VMakarov
+ * @author SHTrassEr
  */
 
 /**
