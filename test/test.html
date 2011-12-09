@@ -1,34 +1,120 @@
 <!HTML>
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <script src="qunit/jquery.js"></script>
   <link rel="stylesheet" href="qunit/qunit.css" type="text/css" media="screen" />
 <script type="text/javascript" src="qunit/qunit.js"></script>
 
   <script src="../src/yaqp.js"></script>
+  
+  <script src="../src/functions.js"></script>
   <script src="../src/object.js"></script>
   <script src="../src/obj.js"></script>
   <script src="../src/objectlist.js"></script>
+  <script src="../src/objlist.js"></script>
   <script src="../src/room.js"></script>
+  <script src="../src/player.js"></script>
 
   <script>
   $(document).ready(function(){
-    
-test("a basic test example", function() {
-  ok( true, "this test is fine" );
-  var value = "hello";
-  equal( value, "hello", "We expect value to be hello" );
+
+  (function(){
+module("test  objectlist ");
+
+  var objectList = new YAQP.Classes.ObjectList();
+  var obj1 = new YAQP.Classes.Object("id1");
+  var obj2 = new YAQP.Classes.Object("id2");
+  var obj3 = new YAQP.Classes.Object("id3");
+  var obj4 = new YAQP.Classes.Object("id4");
+  objectList.add(obj1);
+  objectList.add(obj2);
+  objectList.add(obj3);  
+  
+test("add items", function() {
+  equal( objectList[0], obj1, "adding obj1" );
+  equal( objectList[1], obj2, "adding obj2" );
+  equal( objectList[2], obj3, "adding obj3" );
+  equal( objectList.length, 3, "size ok" );
+ 
+  equal( objectList.add(obj1), false , "cannot add existing items" );
+  equal( objectList.add(obj2), false , "cannot add existing items" );
+  equal( objectList.add(obj3), false , "cannot add existing items" );
+  equal( objectList.length, 3, "adding existing items ok" );  
+  });
+
+test("search items", function() {
+  equal( objectList.srch(obj1) , obj1, "search obj1" );  
+  equal( objectList.srch(obj2) , obj2, "search obj2" );  
+  equal( objectList.srch(obj3) , obj3, "search obj3" );  
 });
 
-module("Module A");
-
-test("first test within module", function() {
-  ok( true, "all pass" );
+test("hide and enable items", function() {
+  equal( objectList.disable(obj1) , true, "disable obj1" );  
+  equal( objectList.srch(obj1) , undefined, "cannot find disabled obj1" );  
+  equal( objectList.enable(obj1) , true, "disable obj1" );  
+  equal( objectList.srch(obj1) , obj1, "find enabled obj1" );  
+  
+  equal( objectList[1].disable() , true, "disable obj2" );  
+  equal( objectList.srch(obj2) , undefined, "cannot find disabled obj2" );  
+  equal( objectList[1].enable()  , true, "enable obj2" );  
+  equal( objectList.srch(obj2) , obj2, "find enabled obj2" );  
+  
+  equal( objectList.disable(obj4) ,undefined, "cannot disable an unexisten obj4" );  
+  equal( objectList.enable(obj4) ,undefined, "cannot enable an unexisten obj4" );  
 });
 
-test("second test within module", function() {
-  ok( true, "all pass" );
+test("delete items", function() {
+  equal( objectList.disable(obj1) , true, "disable obj1" );  
+  equal( objectList.del(obj1) , undefined, "cannot delete disabled obj1" );  
+  equal( objectList.enable(obj1)  , true, "enable obj1" );  
+  equal( objectList.del(obj1) , true, "delete obj1" );  
+  equal( objectList.srch(obj1) , undefined, "cannot find deleted obj1" ); 
+  equal( objectList.add(obj1)   , true, "add obj1");
+  
+  equal( objectList.disable(obj1) , true, "disable obj1" );  
+  equal( objectList.purge(obj1) , true, "delete hidden obj1" );  
+  equal( objectList.srch(obj1) , undefined, "cannot find deleted obj1" ); 
+  equal( objectList.add(obj1)   , true, "add obj1");
+  equal( objectList.enable(obj1) , true, "enable obj1" );  
 });
+
+test("replace items", function() {
+  var i = objectList.look(obj1);
+  ok( i !== undefined, "find obj1" );
+  equal( objectList.replace(obj1, obj4) , true, "replace(obj1, obj4) " );  
+  equal( objectList[i], obj4, "obj1 replaced by obj4" );
+  equal( objectList.replace(obj4, obj1) , true, "replace(obj4, obj1) " );  
+  equal( objectList[i], obj1, "obj4 replaced by obj1" );
+});
+
+})();
+
+  (function(){
+module("test  objtlist ");
+
+  var objList = new YAQP.Classes.ObjList();
+  var obj1 = new YAQP.Classes.Obj({},"id1");
+  var obj2 = new YAQP.Classes.Obj({},"id2");
+  var obj3 = new YAQP.Classes.Obj({},"id3");
+  var obj4 = new YAQP.Classes.Obj({},"id4");
+  objList.add(obj1);
+  objList.add(obj2);
+  objList.add(obj3);  
+  
+  
+test("add items", function() {
+  equal( objList[0], obj1, "adding obj1" );
+  equal( objList[1], obj2, "adding obj2" );
+  equal( objList[2], obj3, "adding obj3" );
+  equal( objList.length, 3, "size ok" );
+ 
+  equal( objList.add(obj1), false , "cannot add existing items" );
+  equal( objList.add(obj2), false , "cannot add existing items" );
+  equal( objList.add(obj3), false , "cannot add existing items" );
+  equal( objList.length, 3, "adding existing items ok" );  
+  });
+})();
 
 module("Module B");
 
@@ -42,9 +128,9 @@ module("Module C");
 
 test("some other test", function() {
   YAQP.initGameSync("../src/core.js", "quests/test1.js");
-  alert(YAQP.game.loc["main"].dsc)
-  YAQP.game.loc["main"].srch();
-  YAQP.game.loc["main"].obj.srch("aa");
+  //alert(YAQP.game.rooms["main"].dsc)
+  //YAQP.game.rooms["main"].srch();
+  //YAQP.game.rooms["main"].obj.srch("aa");
   expect(1);
   //equal( true, false, "failing test" );
   equal( true, true, "passing test" );

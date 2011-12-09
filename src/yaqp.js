@@ -99,3 +99,8 @@ YAQP.Classes = {};
  * @namespace Содержит базовые функции.
  */
 YAQP.Functions = {};
+
+/**
+ * @namespace Содержит все что связано с игрой.
+ */
+YAQP.game = {};

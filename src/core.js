@@ -1,19 +1,17 @@
 /**
  * @author SHTrassEr
  */
-/**
- * @namespace
- * @type YAQP.game
- */
-YAQP.game = (/** @constructor */
+
+(/** @constructor */
 function() {
 	var game = {};
 
 	var loc = {};
 	var obj = {};
 	var dlg = {};
-	var me = {};
 	
+	var initialRoom = 'main';
+
 	/**
 	 * Обрабатываем поле obj. obj - это массив, который может
 	 * содержать как строку-идентификатор объекта, так и сам
@@ -23,6 +21,7 @@ function() {
 		for (var o in obj) {
 			obj[o] = new YAQP.Classes.Obj(obj[o], o);
 		}
+		YAQP.game.objs = obj; 
 	}
 	
 	function prepareRooms() {
@@ -37,7 +36,8 @@ function() {
 		}
 		for (var r in loc) {
 			loc[r] = new YAQP.Classes.Room(loc[r], r);
-		}		
+		}
+		YAQP.game.rooms = loc;
 	}
 
 
@@ -64,8 +64,10 @@ function() {
 	}
 
 	function me() {
-		return game.pl;
+		return YAQP.game.pl;
 	}
+	
+	var inv = YAQP.Functions.inv;
 
 	// objects
 	function remove(obj, from) {
@@ -74,20 +76,9 @@ function() {
 		}
 
 	}
-
-	game.pl = {
-
-	};
-
 	//<%QUEST%>//
-	
 	prepareObjs();
 	prepareRooms();
-	/** @scope YAQP.game */
-	return {
-		loc : loc,
-		obj : obj,
-		dlg : dlg,
-		me : me
-	};
+	
+	YAQP.game.pl = new YAQP.Classes.Player(YAQP.game.rooms[initialRoom]);
 })();
