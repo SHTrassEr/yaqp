@@ -25,15 +25,11 @@ YAQP.Functions.extend(YAQP.Classes.ObjectList, Array);
  *            o объект поиска. Либо строка с id объекта, либо сам объект.
  */
 YAQP.Classes.ObjectList.prototype.add = function(o) {
-	switch (typeof o) {
-		case "string" :
-			break;
-		case "object" :
-			if (this.look(o) === undefined) {
-				this.push(o);
-				return true;
-			}
-			break;
+	if (typeof o === "object"){
+		if (this.look(o) === undefined) {
+			this.push(o);
+			return true;
+		}
 	}
 	return false;
 };

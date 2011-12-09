@@ -1,8 +1,10 @@
-loc["main"] = {
+room["main"] = {
 	forcedsc : true,
 	nam : "Погружение в INSTEAD",
 	dsc : "[Добро пожаловать! В этой небольшой обучающей игре",
-	obj : ["woodstick", "water"]
+	obj : ["woodstick", "water", "shkaf"],
+	way : ["location1", "location2"]
+	
 };
 
 obj["woodstick"] = {
@@ -10,12 +12,22 @@ obj["woodstick"] = {
 	dsc : "Под ногами валяется {палка} метрового размера.",
 	tak : "Вы подобрали палку.",
 	inv : "Палка как палка..."
-	,
 };
 
 obj["water"] = {
 	nam : "Вода",
 	dsc : "В ванне тихо стоит мутная {вода}.",
 	act : "Мутная вода. Дна ванны не видно."
-	,
+};
+
+obj["shkaf"] = {
+	nam : "Духовой шкаф",
+};
+
+room["room1"] = {
+	nam : "Одна локация",
+};
+
+room["room2"] = {
+	nam : "Другая локация",
 };

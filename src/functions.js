@@ -82,3 +82,26 @@ YAQP.Functions.objs = function(o) {
 	if (YAQP.Functions.isRoom(o))
 		return o.objs;
 };
+
+YAQP.Functions.prepareObjs = function(obj) {
+	YAQP.game.objs = {};
+	for (var o in obj)
+		YAQP.game.objs[o] = new YAQP.Classes.Obj(obj[o], o);
+};
+
+YAQP.Functions.prepareRooms = function(room) {
+	YAQP.game.rooms = {};
+	for (var r in room) 
+		YAQP.game.rooms[r] = new YAQP.Classes.Room(room[r], r);
+};
+
+YAQP.Functions.prepareLinksRoomObjs = function(room) {
+	var r = undefined;
+	var o = undefined;
+	for (r in room){
+		for (o in room[r].obj) {
+			YAQP.game.rooms[r].objs.add(room[r].obj[o]);
+		}
+	}
+	
+};

@@ -4,9 +4,7 @@
 
 (/** @constructor */
 function() {
-	var game = {};
-
-	var loc = {};
+	var room = {};
 	var obj = {};
 	var dlg = {};
 	
@@ -17,29 +15,7 @@ function() {
 	 * содержать как строку-идентификатор объекта, так и сам
 	 * объект. 
 	 */
-	function prepareObjs() {
-		for (var o in obj) {
-			obj[o] = new YAQP.Classes.Obj(obj[o], o);
-		}
-		YAQP.game.objs = obj; 
-	}
 	
-	function prepareRooms() {
-		if (loc.obj){
-			for (var o in loc.obj) {
-				if (typeof loc.obj == "string") {
-					loc.obj[o] = obj[o];
-				} else {
-					loc.obj[o] = new YAQP.Classes.Obj(obj[o], o);	
-				}
-			}
-		}
-		for (var r in loc) {
-			loc[r] = new YAQP.Classes.Room(loc[r], r);
-		}
-		YAQP.game.rooms = loc;
-	}
-
 
 	function go() {
 	}
@@ -74,11 +50,14 @@ function() {
 		if (from) {
 
 		}
-
 	}
+	
+
 	//<%QUEST%>//
-	prepareObjs();
-	prepareRooms();
+	
+	YAQP.Functions.prepareObjs(obj);
+	YAQP.Functions.prepareRooms(room);
+	YAQP.Functions.prepareLinksRoomObjs(room);
 	
 	YAQP.game.pl = new YAQP.Classes.Player(YAQP.game.rooms[initialRoom]);
 })();

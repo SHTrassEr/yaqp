@@ -5,7 +5,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="generator" content="JsDoc Toolkit" />
 		
-		<title>JsDoc Reference - YAQP.Classes.Room</title>
+		<title>JsDoc Reference - YAQP.Classes.Player</title>
 
 		<style type="text/css">
 			/* default.css */
@@ -220,7 +220,7 @@ ul.inheritsList
 <!-- ============================== class title ============================ -->
 			<h1 class="classTitle">
 				
-				Class YAQP.Classes.Room
+				Class YAQP.Classes.Player
 			</h1>
 
 <!-- ============================== class summary ========================== -->			
@@ -231,13 +231,13 @@ ul.inheritsList
 				
 				
 				
-					<br /><i>Defined in: </i> <a href="../symbols/src/src_room.js.html">room.js</a>.
+					<br /><i>Defined in: </i> <a href="../symbols/src/src_player.js.html">player.js</a>.
 				
 			</p>
 
 <!-- ============================== constructor summary ==================== -->			
 			
-			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class YAQP.Classes.Room.">
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class YAQP.Classes.Player.">
 				<caption>Class Summary</caption>
 				<thead>
 					<tr>
@@ -250,9 +250,9 @@ ul.inheritsList
 						<td class="attributes">&nbsp;</td>
 						<td class="nameDescription" >
 							<div class="fixedFont">
-								<b><a href="../symbols/YAQP.Classes.Room.html#constructor">YAQP.Classes.Room</a></b>(room, id)
+								<b><a href="../symbols/YAQP.Classes.Player.html#constructor">YAQP.Classes.Player</a></b>(room)
 							</div>
-							<div class="description">Создает новую комнату.</div>
+							<div class="description">Объект, представляющий игрока.</div>
 						</td>
 					</tr>
 				</tbody>
@@ -263,7 +263,7 @@ ul.inheritsList
 			
 				
 				
-				<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class YAQP.Classes.Room.">
+				<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class YAQP.Classes.Player.">
 					<caption>Field Summary</caption>
 					<thead>
 						<tr>
@@ -277,9 +277,9 @@ ul.inheritsList
 							<td class="attributes">&lt;private&gt; &nbsp;</td>
 							<td class="nameDescription">
 								<div class="fixedFont">
-								<b><a href="../symbols/YAQP.Classes.Room.html#__id">__id</a></b>
+								<b><a href="../symbols/YAQP.Classes.Player.html#__type">__type</a></b>
 								</div>
-								<div class="description">Идентификатор комнаты.</div>
+								<div class="description">Тип объекта.</div>
 							</td>
 						</tr>
 					
@@ -287,9 +287,9 @@ ul.inheritsList
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
 								<div class="fixedFont">
-								<b><a href="../symbols/YAQP.Classes.Room.html#dsc">dsc</a></b>
+								<b><a href="../symbols/YAQP.Classes.Player.html#inv">inv</a></b>
 								</div>
-								<div class="description">Описание комнаты.</div>
+								<div class="description">Инвентарь.</div>
 							</td>
 						</tr>
 					
@@ -297,29 +297,9 @@ ul.inheritsList
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
 								<div class="fixedFont">
-								<b><a href="../symbols/YAQP.Classes.Room.html#forcedsc">forcedsc</a></b>
+								<b><a href="../symbols/YAQP.Classes.Player.html#where">where</a></b>
 								</div>
-								<div class="description">Определяет, выводить описание статической части сцены на каждом ходу(значение true) или только при первом входе на сцену (значение false).</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont">
-								<b><a href="../symbols/YAQP.Classes.Room.html#name">name</a></b>
-								</div>
-								<div class="description">Название сцены.</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont">
-								<b><a href="../symbols/YAQP.Classes.Room.html#objs">objs</a></b>
-								</div>
-								<div class="description">Список объектов сцены.</div>
+								<div class="description">На какой сцене находится игрок.</div>
 							</td>
 						</tr>
 					
@@ -332,33 +312,6 @@ ul.inheritsList
 
 <!-- ============================== methods summary ======================== -->
 			
-				
-				
-				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class YAQP.Classes.Room.">
-					<caption>Method Summary</caption>
-					<thead>
-						<tr>
-							<th scope="col">Method Attributes</th>
-							<th scope="col">Method Name and Description</th>
-						</tr>
-					</thead>
-					<tbody>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/YAQP.Classes.Room.html#srch">srch</a></b>(obj)
-								</div>
-								<div class="description">Ищет объект на данной сцене.</div>
-							</td>
-						</tr>
-					
-					</tbody>
-				</table>
-				
-				
-				
-			
 <!-- ============================== events summary ======================== -->
 			
 
@@ -370,11 +323,11 @@ ul.inheritsList
 				</div>
 				
 				<div class="fixedFont">
-						<b>YAQP.Classes.Room</b>(room, id)
+						<b>YAQP.Classes.Player</b>(room)
 				</div>
 				
 				<div class="description">
-					Создает новую комнату. На вход получает описание комнаты и ее идентификатор.
+					Объект, представляющий игрока.
 					
 				</div>
 				
@@ -386,16 +339,10 @@ ul.inheritsList
 						<dt class="heading">Parameters:</dt>
 						
 							<dt>
-								<span class="light fixedFont">{object}</span>  <b>room</b>
+								<span class="light fixedFont">{<a href="../symbols/YAQP.Classes.Room.html">YAQP.Classes.Room</a>}</span>  <b>room</b>
 								
 							</dt>
-								<dd>Описание сцены.</dd>
-						
-							<dt>
-								<span class="light fixedFont">{string}</span>  <b>id</b>
-								
-							</dt>
-								<dd>Идентификатор сцены.</dd>
+								<dd>Сцена, на которой находится игрок.</dd>
 						
 						</dl>
 					
@@ -415,15 +362,15 @@ ul.inheritsList
 					Field Detail
 				</div>
 				
-					<a name="__id"> </a>
+					<a name="__type"> </a>
 					<div class="fixedFont">&lt;private&gt; 
 					
-					<span class="light">{string}</span>
-					<b>__id</b>
+					<span class="light">{YAQP.Classes.ObjectTypes}</span>
+					<b>__type</b>
 					
 					</div>
 					<div class="description">
-						Идентификатор комнаты.
+						Тип объекта.
 						
 						
 					</div>
@@ -437,15 +384,15 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="dsc"> </a>
+					<a name="inv"> </a>
 					<div class="fixedFont">
 					
-					<span class="light">{string}</span>
-					<b>dsc</b>
+					<span class="light">{<a href="../symbols/YAQP.Classes.ObjList.html">YAQP.Classes.ObjList</a>}</span>
+					<b>inv</b>
 					
 					</div>
 					<div class="description">
-						Описание комнаты. Описание статической части сцены, которое выводится привходе в сцену или выполнении команды look
+						Инвентарь.
 						
 						
 					</div>
@@ -459,59 +406,15 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="forcedsc"> </a>
+					<a name="where"> </a>
 					<div class="fixedFont">
 					
-					<span class="light">{boolean}</span>
-					<b>forcedsc</b>
+					<span class="light">{<a href="../symbols/YAQP.Classes.Room.html">YAQP.Classes.Room</a>}</span>
+					<b>where</b>
 					
 					</div>
 					<div class="description">
-						Определяет, выводить описание статической части сцены на каждом ходу(значение true) или только при первом входе на сцену (значение false).По-умолчанию установлено false.
-						
-						
-					</div>
-					
-					
-
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="name"> </a>
-					<div class="fixedFont">
-					
-					<span class="light">{string}</span>
-					<b>name</b>
-					
-					</div>
-					<div class="description">
-						Название сцены. Это название будет заголовком сцены при её отображении.Имя сцены также используется для её идентификации при переходах.
-						
-						
-					</div>
-					
-					
-
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="objs"> </a>
-					<div class="fixedFont">
-					
-					<span class="light">{<a href="../symbols/YAQP.Classes.ObjectList.html">YAQP.Classes.ObjectList</a>}</span>
-					<b>objs</b>
-					
-					</div>
-					<div class="description">
-						Список объектов сцены.
+						На какой сцене находится игрок.
 						
 						
 					</div>
@@ -528,54 +431,6 @@ ul.inheritsList
 			
 
 <!-- ============================== method details ========================= -->		
-			
-				<div class="sectionTitle">
-					Method Detail
-				</div>
-				
-					<a name="srch"> </a>
-					<div class="fixedFont">
-					
-					<span class="light">{<a href="../symbols/YAQP.Classes.Object.html">YAQP.Classes.Object</a>|undefined}</span>
-					<b>srch</b>(obj)
-					
-					</div>
-					<div class="description">
-						Ищет объект на данной сцене.
-						
-						
-					</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<span class="light fixedFont">{<a href="../symbols/YAQP.Classes.Obj.html">YAQP.Classes.Obj</a>}</span> <b>obj</b>
-									
-								</dt>
-								<dd>искомый объект.</dd>
-							
-							</dl>
-						
-						
-						
-						
-						
-							<dl class="detailList">
-							<dt class="heading">Returns:</dt>
-							
-								<dd><span class="light fixedFont">{<a href="../symbols/YAQP.Classes.Object.html">YAQP.Classes.Object</a>|undefined}</span> возвращает найденный объект, либо         undefined если объект не найден.</dd>
-							
-							</dl>
-						
-						
-						
-
-					
-				
 			
 			
 <!-- ============================== event details ========================= -->		

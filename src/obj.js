@@ -18,4 +18,4 @@ YAQP.Classes.Obj = function(obj, id) {
 
 YAQP.Functions.extend(YAQP.Classes.Obj, YAQP.Classes.Object);
 
-YAQP.Classes.Obj.prototype.type = YAQP.Classes.ObjectTypes.Obj;
+YAQP.Classes.Obj.prototype.__type = YAQP.Classes.ObjectTypes.Obj;

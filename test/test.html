@@ -13,7 +13,8 @@
   <script src="../src/obj.js"></script>
   <script src="../src/objectlist.js"></script>
   <script src="../src/objlist.js"></script>
-  <script src="../src/room.js"></script>
+  <script src="../src/roomlist.js"></script>
+  <script src="../src/room.js"></script>  
   <script src="../src/player.js"></script>
 
   <script>
@@ -91,7 +92,7 @@ test("replace items", function() {
 })();
 
   (function(){
-module("test  objtlist ");
+module("test  objlist ");
 
   var objList = new YAQP.Classes.ObjList();
   var obj1 = new YAQP.Classes.Obj({},"id1");
@@ -116,18 +117,48 @@ test("add items", function() {
   });
 })();
 
-module("Module B");
+  (function(){
+	  module("test  roomlist ");
 
-test("some other test", function() {
+	    var objList = new YAQP.Classes.RoomList();
+	    var obj1 = new YAQP.Classes.Room({},"id1");
+	    var obj2 = new YAQP.Classes.Room({},"id2");
+	    var obj3 = new YAQP.Classes.Room({},"id3");
+	    var obj4 = new YAQP.Classes.Room({},"id4");
+	    objList.add(obj1);
+	    objList.add(obj2);
+	    objList.add(obj3);  
+	    
+	    
+	  test("add items", function() {
+	    equal( objList[0], obj1, "adding obj1" );
+	    equal( objList[1], obj2, "adding obj2" );
+	    equal( objList[2], obj3, "adding obj3" );
+	    equal( objList.length, 3, "size ok" );
+	   
+	    equal( objList.add(obj1), false , "cannot add existing items" );
+	    equal( objList.add(obj2), false , "cannot add existing items" );
+	    equal( objList.add(obj3), false , "cannot add existing items" );
+	    equal( objList.length, 3, "adding existing items ok" );  
+	    });
+	  })();
+  
+(function(){
+  module("test functions");
+  
+  YAQP.initGameSync("../src/core.js", "quests/test1.js");
+
+  test("some other test", function() {
   expect(1);
   //equal( true, false, "failing test" );
   equal( true, true, "passing test" );
-});
+  });
+})();
 
 module("Module C");
 
 test("some other test", function() {
-  YAQP.initGameSync("../src/core.js", "quests/test1.js");
+  //YAQP.initGameSync("../src/core.js", "quests/test1.js");
   //alert(YAQP.game.rooms["main"].dsc)
   //YAQP.game.rooms["main"].srch();
   //YAQP.game.rooms["main"].obj.srch("aa");

@@ -195,7 +195,15 @@ ul.inheritsList
 	
 	<li><a href="../symbols/YAQP.Classes.html">YAQP.Classes</a></li>
 	
+	<li><a href="../symbols/YAQP.Classes.Obj.html">YAQP.Classes.Obj</a></li>
+	
+	<li><a href="../symbols/YAQP.Classes.Object.html">YAQP.Classes.Object</a></li>
+	
 	<li><a href="../symbols/YAQP.Classes.ObjectList.html">YAQP.Classes.ObjectList</a></li>
+	
+	<li><a href="../symbols/YAQP.Classes.ObjList.html">YAQP.Classes.ObjList</a></li>
+	
+	<li><a href="../symbols/YAQP.Classes.Player.html">YAQP.Classes.Player</a></li>
 	
 	<li><a href="../symbols/YAQP.Classes.Room.html">YAQP.Classes.Room</a></li>
 	
@@ -256,6 +264,79 @@ ul.inheritsList
 
 <!-- ============================== methods summary ======================== -->
 			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class YAQP.Functions.">
+					<caption>Method Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Method Attributes</th>
+							<th scope="col">Method Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">YAQP.Functions.<b><a href="../symbols/YAQP.Functions.html#.extend">extend</a></b>(Child, Parent)
+								</div>
+								<div class="description">Функция делает класс Child потомком класса Parent.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">YAQP.Functions.<b><a href="../symbols/YAQP.Functions.html#.here">here</a></b>()
+								</div>
+								<div class="description">Возвращает текущую сцену.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">YAQP.Functions.<b><a href="../symbols/YAQP.Functions.html#.inv">inv</a></b>()
+								</div>
+								<div class="description">Возвращает инвентарь игрока.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">YAQP.Functions.<b><a href="../symbols/YAQP.Functions.html#.isObj">isObj</a></b>()
+								</div>
+								<div class="description">Проверяет, является ли переданный объект игровым объектом.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">YAQP.Functions.<b><a href="../symbols/YAQP.Functions.html#.isRoom">isRoom</a></b>()
+								</div>
+								<div class="description">Проверяет, является ли переданный объект комнатой.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">YAQP.Functions.<b><a href="../symbols/YAQP.Functions.html#.objs">objs</a></b>(o)
+								</div>
+								<div class="description">Возвращает список объектов указанной сцены; если сцена не указана, то
+возвращает список объектов текущей сцены</div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
+			
 <!-- ============================== events summary ======================== -->
 			
 
@@ -294,6 +375,267 @@ ul.inheritsList
 
 <!-- ============================== method details ========================= -->		
 			
+				<div class="sectionTitle">
+					Method Detail
+				</div>
+				
+					<a name=".extend"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">YAQP.Functions.</span><b>extend</b>(Child, Parent)
+					
+					</div>
+					<div class="description">
+						Функция делает класс Child потомком класса Parent.
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/src_functions.js.html">functions.js</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{object}</span> <b>Child</b>
+									
+								</dt>
+								<dd>Наследник.</dd>
+							
+								<dt>
+									<span class="light fixedFont">{object}</span> <b>Parent</b>
+									
+								</dt>
+								<dd>Родитель.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".here"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{<a href="../symbols/YAQP.Classes.ObjList.html">YAQP.Classes.ObjList</a>}</span>
+					<span class="light">YAQP.Functions.</span><b>here</b>()
+					
+					</div>
+					<div class="description">
+						Возвращает текущую сцену.
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/src_functions.js.html">functions.js</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/YAQP.Classes.ObjList.html">YAQP.Classes.ObjList</a>}</span> Инвентарь.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".inv"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{<a href="../symbols/YAQP.Classes.ObjList.html">YAQP.Classes.ObjList</a>}</span>
+					<span class="light">YAQP.Functions.</span><b>inv</b>()
+					
+					</div>
+					<div class="description">
+						Возвращает инвентарь игрока.
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/src_functions.js.html">functions.js</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/YAQP.Classes.ObjList.html">YAQP.Classes.ObjList</a>}</span> Инвентарь.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".isObj"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{boolean}</span>
+					<span class="light">YAQP.Functions.</span><b>isObj</b>()
+					
+					</div>
+					<div class="description">
+						Проверяет, является ли переданный объект игровым объектом.
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/src_functions.js.html">functions.js</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/YAQP.Classes.Room.html">YAQP.Classes.Room</a>}</span> <b>комната.</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{boolean}</span> Возвращает true, если объект является комнатой. Возвращает
+         false если объект комнатой не является.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".isRoom"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{boolean}</span>
+					<span class="light">YAQP.Functions.</span><b>isRoom</b>()
+					
+					</div>
+					<div class="description">
+						Проверяет, является ли переданный объект комнатой.
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/src_functions.js.html">functions.js</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/YAQP.Classes.Room.html">YAQP.Classes.Room</a>}</span> <b>комната.</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{boolean}</span> Возвращает true, если объект является комнатой. Возвращает
+         false если объект комнатой не является.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".objs"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{<a href="../symbols/YAQP.Classes.ObjList.html">YAQP.Classes.ObjList</a>}</span>
+					<span class="light">YAQP.Functions.</span><b>objs</b>(o)
+					
+					</div>
+					<div class="description">
+						Возвращает список объектов указанной сцены; если сцена не указана, то
+возвращает список объектов текущей сцены
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/src_functions.js.html">functions.js</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>o</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/YAQP.Classes.ObjList.html">YAQP.Classes.ObjList</a>}</span> Объекты сцены.</dd>
+							
+							</dl>
+						
+						
+						
+
+					
+				
+			
 			
 <!-- ============================== event details ========================= -->		
 			
@@ -305,7 +647,7 @@ ul.inheritsList
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Dec 08 2011 20:45:27 GMT+0900 (IRKT)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri Dec 09 2011 22:57:36 GMT+0900 (IRKT)
 		</div>
 	</body>
 </html>

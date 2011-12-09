@@ -195,7 +195,15 @@ ul.inheritsList
 	
 	<li><a href="../symbols/YAQP.Classes.html">YAQP.Classes</a></li>
 	
+	<li><a href="../symbols/YAQP.Classes.Obj.html">YAQP.Classes.Obj</a></li>
+	
+	<li><a href="../symbols/YAQP.Classes.Object.html">YAQP.Classes.Object</a></li>
+	
 	<li><a href="../symbols/YAQP.Classes.ObjectList.html">YAQP.Classes.ObjectList</a></li>
+	
+	<li><a href="../symbols/YAQP.Classes.ObjList.html">YAQP.Classes.ObjList</a></li>
+	
+	<li><a href="../symbols/YAQP.Classes.Player.html">YAQP.Classes.Player</a></li>
 	
 	<li><a href="../symbols/YAQP.Classes.Room.html">YAQP.Classes.Room</a></li>
 	
@@ -223,7 +231,7 @@ ul.inheritsList
 				
 				
 				
-					<br /><i>Defined in: </i> <a href="../symbols/src/src_object.js.html">object.js</a>.
+					<br /><i>Defined in: </i> <a href="../symbols/src/src_objectlist.js.html">objectlist.js</a>.
 				
 			</p>
 
@@ -271,7 +279,7 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/YAQP.Classes.ObjectList.html#add">add</a></b>(obj)
+								<div class="fixedFont"><b><a href="../symbols/YAQP.Classes.ObjectList.html#add">add</a></b>(o)
 								</div>
 								<div class="description">Добавляет объект в список.</div>
 							</td>
@@ -280,7 +288,63 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/YAQP.Classes.ObjectList.html#srch">srch</a></b>(obj)
+								<div class="fixedFont"><b><a href="../symbols/YAQP.Classes.ObjectList.html#del">del</a></b>(o)
+								</div>
+								<div class="description">Удаление объекта из списка.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/YAQP.Classes.ObjectList.html#disable">disable</a></b>(o)
+								</div>
+								<div class="description">Скрытие объекта в списке; отличается от удаления тем, что может быть
+возвращён к жизни через метод enable</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/YAQP.Classes.ObjectList.html#enable">enable</a></b>(o)
+								</div>
+								<div class="description">Скрытие объекта в списке; отличается от удаления тем, что может быть
+возвращён к жизни через метод enable</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/YAQP.Classes.ObjectList.html#look">look</a></b>(o, lookHidden)
+								</div>
+								<div class="description">Поиск объекта.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/YAQP.Classes.ObjectList.html#purge">purge</a></b>(o)
+								</div>
+								<div class="description">Удаление объекта из списка.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/YAQP.Classes.ObjectList.html#replace">replace</a></b>(oOld, oNew)
+								</div>
+								<div class="description">Замена объекта в списке.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/YAQP.Classes.ObjectList.html#srch">srch</a></b>(o)
 								</div>
 								<div class="description">Поиск объекта.</div>
 							</td>
@@ -338,11 +402,12 @@ ul.inheritsList
 					<div class="fixedFont">
 					
 					
-					<b>add</b>(obj)
+					<b>add</b>(o)
 					
 					</div>
 					<div class="description">
-						Добавляет объект в список. Если в качестве параметра указана строка, то объект выбирается из глобального списка обьектов.
+						Добавляет объект в список. Если в качестве параметра указана строка, то
+объект выбирается из глобального списка обьектов.
 						
 						
 					</div>
@@ -354,10 +419,10 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<span class="light fixedFont">{YAQP.Classes.Object|string}</span> <b>obj</b>
+									<span class="light fixedFont">{<a href="../symbols/YAQP.Classes.Object.html">YAQP.Classes.Object</a>|string}</span> <b>o</b>
 									
 								</dt>
-								<dd>объект поиска. Либо строка с idобъекта, либо сам объект.</dd>
+								<dd>объект поиска. Либо строка с id объекта, либо сам объект.</dd>
 							
 							</dl>
 						
@@ -370,15 +435,15 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="srch"> </a>
+					<a name="del"> </a>
 					<div class="fixedFont">
 					
-					
-					<b>srch</b>(obj)
+					<span class="light">{boolean|undefined}</span>
+					<b>del</b>(o)
 					
 					</div>
 					<div class="description">
-						Поиск объекта.
+						Удаление объекта из списка. Скрытые объекты не удаляются.
 						
 						
 					</div>
@@ -390,16 +455,304 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<span class="light fixedFont">{YAQP.Classes.Object|string}</span> <b>obj</b>
+									<span class="light fixedFont">{<a href="../symbols/YAQP.Classes.Object.html">YAQP.Classes.Object</a>|string}</span> <b>o</b>
 									
 								</dt>
-								<dd>объект поиска. Либо строка с idобъекта, либо сам объект.</dd>
+								<dd>объект. Либо строка с id объекта, либо сам объект.</dd>
 							
 							</dl>
 						
 						
 						
 						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{boolean|undefined}</span> возвращает true, если объект удалось удалить,
+         либо undefined, если объект не найден.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="disable"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{number|undefined}</span>
+					<b>disable</b>(o)
+					
+					</div>
+					<div class="description">
+						Скрытие объекта в списке; отличается от удаления тем, что может быть
+возвращён к жизни через метод enable
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/YAQP.Classes.Object.html">YAQP.Classes.Object</a>|string}</span> <b>o</b>
+									
+								</dt>
+								<dd>объект. Либо строка с id объекта, либо сам объект.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{number|undefined}</span> возвращает false, если объект удалось скрыть,
+         либо undefined, если объект не найден.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="enable"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{number|undefined}</span>
+					<b>enable</b>(o)
+					
+					</div>
+					<div class="description">
+						Скрытие объекта в списке; отличается от удаления тем, что может быть
+возвращён к жизни через метод enable
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/YAQP.Classes.Object.html">YAQP.Classes.Object</a>|string}</span> <b>o</b>
+									
+								</dt>
+								<dd>объект. Либо строка с id объекта, либо сам объект.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{number|undefined}</span> возвращает false, если объект удалось скрыть,
+         либо undefined, если объект не найден.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="look"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{number|undefined}</span>
+					<b>look</b>(o, lookHidden)
+					
+					</div>
+					<div class="description">
+						Поиск объекта. Функция возвращает индекс найденного объекта в списке.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/YAQP.Classes.Object.html">YAQP.Classes.Object</a>|string}</span> <b>o</b>
+									
+								</dt>
+								<dd>объект поиска. Либо строка с id объекта, либо сам объект.</dd>
+							
+								<dt>
+									<span class="light fixedFont">{boolean}</span> <b>lookHidden</b>
+									
+								</dt>
+								<dd>Искать скрытые объекты или нет. По умолчанию скрытые
+           объекты не ищутся.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{number|undefined}</span> возвращает индекс найденного объекта, либо
+         undefined если объект не найден.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="purge"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{number|undefined}</span>
+					<b>purge</b>(o)
+					
+					</div>
+					<div class="description">
+						Удаление объекта из списка. Скрытые объекты тоже удаляются.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/YAQP.Classes.Object.html">YAQP.Classes.Object</a>|string}</span> <b>o</b>
+									
+								</dt>
+								<dd>объект. Либо строка с id объекта, либо сам объект.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{number|undefined}</span> возвращает true, если объект удалось удалить,
+         либо undefined, если объект не найден.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="replace"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{boolean}</span>
+					<b>replace</b>(oOld, oNew)
+					
+					</div>
+					<div class="description">
+						Замена объекта в списке. Если объект, на который следует заменить (oNew) уже
+есть в списке, то просто удаляется объект замены (oOld)
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/YAQP.Classes.Object.html">YAQP.Classes.Object</a>|string}</span> <b>oOld</b>
+									
+								</dt>
+								<dd>объект поиска. Либо строка с id объекта, либо сам объект.</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/YAQP.Classes.Object.html">YAQP.Classes.Object</a>|string}</span> <b>oNew</b>
+									
+								</dt>
+								<dd>объект поиска. Либо строка с id объекта, либо сам объект.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{boolean}</span> возвращает true, если замена произошла, false - в
+         противном случае.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="srch"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{number|undefined}</span>
+					<b>srch</b>(o)
+					
+					</div>
+					<div class="description">
+						Поиск объекта. Функция возвращает найденный в списке объект.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/YAQP.Classes.Object.html">YAQP.Classes.Object</a>|string}</span> <b>o</b>
+									
+								</dt>
+								<dd>объект поиска. Либо строка с id объекта, либо сам объект.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{number|undefined}</span> возвращает индекс найденного объекта, либо
+         undefined если объект не найден.</dd>
+							
+							</dl>
 						
 						
 						
@@ -418,7 +771,7 @@ ul.inheritsList
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Dec 08 2011 20:45:27 GMT+0900 (IRKT)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri Dec 09 2011 22:57:35 GMT+0900 (IRKT)
 		</div>
 	</body>
 </html>

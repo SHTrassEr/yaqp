@@ -40,30 +40,17 @@ YAQP.Classes.Room = function(room, id) {
 	 * 
 	 * @type YAQP.Classes.ObjectList
 	 */
-	this.objs = new YAQP.Classes.ObjectList();
+	this.objs = new YAQP.Classes.ObjList();
 
 	/**
 	 * Перекидываем все поля и методы из описания сцены в создаваемый объект.
 	 */
 	for (var r in room) {
-		if (r != "obj") {
+		if (r != "obj") { /** все, кроме поля obj */
 			this[r] = room[r];
-		} else {
-			/**
-			 * объекты лучше добавлять через метод add
-			 */
-			for (var o in room.obj) {
-				this.obj.add(room.obj[o]);
-			}
 		}
 	}
-
-	/**
-	 * Идентификатор комнаты.
-	 * 
-	 * @type string
-	 */
-	this.__id = id;
+	YAQP.Classes.Obj.superclass.constructor.apply(this, [id]);
 };
 
 YAQP.Functions.extend(YAQP.Classes.Room, YAQP.Classes.Object);
