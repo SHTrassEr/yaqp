@@ -59,5 +59,8 @@ function() {
 	YAQP.Functions.prepareRooms(room);
 	YAQP.Functions.prepareLinksRoomObjs(room);
 	
+	obj = YAQP.game.objs;
+	room = YAQP.game.rooms;
+	
 	YAQP.game.pl = new YAQP.Classes.Player(YAQP.game.rooms[initialRoom]);
 })();
