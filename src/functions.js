@@ -83,25 +83,81 @@ YAQP.Functions.objs = function(o) {
 		return o.objs;
 };
 
+/**
+ * Служебная функция, вызывается один раз при создании игры. 
+ * На вход получает список объектов, объявленный в файле 
+ * игры. Эти объекты преобразуются в объекты типа 
+ * {@link YAQP.Classes.Obj} и сохраняются в глобальном 
+ * перечне объектов игры {@link YAQP.game.objs}. 
+ * @param {object} obj список игровых объектов.
+ */
 YAQP.Functions.prepareObjs = function(obj) {
 	YAQP.game.objs = {};
 	for (var o in obj)
 		YAQP.game.objs[o] = new YAQP.Classes.Obj(obj[o], o);
 };
 
+/**
+ * Служебная функция, вызывается один раз при создании игры. 
+ * На вход получает список сцен, объявленный в файле 
+ * игры. Эти сцены преобразуются в объекты типа 
+ * {@link YAQP.Classes.Room} и сохраняются в глобальном 
+ * перечне сцен игры {@link YAQP.game.rooms}. 
+ * @param {object} room список сцен.
+ */
 YAQP.Functions.prepareRooms = function(room) {
 	YAQP.game.rooms = {};
 	for (var r in room) 
 		YAQP.game.rooms[r] = new YAQP.Classes.Room(room[r], r);
 };
 
+/**
+ * Служебная функция, вызывается один раз при создании игры. 
+ * На вход получает список сцен, объявленный в файле 
+ * игры. Инициализирует список объектов сцены.
+ * @TODO написать нормальную документацию.  
+ * @param {object} room список сцен.
+ */
 YAQP.Functions.prepareLinksRoomObjs = function(room) {
-	var r = undefined;
-	var o = undefined;
-	for (r in room){
-		for (o in room[r].obj) {
+	for (var r in room){
+		for (var o in room[r].obj) {
 			YAQP.game.rooms[r].objs.add(room[r].obj[o]);
 		}
 	}
-	
+};
+
+/**
+ * Служебная функция, вызывается один раз при создании игры. 
+ * На вход получает список сцен, объявленный в файле 
+ * игры. Инициализирует список возможных переходов со сцены.
+ * @param {object} room список сцен.
+ */
+YAQP.Functions.prepareLinksRoomWays = function(room) {
+	for (var r in room){
+		for (var w in room[r].way) {
+			YAQP.game.rooms[r].ways.add(room[r].way[w]);
+		}
+	}
+};
+
+/**
+ * Служебная функция, вызывается один раз при создании игры. 
+ * На вход получает список м, объявленный в файле 
+ * игры. Инициализирует список возможных переходов со сцены.
+ * @param {object} room список сцен.
+ */
+YAQP.Functions.prepareLinksObjObjs = function(obj) {
+	for (var o in obj){
+		for (var oo in obj[o].obj) {
+			YAQP.game.objs.obj[o].add(obj[o].obj[oo]);
+		}
+	}
+};
+
+YAQP.Functions.error = function(msg, e) {
+	if (e != undefined) {
+		throw new Error(msg + "\n" + e.message);		
+	} else {
+		throw new Error(msg + "\n");
+	}
 };

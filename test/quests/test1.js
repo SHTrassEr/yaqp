@@ -3,7 +3,7 @@ room["main"] = {
 	nam : "Погружение в INSTEAD",
 	dsc : "[Добро пожаловать! В этой небольшой обучающей игре",
 	obj : ["woodstick", "water", "shkaf"],
-	way : ["location1", "location2"]
+	way : ["room1", "room2"]
 	
 };
 
@@ -17,7 +17,8 @@ obj["woodstick"] = {
 obj["water"] = {
 	nam : "Вода",
 	dsc : "В ванне тихо стоит мутная {вода}.",
-	act : "Мутная вода. Дна ванны не видно."
+	act : "Мутная вода. Дна ванны не видно.",
+	obj: ["woodstick"]
 };
 
 obj["shkaf"] = {

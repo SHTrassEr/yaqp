@@ -28,12 +28,30 @@ YAQP.Functions.extend(YAQP.Classes.RoomList, YAQP.Classes.ObjectList);
  *            o объект поиска. Либо строка с id объекта, либо сам объект.
  */
 YAQP.Classes.RoomList.prototype.add = function(o) {
-	if (typeof o === "string"){
-		o = YAPQ.game.rooms[o];
+	switch (typeof o) {
+		case "undefined" :
+			YAQP.Functions.error("Нельзя добавить объект в список сцен." + 
+					"Объект не является сценой: 'undefined'.");
+			break;
+		case "string" :
+			if (YAQP.game.rooms[o]) {
+				if (YAQP.Functions.isRoom(YAQP.game.rooms[o])) {
+					return YAQP.Classes.RoomList.superclass.add.apply(this, [YAQP.game.rooms[o]]);					
+				} else
+					YAQP.Functions.error("Нельзя добавить объект в список сцен. " +
+							"Объект содержится в глобальном списке сцен, " +
+							" но не является сценой: '" + o + "'.");
+			} else
+				YAQP.Functions.error("Нельзя добавить объект в список сцен. " +
+				"Объект не найден в глобальном списке сцен: '" + o + "'.");
+			break;
+		case "object" :
+			if (YAQP.Functions.isRoom(o)) {
+				return YAQP.Classes.RoomList.superclass.add.apply(this, [o]);					
+			} else
+				YAQP.Functions.error("Нельзя добавить объект в список сцен. " +
+						"Объект не является сценой: '" +
+						 + o.toString() + "'.");
+			break;
 	}
-	if (YAQP.Functions.isRoom(o)) {
-		return YAQP.Classes.RoomList.superclass.add.apply(this, [o]);
-	} else
-		throw new Error("Ошибка при попытке добавить переданный объект в " +
-				"список игровых сцен.");
 };

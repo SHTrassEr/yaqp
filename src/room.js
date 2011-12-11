@@ -41,6 +41,13 @@ YAQP.Classes.Room = function(room, id) {
 	 * @type YAQP.Classes.ObjectList
 	 */
 	this.objs = new YAQP.Classes.ObjList();
+	
+	/**
+	 * Список возможных переходов со сцены. 
+	 * 
+	 * @type YAQP.Classes.RoomList
+	 */
+	this.ways = new YAQP.Classes.RoomList();
 
 	/**
 	 * Перекидываем все поля и методы из описания сцены в создаваемый объект.

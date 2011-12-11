@@ -54,10 +54,35 @@ function() {
 	
 
 	//<%QUEST%>//
+	try {	
+		YAQP.Functions.prepareObjs(obj);
+	} catch(e) {
+		YAQP.Functions.error("function prepareObjs:", e);
+	}
 	
-	YAQP.Functions.prepareObjs(obj);
-	YAQP.Functions.prepareRooms(room);
-	YAQP.Functions.prepareLinksRoomObjs(room);
+	try {
+		YAQP.Functions.prepareRooms(room);
+	} catch(e) {
+		YAQP.Functions.error("function prepareRooms:", e);
+	}
+	
+	try {
+		YAQP.Functions.prepareLinksRoomObjs(room);
+	} catch(e) {
+		YAQP.Functions.error("function prepareLinksRoomObjs:", e);
+	}
+	
+	try {
+		YAQP.Functions.prepareLinksRoomWays(room);
+	} catch(e) {
+		YAQP.Functions.error("function prepareLinksRoomWays:", e);
+	}
+	
+	try {
+		YAQP.Functions.prepareLinksObjObjs(obj);
+	} catch(e) {
+		YAQP.Functions.error("function prepareLinksObjObjs:", e);
+	}
 	
 	obj = YAQP.game.objs;
 	room = YAQP.game.rooms;
