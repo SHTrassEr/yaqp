@@ -15,7 +15,7 @@ YAQP.Classes.ObjectList = function() {
 
 };
 
-YAQP.Functions.extend(YAQP.Classes.ObjectList, Array);
+// YAQP.Functions.extend(YAQP.Classes.ObjectList, Array);
 
 /**
  * Добавляет объект в список. Если в качестве параметра указана строка, то
@@ -27,10 +27,14 @@ YAQP.Functions.extend(YAQP.Classes.ObjectList, Array);
 YAQP.Classes.ObjectList.prototype.add = function(o) {
 	try {
 		if (typeof o === "object") {
-			if (this.look(o) === undefined) {
-				this.push(o);
-				return true;
-			}
+			if (o.__id) {
+				if (this[o.__id] !== o) {
+					this[o.__id] = o;
+					return true;
+				}else 
+				return false;
+			} else
+				throw "Не указано свойство __id, o: '" + o.toString() + "'";
 		} else
 			throw "Параметр не является объектом, o: '" + o + "'";
 		return false;
@@ -40,7 +44,7 @@ YAQP.Classes.ObjectList.prototype.add = function(o) {
 };
 
 /**
- * Поиск объекта. Функция возвращает индекс найденного объекта в списке.
+ * Поиск объекта. Функция возвращает найденный в списке объект.
  * 
  * @param {YAQP.Classes.Object|string}
  *            o объект поиска. Либо строка с id объекта, либо сам объект.
@@ -50,42 +54,21 @@ YAQP.Classes.ObjectList.prototype.add = function(o) {
  * @returns {number|undefined} возвращает индекс найденного объекта, либо
  *          undefined если объект не найден.
  */
-YAQP.Classes.ObjectList.prototype.look = function(o, lookHidden) {
+YAQP.Classes.ObjectList.prototype.srch = function(o, lookHidden) {
 	switch (typeof o) {
 		case "string" :
-			for (var i = 0; i < this.length; i++) {
-				if (lookHidden || this[i].isEnabled()) {
-					if (this[i].__id == o) {
-						return i;
-					}
-				}
+			if (this[o]){
+				if (lookHidden || this[o].isEnabled())
+					return this[o];
 			}
 			break;
 		case "object" :
-			for (var i = 0; i < this.length; i++) {
-				if (lookHidden || this[i].isEnabled()) {
-					if (this[i] == o) {
-						return i;
-					}
-				}
+			if (this[o.__id]){
+				if (lookHidden || this[o.__id].isEnabled())
+					if (this[o.__id] === o)
+						return this[o.__id];
 			}
 			break;
-	}
-	return undefined;
-};
-
-/**
- * Поиск объекта. Функция возвращает найденный в списке объект.
- * 
- * @param {YAQP.Classes.Object|string}
- *            o объект поиска. Либо строка с id объекта, либо сам объект.
- * @returns {number|undefined} возвращает индекс найденного объекта, либо
- *          undefined если объект не найден.
- */
-YAQP.Classes.ObjectList.prototype.srch = function(o) {
-	var i = this.look(o);
-	if (i !== undefined) {
-		return this[i];
 	}
 	return undefined;
 };
@@ -100,9 +83,9 @@ YAQP.Classes.ObjectList.prototype.srch = function(o) {
  *          либо undefined, если объект не найден.
  */
 YAQP.Classes.ObjectList.prototype.disable = function(o) {
-	var i = this.look(o);
-	if (i !== undefined) {
-		return this[i].disable();
+	var obj = this.srch(o);
+	if (obj !== undefined) {
+		return obj.disable();
 	}
 	return undefined;
 };
@@ -117,9 +100,9 @@ YAQP.Classes.ObjectList.prototype.disable = function(o) {
  *          либо undefined, если объект не найден.
  */
 YAQP.Classes.ObjectList.prototype.enable = function(o) {
-	var i = this.look(o, true);
-	if (i !== undefined) {
-		return this[i].enable();
+	var obj = this.srch(o, true);
+	if (obj !== undefined) {
+		return obj.enable();
 	}
 	return undefined;
 };
@@ -133,9 +116,9 @@ YAQP.Classes.ObjectList.prototype.enable = function(o) {
  *          либо undefined, если объект не найден.
  */
 YAQP.Classes.ObjectList.prototype.del = function(o) {
-	var i = this.look(o, false);
-	if (i !== undefined) {
-		this.splice(i, 1);
+	var obj = this.srch(o);
+	if (obj !== undefined) {
+		delete this[obj.__id];
 		return true;
 	}
 	return undefined;
@@ -149,9 +132,9 @@ YAQP.Classes.ObjectList.prototype.del = function(o) {
  *          либо undefined, если объект не найден.
  */
 YAQP.Classes.ObjectList.prototype.purge = function(o) {
-	var i = this.look(o, true);
-	if (i !== undefined) {
-		this.splice(i, 1);
+	var obj = this.srch(o, true);
+	if (obj !== undefined) {
+		delete this[obj.__id];
 		return true;
 	}
 	return undefined;
@@ -175,15 +158,12 @@ YAQP.Classes.ObjectList.prototype.replace = function(oOld, oNew) {
 	if (typeof oNew != "object") {
 		return false;
 	}
-	var i = this.look(oNew);
-	if (i !== undefined) {
-		i = this.look(oOld);
-	}
-
-	i = this.look(oOld);
-	if (i !== undefined) {
-		this[i] = oNew;
+	if (oOld === oNew)
 		return true;
-	}
-	return false;
+	
+	var o = this.look(oOld);
+	YAQP.Classes.ObjectList.prototype.del(o);
+	this[oNew.__id] = oNew;
+	
+	return true;
 };
