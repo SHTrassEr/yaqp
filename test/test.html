@@ -144,13 +144,12 @@ test("add items", function() {
 	  })();
   
 (function(){
-  module("test functions");
-  
-  YAQP.initGameSync("../src/core.js", "quests/test1.js");
+  module("test init game");
+    YAQP.initGameSync("../src/core.js", "quests/test1.js");
 
-  test("some other test", function() {
-  expect(1);
-  //equal( true, false, "failing test" );
+  test("locations", function() {
+	  equal( YAQP.game.rooms["main"].id,"main", "room 'main' founded" );
+  
   equal( true, true, "passing test" );
   });
 })();

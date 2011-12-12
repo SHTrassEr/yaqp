@@ -7,13 +7,31 @@
  * @class
  */
 YAQP.Classes.Obj = function(obj, id) {
-	/**
-	 * Перекидываем все поля и методы из описания объекта в создаваемый объект.
-	 */
-	for (var p in obj) {
-		this[p] = obj[p];
-	}
-	YAQP.Classes.Obj.superclass.constructor.apply(this, [id]);
+	try {
+
+		/**
+		 * Список привязанных объектов.
+		 * 
+		 * @type YAQP.Classes.ObjectList
+		 */
+		this.objs = new YAQP.Classes.ObjList();
+
+		/**
+		 * Перекидываем все поля и методы из описания объекта в создаваемый
+		 * объект.
+		 */
+		for (var p in obj) {
+			if (!YAQP.Functions.isValidRoomField(p))
+				throw "Недопустимое поле в описании предмета: '" + p + "'";
+			if (p != "obj") {
+				/** все, кроме поля obj */
+				this[p] = obj[p];
+			}
+		}
+		YAQP.Classes.Obj.superclass.constructor.apply(this, [id]);
+	} catch (e) {
+		YAQP.Functions.error("YAQP.Classes.Obj ", e);
+	};
 };
 
 YAQP.Functions.extend(YAQP.Classes.Obj, YAQP.Classes.Object);

@@ -6,16 +6,14 @@
 function() {
 	var room = {};
 	var obj = {};
-	var dlg = {};
-	
+	// var dlg = {};
+
 	var initialRoom = 'main';
 
 	/**
-	 * Обрабатываем поле obj. obj - это массив, который может
-	 * содержать как строку-идентификатор объекта, так и сам
-	 * объект. 
+	 * Обрабатываем поле obj. obj - это массив, который может содержать как
+	 * строку-идентификатор объекта, так и сам объект.
 	 */
-	
 
 	function go() {
 	}
@@ -42,7 +40,7 @@ function() {
 	function me() {
 		return YAQP.game.pl;
 	}
-	
+
 	var inv = YAQP.Functions.inv;
 
 	// objects
@@ -51,41 +49,30 @@ function() {
 
 		}
 	}
-	
 
-	//<%QUEST%>//
-	try {	
+	// <%QUEST%>//
+	try {
 		YAQP.Functions.prepareObjs(obj);
-	} catch(e) {
+	} catch (e) {
 		YAQP.Functions.error("function prepareObjs:", e);
 	}
-	
+
 	try {
 		YAQP.Functions.prepareRooms(room);
-	} catch(e) {
+	} catch (e) {
 		YAQP.Functions.error("function prepareRooms:", e);
 	}
-	
+
 	try {
 		YAQP.Functions.prepareLinksRoomObjs(room);
-	} catch(e) {
+	} catch (e) {
 		YAQP.Functions.error("function prepareLinksRoomObjs:", e);
 	}
-	
-	try {
-		YAQP.Functions.prepareLinksRoomWays(room);
-	} catch(e) {
-		YAQP.Functions.error("function prepareLinksRoomWays:", e);
-	}
-	
-	try {
-		YAQP.Functions.prepareLinksObjObjs(obj);
-	} catch(e) {
-		YAQP.Functions.error("function prepareLinksObjObjs:", e);
-	}
-	
+	YAQP.Functions.prepareLinksRoomWays(room);
+	YAQP.Functions.prepareLinksObjObjs(obj);
+
 	obj = YAQP.game.objs;
 	room = YAQP.game.rooms;
-	
+
 	YAQP.game.pl = new YAQP.Classes.Player(YAQP.game.rooms[initialRoom]);
 })();

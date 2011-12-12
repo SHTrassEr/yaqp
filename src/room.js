@@ -13,51 +13,61 @@
  * @class
  */
 YAQP.Classes.Room = function(room, id) {
-	/**
-	 * Название сцены. Это название будет заголовком сцены при её отображении.
-	 * Имя сцены также используется для её идентификации при переходах.
-	 * 
-	 * @type string
-	 */
-	this.name = "";
-	/**
-	 * Описание комнаты. Описание статической части сцены, которое выводится при
-	 * входе в сцену или выполнении команды look
-	 * 
-	 * @type string
-	 */
-	this.dsc = "";
-	/**
-	 * Определяет, выводить описание статической части сцены на каждом ходу
-	 * (значение true) или только при первом входе на сцену (значение false).
-	 * По-умолчанию установлено false.
-	 * 
-	 * @type boolean
-	 */
-	this.forcedsc = false;
-	/**
-	 * Список объектов сцены.
-	 * 
-	 * @type YAQP.Classes.ObjectList
-	 */
-	this.objs = new YAQP.Classes.ObjList();
-	
-	/**
-	 * Список возможных переходов со сцены. 
-	 * 
-	 * @type YAQP.Classes.RoomList
-	 */
-	this.ways = new YAQP.Classes.RoomList();
+	try {
+		/**
+		 * Название сцены. Это название будет заголовком сцены при её
+		 * отображении. Имя сцены также используется для её идентификации при
+		 * переходах.
+		 * 
+		 * @type string
+		 */
+		this.name = "";
+		/**
+		 * Описание комнаты. Описание статической части сцены, которое выводится
+		 * при входе в сцену или выполнении команды look
+		 * 
+		 * @type string
+		 */
+		this.dsc = "";
+		/**
+		 * Определяет, выводить описание статической части сцены на каждом ходу
+		 * (значение true) или только при первом входе на сцену (значение
+		 * false). По-умолчанию установлено false.
+		 * 
+		 * @type boolean
+		 */
+		this.forcedsc = false;
+		/**
+		 * Список объектов сцены.
+		 * 
+		 * @type YAQP.Classes.ObjectList
+		 */
+		this.objs = new YAQP.Classes.ObjList();
 
-	/**
-	 * Перекидываем все поля и методы из описания сцены в создаваемый объект.
-	 */
-	for (var r in room) {
-		if (r != "obj") { /** все, кроме поля obj */
-			this[r] = room[r];
+		/**
+		 * Список возможных переходов со сцены.
+		 * 
+		 * @type YAQP.Classes.RoomList
+		 */
+		this.ways = new YAQP.Classes.RoomList();
+
+		/**
+		 * Перекидываем все поля и методы из описания сцены в создаваемый
+		 * объект.
+		 */
+		for (var p in room) {
+			if (!YAQP.Functions.isValidRoomField(p))
+				throw "Недопустимое поле в описании сцены: '" + p + "'";
+			if (p != "obj") {
+				/** все, кроме поля obj */
+				this[p] = room[p];
+			}
 		}
-	}
-	YAQP.Classes.Obj.superclass.constructor.apply(this, [id]);
+		YAQP.Classes.Obj.superclass.constructor.apply(this, [id]);
+	} catch (e) {
+		YAQP.Functions.error("YAQP.Classes.Room ", e);
+	};
+
 };
 
 YAQP.Functions.extend(YAQP.Classes.Room, YAQP.Classes.Object);

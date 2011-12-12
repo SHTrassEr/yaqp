@@ -1,11 +1,12 @@
 /**
-* @author SHTrassEr
-*/
+ * @author SHTrassEr
+ */
 
 /**
  * Объект, представляющий игрока.
  * 
- * @param {YAQP.Classes.Room} room Сцена, на которой находится игрок.
+ * @param {YAQP.Classes.Room}
+ *            room Сцена, на которой находится игрок.
  * @constructor
  * @class
  */
@@ -16,7 +17,7 @@ YAQP.Classes.Player = function(room) {
 	 * @type YAQP.Classes.ObjList
 	 */
 	this.inv = new YAQP.Classes.ObjList();
-	
+
 	/**
 	 * На какой сцене находится игрок.
 	 * 
@@ -26,7 +27,8 @@ YAQP.Classes.Player = function(room) {
 };
 
 /**
- * Тип объекта. 
- *  @type YAQP.Classes.ObjectTypes
+ * Тип объекта.
+ * 
+ * @type YAQP.Classes.ObjectTypes
  */
 YAQP.Classes.Player.prototype.__type = YAQP.Classes.ObjectTypes.Player;

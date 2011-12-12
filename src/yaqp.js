@@ -10,22 +10,25 @@ var YAQP = (/** @constructor */
 function() {
 	/**
 	 * Здесь хранится шаблон для квестов.
+	 * 
 	 * @private
 	 * @type string
 	 */
 	var sCore = undefined;
 	/**
 	 * Здесь сохраняется сам квест.
+	 * 
 	 * @private
 	 * @type string
 	 */
 	var sGame = undefined;
 	/**
 	 * Хранит строку, которую нужно заменить в шаблоне.
+	 * 
 	 * @private
 	 * @constant
 	 */
-	var sQuestEntry = "//<%QUEST%>//";
+	var sQuestEntry = "// <%QUEST%>//";
 	/**
 	 * 
 	 */
@@ -85,7 +88,8 @@ function() {
 						cache : false
 					});
 
-		},
+		}
+		,
 
 	};
 })();

@@ -1,4 +1,4 @@
-#Fri Dec 09 10:13:05 IRKT 2011
+#Mon Dec 12 12:40:30 IRKT 2011
 eclipse.preferences.version=1
 org.eclipse.wst.jsdt.core.compiler.problem.deprecation=warning
 org.eclipse.wst.jsdt.core.compiler.problem.deprecationInDeprecatedCode=disabled
@@ -37,4 +37,4 @@ org.eclipse.wst.jsdt.core.compiler.problem.unusedParameter=ignore
 org.eclipse.wst.jsdt.core.compiler.problem.unusedParameterIncludeDocCommentReference=enabled
 org.eclipse.wst.jsdt.core.compiler.problem.unusedParameterWhenImplementingAbstract=disabled
 org.eclipse.wst.jsdt.core.compiler.problem.unusedPrivateMember=warning
-semanticValidation=enabled
+semanticValidation=disabled

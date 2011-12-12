@@ -25,13 +25,18 @@ YAQP.Functions.extend(YAQP.Classes.ObjectList, Array);
  *            o объект поиска. Либо строка с id объекта, либо сам объект.
  */
 YAQP.Classes.ObjectList.prototype.add = function(o) {
-	if (typeof o === "object"){
-		if (this.look(o) === undefined) {
-			this.push(o);
-			return true;
-		}
+	try {
+		if (typeof o === "object") {
+			if (this.look(o) === undefined) {
+				this.push(o);
+				return true;
+			}
+		} else
+			throw "Параметр не является объектом, o: '" + o + "'";
+		return false;
+	} catch (e) {
+		YAQP.Functions.error("YAQP.Classes.ObjectList.add ", e);
 	}
-	return false;
 };
 
 /**

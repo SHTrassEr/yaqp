@@ -8,7 +8,7 @@
  */
 YAQP.Classes.Object = function(id) {
 	var disabled = false;
-	
+
 	this.disable = function() {
 		disabled = true;
 		return true;
@@ -23,9 +23,9 @@ YAQP.Classes.Object = function(id) {
 	this.isEnabled = function() {
 		return !disabled;
 	};
-	
+
 	this.__id = id;
-	
+
 };
 
 YAQP.Classes.ObjectTypes = {
