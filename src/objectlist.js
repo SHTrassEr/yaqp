@@ -28,10 +28,10 @@ YAQP.Classes.ObjectList.prototype.add = function(o) {
 	try {
 		if (typeof o === "object") {
 			if (o.__id) {
-				if (this[o.__id] !== o) {
+				if (this[o.__id] !== o) { 
 					this[o.__id] = o;
 					return true;
-				}else 
+				}else /* если объект уже занесен в список */
 				return false;
 			} else
 				throw "Не указано свойство __id, o: '" + o.toString() + "'";
@@ -152,18 +152,60 @@ YAQP.Classes.ObjectList.prototype.purge = function(o) {
  *          противном случае.
  */
 YAQP.Classes.ObjectList.prototype.replace = function(oOld, oNew) {
-	if (typeof oOld != "object") {
-		return false;
-	}
-	if (typeof oNew != "object") {
-		return false;
-	}
-	if (oOld === oNew)
+	try {
+		if (typeof oOld != "object") {
+			return false;
+		}
+		if (typeof oNew != "object") {
+			return false;
+		}
+		if (oOld === oNew)
+			return true;
+		
+		var o = this.look(oOld);
+		YAQP.Classes.ObjectList.prototype.del(o);
+		this[oNew.__id] = oNew;
 		return true;
-	
-	var o = this.look(oOld);
-	YAQP.Classes.ObjectList.prototype.del(o);
-	this[oNew.__id] = oNew;
-	
-	return true;
+	} catch (e) {
+		YAQP.Functions.error("YAQP.Classes.ObjectList.replace ", e);
+	};
+};
+
+/**
+ * Обнуление списка.
+ */
+YAQP.Classes.ObjectList.prototype.zap = function() {
+	try {
+		for (var p in this) {
+			delete this[p];
+		}
+	} catch (e) {
+		YAQP.Functions.error("YAQP.Classes.ObjectList.zap ", e);
+	};
+};
+
+/**
+ * Скрывает все объекты в списке.
+ */
+YAQP.Classes.ObjectList.prototype.disable_all = function() {
+	try {
+		for (var p in this) {
+			this[p].disable();
+		}
+	} catch (e) {
+		YAQP.Functions.error("YAQP.Classes.ObjectList.disable_all ", e);
+	};
+};
+
+/**
+ * Показывает все объекты в списке.
+ */
+YAQP.Classes.ObjectList.prototype.enable_all = function() {
+	try {
+		for (var p in this) {
+			this[p].enable();
+		}
+	} catch (e) {
+		YAQP.Functions.error("YAQP.Classes.ObjectList.enable_all ", e);
+	};
 };

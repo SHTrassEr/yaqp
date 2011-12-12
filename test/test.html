@@ -105,15 +105,15 @@ module("test  objlist ");
   
   
 test("add items", function() {
-  equal( objList[0], obj1, "adding obj1" );
-  equal( objList[1], obj2, "adding obj2" );
-  equal( objList[2], obj3, "adding obj3" );
-  equal( objList.length, 3, "size ok" );
+  equal( objList["id1"], obj1, "adding obj1" );
+  equal( objList["id2"], obj2, "adding obj2" );
+  equal( objList["id3"], obj3, "adding obj3" );
+  //equal( objList.length, 3, "size ok" );
  
   equal( objList.add(obj1), false , "cannot add existing items" );
   equal( objList.add(obj2), false , "cannot add existing items" );
   equal( objList.add(obj3), false , "cannot add existing items" );
-  equal( objList.length, 3, "adding existing items ok" );  
+  //equal( objList.length, 3, "adding existing items ok" );  
   });
 })();
 
@@ -131,15 +131,15 @@ test("add items", function() {
 	    
 	    
 	  test("add items", function() {
-	    equal( objList[0], obj1, "adding obj1" );
-	    equal( objList[1], obj2, "adding obj2" );
-	    equal( objList[2], obj3, "adding obj3" );
-	    equal( objList.length, 3, "size ok" );
+	    equal( objList["id1"], obj1, "adding obj1" );
+	    equal( objList["id2"], obj2, "adding obj2" );
+	    equal( objList["id3"], obj3, "adding obj3" );
+	    //equal( objList.length, 3, "size ok" );
 	   
 	    equal( objList.add(obj1), false , "cannot add existing items" );
 	    equal( objList.add(obj2), false , "cannot add existing items" );
 	    equal( objList.add(obj3), false , "cannot add existing items" );
-	    equal( objList.length, 3, "adding existing items ok" );  
+	    //equal( objList.length, 3, "adding existing items ok" );  
 	    });
 	  })();
   
@@ -148,8 +148,7 @@ test("add items", function() {
     YAQP.initGameSync("../src/core.js", "quests/test1.js");
 
   test("locations", function() {
-	  equal( YAQP.game.rooms["main"].id,"main", "room 'main' founded" );
-  
+	  equal( YAQP.game.rooms["main"].__id,"main", "room 'main' founded" );
   equal( true, true, "passing test" );
   });
 })();

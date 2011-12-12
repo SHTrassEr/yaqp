@@ -100,9 +100,9 @@ YAQP.Functions.objs = function(o) {
 YAQP.Functions.prepareObjs = function(obj) {
 	var o = "";
 	try {
-		YAQP.game.objs = {};
+		YAQP.game.objs = new YAQP.Classes.ObjList();
 		for (o in obj)
-			YAQP.game.objs[o] = new YAQP.Classes.Obj(obj[o], o);
+			YAQP.game.objs.add(new YAQP.Classes.Obj(obj[o], o));
 	} catch (e) {
 		YAQP.Functions.error("YAQP.Functions.prepareObjs " + "obj: '"
 				+ o + "'", e);
@@ -121,9 +121,9 @@ YAQP.Functions.prepareObjs = function(obj) {
 YAQP.Functions.prepareRooms = function(room) {
 	var r = "";
 	try {
-		YAQP.game.rooms = {};
+		YAQP.game.rooms = new YAQP.Classes.RoomList();
 		for (r in room)
-			YAQP.game.rooms[r] = new YAQP.Classes.Room(room[r], r);
+			YAQP.game.rooms.add(new YAQP.Classes.Room(room[r], r));
 	} catch (e) {
 		YAQP.Functions.error("YAQP.Functions.prepareRooms " + "room: '"
 				+ r + "'", e);
@@ -231,6 +231,11 @@ YAQP.Functions.error = function(msg, e) {
 	}
 };
 
+/**
+ * Служебная функция.  
+ * @param fieldName Название поля.
+ * @returns {Boolean} ре
+ */
 YAQP.Functions.isValidRoomField = function(fieldName) {
 	switch (fieldName) {
 		case "objs" :
