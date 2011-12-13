@@ -1346,8 +1346,8 @@
 
 		var jsDump = {
 			parse : function(obj, type, stack) { // type is used mostly
-													// internally, you can fix a
-													// (custom)type in advance
+				// internally, you can fix a
+				// (custom)type in advance
 				stack = stack || [];
 				var parser = this.parsers[type || this.typeOf(obj)];
 				type = typeof parser;
@@ -1405,7 +1405,7 @@
 						: ' ';
 			},
 			indent : function(extra) {// extra can be a number, shortcut for
-										// increasing-calling-decreasing
+				// increasing-calling-decreasing
 				if (!this.multiline)
 					return '';
 				var chr = this.indentChar;
@@ -1440,7 +1440,7 @@
 					var ret = 'function', name = 'name' in fn
 							? fn.name
 							: (reName.exec(fn) || [])[1];// functions never
-															// have name in IE
+					// have name in IE
 					if (name)
 						ret += ' ' + name;
 					ret += '(';
@@ -1480,8 +1480,8 @@
 					return ret + close + open + '/' + tag + close;
 				},
 				functionArgs : function(fn) {// function calls it internally,
-												// it's the arguments part of
-												// the function
+					// it's the arguments part of
+					// the function
 					var l = fn.length;
 					if (!l)
 						return '';
@@ -1492,11 +1492,11 @@
 					return ' ' + args.join(', ') + ' ';
 				},
 				key : quote, // object calls it internally, the key part of
-								// an item in a map
+				// an item in a map
 				functionCode : '[code]', // function calls it internally,
-											// it's the content of the function
+				// it's the content of the function
 				attribute : quote, // node calls it internally, it's an html
-									// attribute value
+				// attribute value
 				string : quote,
 				date : quote,
 				regexp : literal, // regex
@@ -1509,7 +1509,7 @@
 				'class' : 'className'
 			},
 			HTML : false,// if true, entities are escaped ( <, >, \t, space
-							// and \n )
+			// and \n )
 			indentChar : '  ',// indentation unit
 			multiline : true
 			// if true, items in a collection, are separated by a \n, else just

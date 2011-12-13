@@ -2,20 +2,23 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <script src="qunit/jquery.js"></script>
   <link rel="stylesheet" href="qunit/qunit.css" type="text/css" media="screen" />
-<script type="text/javascript" src="qunit/qunit.js"></script>
+  <script type="text/javascript" src="qunit/qunit.js"></script>
 
-  <script src="../src/yaqp.js"></script>
+  <script src="qunit/jquery.js"></script>
+  <script src="../src/core/yaqp.js"></script>
   
-  <script src="../src/functions.js"></script>
-  <script src="../src/object.js"></script>
-  <script src="../src/obj.js"></script>
-  <script src="../src/objectlist.js"></script>
-  <script src="../src/objlist.js"></script>
-  <script src="../src/roomlist.js"></script>
-  <script src="../src/room.js"></script>  
-  <script src="../src/player.js"></script>
+  <script src="../src/core/functions_core.js"></script>
+  <script src="../src/core/functions.js"></script>
+  <script src="../src/core/object.js"></script>
+  <script src="../src/core/obj.js"></script>
+  <script src="../src/core/objectlist.js"></script>
+  <script src="../src/core/objlist.js"></script>
+  <script src="../src/core/roomlist.js"></script>
+  <script src="../src/core/room.js"></script>  
+  <script src="../src/core/player.js"></script>
+  
+  <script src="../src/core/init.js"></script>
 
   <script>
   $(document).ready(function(){
@@ -145,7 +148,7 @@ test("add items", function() {
   
 (function(){
   module("test init game");
-    YAQP.initGameSync("../src/core.js", "quests/test1.js");
+    YAQP.initGameSync("../src/core/core.js", "quests/test1.js");
 
   test("locations", function() {
 	  equal( YAQP.game.rooms["main"].__id,"main", "room 'main' founded" );
