@@ -151,7 +151,7 @@ test("add items", function() {
     YAQP.initGameSync("../src/core/core.js", "quests/test1.js");
 
   test("locations", function() {
-	  equal( YAQP.game.rooms["main"].__id,"main", "room 'main' founded" );
+	  equal( YAQP.game.rooms["main"].getId(),"main", "room 'main' founded" );
   equal( true, true, "passing test" );
   });
 })();
