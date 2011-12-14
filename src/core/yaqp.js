@@ -119,3 +119,5 @@ YAQP.game = {};
 YAQP.game.Events = {};
 
 YAQP.game.buffer = "";
+
+YAQP.game.initialRoom = "main";

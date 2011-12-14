@@ -182,10 +182,14 @@ YAQP.Functions.refRoom = function(name) {
 	try {
 		switch (typeof name) {
 		case "string":
-				YAQP.game.rooms.srch(name);
+				if (YAQP.game.rooms.srch(name)){
+					return YAQP.game.rooms.srch(name);
+				} else 
+					throw "Объект не является комнатой name : '" + 
+					name + "'";  
 			break;
 		case "object" :
-			if (isRoom(name)) {
+			if (YAQP.Functions.isRoom(name)) {
 				return name;
 			} else
 				throw "Объект не является комнатой o : '" +
@@ -193,7 +197,7 @@ YAQP.Functions.refRoom = function(name) {
 			break;
 		};
 	}catch (e) {
-		YAQP.Functions.error("YAQP.Functions.ref", e);
+		YAQP.Functions.error("YAQP.Functions.refRoom", e);
 	};
 };
 
@@ -207,7 +211,7 @@ YAQP.Functions.ref = function(name) {
 					return YAQP.game.objs.srch(name);
 			break;
 		case "object" :
-			if (isRoom(name) || isObj(name)) {
+			if (YAQP.Functions.isRoom(name) || YAQP.Functions.isObj(name)) {
 				return name;
 			} else
 				throw "Объект не является ни комнатой ни предметом o : '" +
@@ -226,11 +230,13 @@ YAQP.Functions.go = function(to) {
 	try {
 		var room_from = YAQP.Functions.here();
 		var room_to = YAQP.Functions.refRoom(to);
-		room_from.exit();
-		room_to.enter();
+		room_from.exit(room_from, room_to);
+		room_to.enter(room_from, room_to);
 		
-		room_from.leave();
-		room_to.entered();		
+		YAQP.game.pl.move(room_to);
+		
+		room_from.leave(room_from, room_to);
+		room_to.entered(room_from, room_to);		
 	} catch (e) {
 		YAQP.Functions.error("YAQP.Functions.go", e);
 	};

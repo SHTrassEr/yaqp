@@ -59,7 +59,7 @@ YAQP.Classes.Room = function(room, id) {
 		/**
 		 * Вызывается при выходе со сцены после перехода.
 		 */
-		this.left = function() {
+		this.leave = function() {
 		};
 		
 		/**

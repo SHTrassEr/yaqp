@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-  <script src="qunit/jquery.js"></script>
+  <script src="/src/jQuery/jquery-1.7.1.js"></script>
   <script src="../src/core/yaqp.js"></script>
   
   <script src="../src/core/functions_core.js"></script>
@@ -18,15 +18,23 @@
   
   <script src="../src/ui/yaqpui.js"></script>
         <script>
- 
+        $(document).ready(function(){
             window.onload = function(){
             	YAQP.UI.Functions.init();
-            };
- 
+			};
+          });
         </script>
     </head>
     <body>
-        <canvas id="yaqpCanvas" width="640" height="480">
-        </canvas>
+    Quest
+	    <div>
+    		<div id="yaqpInv">&nbsp;</div>
+    		<div id="yaqpRoomName">&nbsp;</div>
+    		<div id="yaqpWays">&nbsp;</div>
+    		<div id="yaqpText">&nbsp;</div>
+			<div id="yaqpObjs">&nbsp;</div>
+    		<div id="yaqpErrors">&nbsp;</div>
+    	</div>
+    	
     </body>
 </html>

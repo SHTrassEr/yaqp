@@ -6,37 +6,107 @@ YAQP.UI = {};
 YAQP.UI.Functions = {};
 
 YAQP.UI.Functions.init = function() {
-	YAQP.UI.canvas = document.getElementById("yaqpCanvas");
-	YAQP.UI.context = YAQP.UI.canvas.getContext("2d");
+	try {
+	YAQP.UI.inv = document.getElementById("yaqpInv");
+	YAQP.UI.roomName = document.getElementById("yaqpInv");
+	YAQP.UI.ways = document.getElementById("yaqpWays");
+	YAQP.UI.text = document.getElementById("yaqpText");
+	YAQP.UI.errors = document.getElementById("yaqpErrors");
+	YAQP.UI.objs = document.getElementById("yaqpObjs");
 	
-	YAQP.UI.Preferences.Region.width = YAQP.UI.canvas.width;
-	YAQP.UI.Preferences.Region.height = YAQP.UI.canvas.height;
-
-	YAQP.UI.context.moveTo(100, 150);
-	YAQP.UI.context.lineTo(450, 50);
-	YAQP.UI.context.stroke();
-	YAQP.UI.Functions.DrawBorders();
-};
-
-YAQP.UI.Functions.DrawBorders = function() {
-	var context = YAQP.UI.context;
-	var region = YAQP.UI.Preferences.Region;
-	context.beginPath();
-    context.moveTo(0, 0);
-    context.lineTo(region.width, 0);
-    context.lineTo(region.width, region.height);
-    context.lineTo(0, region.height);
-    context.lineTo(0, 0);
-    context.lineWidth = 2;
-    context.strokeStyle = "#0000ff";
-    context.stroke();
+	YAQP.initGameSync("../src/core/core.js", "/test/quests/tutorial.js");
+	YAQP.init();
 	
+	YAQP.UI.Functions.Refresh();
+	} catch (e) {
+		YAQP.UI.error("YAQP.UI.Functions.init ", e);
+	}
+};
+
+YAQP.UI.Functions.RefreshWays = function() {
+	try {
+		var here = YAQP.Functions.here();
+		YAQP.UI.ways.innerHTML = "";
+		for (var w in here.ways){
+			if (here.ways.hasOwnProperty(w))
+				YAQP.UI.ways.appendChild(YAQP.UI.Functions.goLink(here.ways[w]));
+		}
+			
+	} catch (e) {
+		YAQP.UI.error("YAQP.UI.Functions.RefreshWays ", e);
+	};
+};
+
+YAQP.UI.Functions.RefreshObjs = function() {
+	try {
+		var here = YAQP.Functions.here();
+		YAQP.UI.objs.innerHTML = "";
+		for (var o in here.objs){
+			if (here.objs.hasOwnProperty(o))
+				YAQP.UI.objs.appendChild(YAQP.UI.Functions.objLink(here.objs[o]));
+		}
+			
+	} catch (e) {
+		YAQP.UI.error("YAQP.UI.Functions.RefreshObjs ", e);
+	};
+};
+
+YAQP.UI.Functions.Refresh = function() {
+	YAQP.UI.Functions.RefreshName();
+	YAQP.UI.Functions.RefreshText();
+	YAQP.UI.Functions.RefreshWays();
+	YAQP.UI.Functions.RefreshObjs();
+};
+
+YAQP.UI.Functions.RefreshName = function() {
+	try {
+		var here = YAQP.Functions.here();
+		YAQP.UI.roomName.innerHTML = here.nam;
+	} catch (e) {
+		YAQP.UI.error("YAQP.UI.Functions.RefreshName ", e);
+	};
+};
+
+YAQP.UI.Functions.RefreshText = function() {
+	try {
+		var here = YAQP.Functions.here();
+		YAQP.UI.text.innerHTML = "";
+		if (here.dsc){
+			YAQP.UI.text.innerHTML += here.dsc; 
+			}
+	} catch (e) {
+		YAQP.UI.error("YAQP.UI.Functions.Refresh ", e);
+	}
+};
+
+YAQP.UI.Functions.goLink = function(room) {
+	var a = document.createElement("a");
+	var ta = document.createTextNode(room.nam);
+	a.appendChild(ta);
+	a.setAttribute("onclick", "YAQP.UI.Functions.go('"+room.getId()+
+			"');");
+	a.setAttribute("href", "#");
+	return a; 
+};
+
+YAQP.UI.Functions.objLink = function(obj) {
+	var a = document.createElement("a");
+	var ta = document.createTextNode(obj.nam);
+	a.appendChild(ta);
+	a.setAttribute("onclick", "YAQP.UI.Functions.go('"+obj.getId()+
+			"');");
+	a.setAttribute("href", "#");
+	return a; 
+};
+
+YAQP.UI.Functions.go = function(room) {
+	YAQP.Functions.go(room);
+	YAQP.UI.Functions.Refresh();
+};
+
+YAQP.UI.error = function(msg, e) {
+	YAQP.UI.errors.innerHTML += msg + e.message +
+	"<br>";
 };
 
 
-YAQP.UI.Preferences = {};
-
-YAQP.UI.Preferences.Region = {
-	width : "800",
-	height : "600"
-};

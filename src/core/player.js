@@ -36,8 +36,12 @@ YAQP.Classes.Player = function() {
 	 * @param {YAQP.Classes.Room} to Сцена назначения.
 	 */
 	this.move = function(to) {
-		this.from = where;
-		where = YAQP.Functions.refRoom(to);
+		try {
+			this.from = this.where;
+			this.where = YAQP.Functions.refRoom(to);
+		} catch (e) {
+			YAQP.Functions.error("YAQP.Classes.Player.move", e);
+		}
 	};
 };
 

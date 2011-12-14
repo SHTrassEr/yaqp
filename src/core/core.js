@@ -8,8 +8,6 @@ function() {
 	var obj = {};
 	// var dlg = {};
 
-	var initialRoom = 'main';
-
 	/**
 	 * Обрабатываем поле obj. obj - это массив, который может содержать как
 	 * строку-идентификатор объекта, так и сам объект.
@@ -59,5 +57,5 @@ function() {
 	obj = YAQP.game.objs;
 	room = YAQP.game.rooms;
 
-	YAQP.game.pl.where = YAQP.game.rooms[initialRoom];
+
 })();
