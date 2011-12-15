@@ -21,21 +21,6 @@ function() {
 		return new YAQP.Classes.Obj(obj, obj.id);
 	}
 
-	function p() {
-
-	}
-
-	function set_music() {
-
-	}
-
-	function seen() {
-	}
-
-	function me() {
-		return YAQP.game.pl;
-	}
-
 	var inv = YAQP.Functions.inv;
 	var go = YAQP.Functions.go;
 	var p = YAQP.Functions.p;

@@ -71,6 +71,11 @@ YAQP.Functions.isPlayer = function(o) {
 	}
 };
 
+/**
+ * Возвращает ссылку на игрока.
+ *
+ * @returns {YAQP.Classes.Player} игрок
+ */
 YAQP.Functions.me = function() {
 	try {
 		return YAQP.game.pl;
