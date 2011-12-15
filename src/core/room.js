@@ -61,7 +61,7 @@ YAQP.Classes.Room = function(room, id) {
 		 */
 		this.leave = function() {
 		};
-		
+
 		/**
 		 * Вызывается при входе на сцену
 		 */
@@ -72,7 +72,7 @@ YAQP.Classes.Room = function(room, id) {
 		 */
 		this.entered = function() {
 		};
-		
+
 		/**
 		 * Перекидываем все поля и методы из описания сцены в создаваемый
 		 * объект.

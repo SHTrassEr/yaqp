@@ -47,7 +47,7 @@ obj["apple"] = {
 	used : function(s, w) {
 		if (w == obj["woodstick"]) {
 			if (s.tried == false) {
-				go(got_apple);
+				go("got_apple");
 				s.tried = true;
 			} else {
 				p("Вы решили больше не пытаться это сделать. Голову жалко");
@@ -121,7 +121,7 @@ obj["bucket_full"] = {
 		} else if (w == obj["tomatoes"]) {
 			p("Вы полили помидоры из ведра, и вам показалось, что они"
 					+ "начали краснеть прямо у вас на глазах.");
-			tomatoes.watered = true;
+			obj["tomatoes"].watered = true;
 			replace(s, 'bucket', me());
 		} else
 			p("Вы не решились этого сделать.");
@@ -148,7 +148,7 @@ room["to_tomatoes"] = {
 	entered : function(s) {
 		if (obj["apple"].tried && !s.ent) {
 			s.ent = true;
-			tomatoes.watered = false;
+			obj["tomatoes"].watered = false;
 			p("Вы подошли к грядке с помидорами. О ужас! Помидоры"
 					+ " все поникли! Они гибнут, нужно скорее спасти их!");
 		}
@@ -158,8 +158,8 @@ room["to_tomatoes"] = {
 	obj : ['tomatoes'],
 	way : ['garden'],
 	exit : function(s) {
-		if (s.ent && tomatoes.watered) {
-			go("apple_dlg");
+		if (s.ent && obj["tomatoes"].watered) {
+			go("the_end");
 		}
 	}
 };

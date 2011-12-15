@@ -13,8 +13,6 @@ function() {
 	 * строку-идентификатор объекта, так и сам объект.
 	 */
 
-
-
 	function xact(nam, act) {
 		var obj = {};
 		obj.nam = nam;
@@ -39,13 +37,13 @@ function() {
 	}
 
 	var inv = YAQP.Functions.inv;
+	var go = YAQP.Functions.go;
+	var p = YAQP.Functions.p;
+	var put = YAQP.Functions.put;
+	var remove = YAQP.Functions.remove;
+	var replace = YAQP.Functions.replace;
 
-	// objects
-	function remove(obj, from) {
-		if (from) {
 
-		}
-	}
 
 	// <%QUEST%>//
 	YAQP.FunctionsCore.prepareObjs(obj);
@@ -56,6 +54,5 @@ function() {
 
 	obj = YAQP.game.objs;
 	room = YAQP.game.rooms;
-
 
 })();

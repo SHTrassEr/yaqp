@@ -32,7 +32,7 @@ YAQP.Classes.ObjectList.prototype.add = function(o) {
 					this[o.__id] = o;
 					return true;
 				} else
-/* если объект уже занесен в список */
+					/* если объект уже занесен в список */
 					return false;
 			} else
 				throw "Не указано свойство __id, o: '" + o.toString() + "'";
@@ -163,9 +163,8 @@ YAQP.Classes.ObjectList.prototype.replace = function(oOld, oNew) {
 		if (oOld === oNew)
 			return true;
 
-		var o = this.look(oOld);
-		YAQP.Classes.ObjectList.prototype.del(o);
-		this[oNew.__id] = oNew;
+		this.del(oOld);
+		this.add(oNew);
 		return true;
 	} catch (e) {
 		YAQP.Functions.error("YAQP.Classes.ObjectList.replace ", e);

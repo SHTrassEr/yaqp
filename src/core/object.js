@@ -23,7 +23,7 @@ YAQP.Classes.Object = function(id) {
 	this.isEnabled = function() {
 		return !disabled;
 	};
-	
+
 	this.getId = function() {
 		return this.__id;
 	};

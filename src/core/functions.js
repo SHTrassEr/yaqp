@@ -42,10 +42,41 @@ YAQP.Functions.error = function(msg, e) {
  *          false если объект комнатой не является.
  */
 YAQP.Functions.isRoom = function(o) {
-	if (typeof o == "object")
-		if (o.__type == YAQP.Classes.ObjectTypes.Room)
-			return true;
-	return false;
+	try {
+		if (typeof o == "object")
+			if (o.__type == YAQP.Classes.ObjectTypes.Room)
+				return true;
+		return false;
+	} catch (e) {
+		YAQP.Functions.error("YAQP.Functions.isRoom", e);
+	}
+};
+
+/**
+ * Проверяет, является ли переданный объект игроком.
+ * 
+ * @param {YAQP.Classes.Room}
+ *            комната.
+ * @returns {boolean} Возвращает true, если объект является комнатой. Возвращает
+ *          false если объект комнатой не является.
+ */
+YAQP.Functions.isPlayer = function(o) {
+	try {
+		if (typeof o == "object")
+			if (o.__type == YAQP.Classes.ObjectTypes.Player)
+				return true;
+		return false;
+	} catch (e) {
+		YAQP.Functions.error("YAQP.Functions.isRoom", e);
+	}
+};
+
+YAQP.Functions.me = function() {
+	try {
+		return YAQP.game.pl;
+	} catch (e) {
+		YAQP.Functions.error("YAQP.Functions.inv", e);
+	};
 };
 
 /**
@@ -53,7 +84,7 @@ YAQP.Functions.isRoom = function(o) {
  * принадлежит ли он к классу {@links YAQP.Classes.ObjList}
  * 
  * @param {object}
- *            список.
+ *            o список.
  * @returns {boolean} Возвращает true, если объект является комнатой. Возвращает
  *          false если объект комнатой не является.
  */
@@ -69,7 +100,7 @@ YAQP.Functions.isObjList = function(o) {
  * ли он к классу {@links YAQP.Classes.RoomList}
  * 
  * @param {object}
- *            список.
+ *            o список.
  * @returns {boolean} Возвращает true, если объект является комнатой. Возвращает
  *          false если объект комнатой не является.
  */
@@ -84,7 +115,7 @@ YAQP.Functions.isRoomList = function(o) {
  * Проверяет, является ли переданный объект игровым предметом.
  * 
  * @param {YAQP.Classes.Room}
- *            комната.
+ *            o комната.
  * @returns {boolean} Возвращает true, если объект является комнатой. Возвращает
  *          false если объект комнатой не является.
  */
@@ -101,7 +132,14 @@ YAQP.Functions.isObj = function(o) {
  * @returns {YAQP.Classes.ObjList} Инвентарь.
  */
 YAQP.Functions.inv = function() {
-	return YAQP.game.pl.inv;
+	try {
+		if (YAQP.Functions.me().inv) {
+			return YAQP.Functions.me().inv;
+		} else
+			throw "Не определен инвентарь игрока";
+	} catch (e) {
+		YAQP.Functions.error("YAQP.Functions.inv", e);
+	};
 };
 
 /**
@@ -138,7 +176,7 @@ YAQP.Functions.objs = function(o) {
 					+ YAQP.Functions.toString(o) + "'";
 	} catch (e) {
 		YAQP.Functions.error("YAQP.Functions.objs", e);
-	}
+	};
 };
 
 /**
@@ -178,25 +216,68 @@ YAQP.Functions.ways = function(o) {
 	}
 };
 
+/**
+ * Получает комнату. Особенность функции в том, что она либо вернет комнату,
+ * либо сгенерирует ошибку. Если в качестве параметра передан объект, то
+ * проверяется, является ли этот объект комнатой.
+ * 
+ * @param {YAQP.Classes.Room |
+ *            string} название комнаты, идентификатор либо сама комната.
+ * @returns
+ */
 YAQP.Functions.refRoom = function(name) {
 	try {
 		switch (typeof name) {
-		case "string":
-				if (YAQP.game.rooms.srch(name)){
+			case "string" :
+				if (YAQP.game.rooms.srch(name)) {
 					return YAQP.game.rooms.srch(name);
-				} else 
-					throw "Объект не является комнатой name : '" + 
-					name + "'";  
-			break;
-		case "object" :
-			if (YAQP.Functions.isRoom(name)) {
-				return name;
-			} else
-				throw "Объект не является комнатой o : '" +
-				YAQP.Functions.toString(name) + "'";
-			break;
+				} else
+					throw "Объект не является комнатой name : '" + name + "'";
+				break;
+			case "object" :
+				if (YAQP.Functions.isRoom(name)) {
+					return name;
+				} else
+					throw "Объект не является комнатой name : '"
+							+ YAQP.Functions.toString(name) + "'";
+				break;
+			default :
+				throw "Объект не является комнатой name : '"
+						+ YAQP.Functions.toString(name) + "'";
+				break;
 		};
-	}catch (e) {
+	} catch (e) {
+		YAQP.Functions.error("YAQP.Functions.refRoom", e);
+	};
+};
+
+/**
+ * Получает предмет. Особенность функции в том, что она либо вернет предмет,
+ * либо сгенерирует ошибку. Если в качестве параметра передан объект, то
+ * проверяется, является ли этот объект игровым предметом.
+ * 
+ * @param {YAQP.Classes.obj |
+ *            string} название объекта, идентификатор либо сам объект.
+ * @returns
+ */
+YAQP.Functions.refObj = function(name) {
+	try {
+		switch (typeof name) {
+			case "string" :
+				if (YAQP.game.objs.srch(name)) {
+					return YAQP.game.objs.srch(name);
+				} else
+					throw "Объект не является предметом name : '" + name + "'";
+				break;
+			case "object" :
+				if (YAQP.Functions.isObj(name)) {
+					return name;
+				} else
+					throw "Объект не является предметом o : '"
+							+ YAQP.Functions.toString(name) + "'";
+				break;
+		};
+	} catch (e) {
 		YAQP.Functions.error("YAQP.Functions.refRoom", e);
 	};
 };
@@ -204,41 +285,165 @@ YAQP.Functions.refRoom = function(name) {
 YAQP.Functions.ref = function(name) {
 	try {
 		switch (typeof name) {
-		case "string":
-				if(YAQP.game.rooms.srch(name))
+			case "string" :
+				if (YAQP.game.rooms.srch(name))
 					return YAQP.game.rooms.srch(name);
-				if(YAQP.game.objs.srch(name)) 
+				if (YAQP.game.objs.srch(name))
 					return YAQP.game.objs.srch(name);
-			break;
-		case "object" :
-			if (YAQP.Functions.isRoom(name) || YAQP.Functions.isObj(name)) {
-				return name;
-			} else
-				throw "Объект не является ни комнатой ни предметом o : '" +
-				YAQP.Functions.toString(name) + "'";
-			break;
+				break;
+			case "object" :
+				if (YAQP.Functions.isRoom(name) || YAQP.Functions.isObj(name)) {
+					return name;
+				} else
+					throw "Объект не является ни комнатой ни предметом o : '"
+							+ YAQP.Functions.toString(name) + "'";
+				break;
 		}
-		
-	}catch (e) {
+
+	} catch (e) {
 		YAQP.Functions.error("YAQP.Functions.ref", e);
 	};
 };
 
+YAQP.Functions.remove = function(obj, room) {
+	try {
+		var o = YAQP.Functions.refObj(obj);
+		if (YAQP.Functions.isPlayer(room)) {
+			room.objs.del(o);
+		} else {
+			var r = YAQP.Functions.refRoom(room);
+			if (r.objs) {
+				r.objs.del(o);
+			} else
+				throw "В конмнате не инициализирован скисок объектов: room : '"
+						+ YAQP.Functions.toString(room) + "', obj : '"
+						+ YAQP.Functions.toString(obj) + "'";
+		}
+	} catch (e) {
+		YAQP.Functions.error("YAQP.Functions.remove", e);
+	}
+};
 
+YAQP.Functions.replace = function(objSrc, objDst, room) {
+	try {
+		var list;
+		if (YAQP.Functions.isPlayer(room)) {
+			list = YAQP.Functions.inv();
+		} else
+			list = YAQP.Functions.refRoom(room).objs;
+		list.replace(YAQP.Functions.refObj(objSrc), YAQP.Functions
+						.refObj(objDst));
+	} catch (e) {
+		YAQP.Functions.error("YAQP.Functions.replace", e);
+	}
+};
+
+YAQP.Functions.clearBuffer = function() {
+	try {
+		YAQP.game.buffer = "";
+	} catch (e) {
+		YAQP.Functions.error("YAQP.Functions.p", e);
+	};
+};
+
+YAQP.Functions.p = function(s) {
+	try {
+		YAQP.game.buffer += s;
+	} catch (e) {
+		YAQP.Functions.error("YAQP.Functions.p", e);
+	}
+};
+
+YAQP.Functions.put = function(obj, room) {
+	try {
+		var o = YAQP.Functions.refObj(obj);
+		var where = o.where;
+		if (YAQP.Functions.isPlayer(room)) {
+			if (where)
+				YAQP.Functions.remove(o, where);
+			room.objs.add(o);
+			o.where = room;
+		} else {
+			var r = YAQP.Functions.refRoom(room);
+			if (where)
+				YAQP.Functions.remove(o, where);
+			r.objs.add(o);
+			o.where = r;
+		}
+	} catch (e) {
+		YAQP.Functions.error("YAQP.Functions.put", e);
+	}
+};
 
 YAQP.Functions.go = function(to) {
 	try {
+		// YAQP.Functions.clearBuffer();
 		var room_from = YAQP.Functions.here();
 		var room_to = YAQP.Functions.refRoom(to);
 		room_from.exit(room_from, room_to);
 		room_to.enter(room_from, room_to);
-		
-		YAQP.game.pl.move(room_to);
-		
+
+		YAQP.Functions.me().move(room_to);
+
 		room_from.leave(room_from, room_to);
-		room_to.entered(room_from, room_to);		
+		room_to.entered(room_from, room_to);
 	} catch (e) {
 		YAQP.Functions.error("YAQP.Functions.go", e);
+	};
+};
+
+YAQP.Functions.processMethod = function(method) {
+	switch (typeof method) {
+		case "string" :
+			YAQP.Functions.p(method);
+			return true;
+			break;
+	}
+	return false;
+};
+
+YAQP.Functions.useTo = function(obj1, obj2) {
+	try {
+		var o1 = YAQP.Functions.refObj(obj1);
+		var o2 = YAQP.Functions.refObj(obj2);
+
+		o1.use(o1, o2);
+		o2.used(o2, o1);
+
+	} catch (e) {
+		YAQP.Functions.error("YAQP.Functions.useTo obj1 : '"
+						+ YAQP.Functions.toString(obj1) + "' obj2 : '"
+						+ YAQP.Functions.toString(obj2) + "'", e);
+	}
+};
+
+YAQP.Functions.use = function(obj) {
+	try {
+		// YAQP.Functions.clearBuffer();
+		var o = YAQP.Functions.refObj(obj);
+		if (o.act)
+			YAQP.Functions.processMethod(o.act);
+		if (o.tak) {
+			YAQP.Functions.processMethod(o.tak);
+			YAQP.Functions.take(o);
+		}
+	} catch (e) {
+		YAQP.Functions.error("YAQP.Functions.use obj : '"
+						+ YAQP.Functions.toString(obj) + "'", e);
+	}
+};
+
+/**
+ * Перемещает объект в инвентарь игрока.
+ * 
+ * @param obj
+ */
+YAQP.Functions.take = function(obj) {
+	try {
+		var o = YAQP.Functions.refObj(obj);
+		YAQP.Functions.put(o, YAQP.Functions.me());
+	} catch (e) {
+		YAQP.Functions.error("YAQP.Functions.take", e);
 	};
 };
 
@@ -249,8 +454,8 @@ YAQP.Functions.go = function(to) {
  */
 YAQP.Functions.here = function() {
 	try {
-		if (YAQP.Functions.isRoom(YAQP.game.pl.where))
-			return YAQP.game.pl.where;
+		if (YAQP.Functions.isRoom(YAQP.Functions.me().where))
+			return YAQP.Functions.me().where;
 		else
 			throw "Не удалось определить местоположение игрока";
 	} catch (e) {
@@ -265,7 +470,7 @@ YAQP.Functions.here = function() {
  */
 YAQP.Functions.from = function() {
 	try {
-		return YAQP.game.pl.from;
+		return YAQP.Functions.me().from;
 	} catch (e) {
 		YAQP.Functions.error("YAQP.Functions.here", e);
 	};
@@ -315,4 +520,3 @@ YAQP.Functions.toString = function(o) {
 			break;
 	}
 };
-

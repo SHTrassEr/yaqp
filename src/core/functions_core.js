@@ -58,7 +58,7 @@ YAQP.FunctionsCore.prepareLinksRoomObjs = function(room) {
 	try {
 		for (var r in room) {
 			for (var o in room[r].obj) {
-				YAQP.game.rooms[r].objs.add(room[r].obj[o]);
+				YAQP.Functions.put(room[r].obj[o], YAQP.game.rooms[r]);
 			}
 		}
 	} catch (e) {

@@ -15,6 +15,8 @@ YAQP.Classes.Player = function() {
 	 * @type YAQP.Classes.ObjList
 	 */
 	this.inv = new YAQP.Classes.ObjList();
+	
+	this.objs = this.inv;
 
 	/**
 	 * На какой сцене находится игрок.
@@ -29,11 +31,12 @@ YAQP.Classes.Player = function() {
 	 * @type YAQP.Classes.Room
 	 */
 	this.from = undefined;
-	
+
 	/**
 	 * Перемещает игрока с текущей сцены.
 	 * 
-	 * @param {YAQP.Classes.Room} to Сцена назначения.
+	 * @param {YAQP.Classes.Room}
+	 *            to Сцена назначения.
 	 */
 	this.move = function(to) {
 		try {
@@ -51,4 +54,3 @@ YAQP.Classes.Player = function() {
  * @type YAQP.Classes.ObjectTypes
  */
 YAQP.Classes.Player.prototype.__type = YAQP.Classes.ObjectTypes.Player;
-

@@ -15,7 +15,7 @@ YAQP.Classes.Obj = function(obj, id) {
 		 * @type YAQP.Classes.ObjectList
 		 */
 		this.objs = new YAQP.Classes.ObjList();
-		
+
 		/**
 		 * В какой локации размещен предмет.
 		 * 
@@ -23,6 +23,17 @@ YAQP.Classes.Obj = function(obj, id) {
 		 */
 		this.where = undefined;
 
+		/**
+		 * Обработчик вызывается при попытке взять предмет.
+		 */
+		this.tak = undefined;
+		
+		this.used = function() {
+		};
+
+		this.use = function() {
+		};
+		
 		/**
 		 * Перекидываем все поля и методы из описания объекта в создаваемый
 		 * объект.
