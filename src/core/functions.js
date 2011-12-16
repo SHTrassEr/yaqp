@@ -19,6 +19,12 @@ YAQP.Functions.extend = function(Child, Parent) {
 	Child.superclass = Parent.prototype;
 };
 
+/**
+ * Функция обработки ошибок.
+ * 
+ * @param {string} msg сообщение об ошибки.
+ * @param {string|Error} Дополнительная информация об ошибке.
+ */
 YAQP.Functions.error = function(msg, e) {
 	switch (typeof e) {
 		case "undefined" :
@@ -73,7 +79,7 @@ YAQP.Functions.isPlayer = function(o) {
 
 /**
  * Возвращает ссылку на игрока.
- *
+ * 
  * @returns {YAQP.Classes.Player} игрок
  */
 YAQP.Functions.me = function() {
@@ -304,7 +310,8 @@ YAQP.Functions.ref = function(name) {
 							+ YAQP.Functions.toString(name) + "'";
 				break;
 		}
-
+		throw "Объект не является ни комнатой ни предметом o : '"
+		+ YAQP.Functions.toString(name) + "'";
 	} catch (e) {
 		YAQP.Functions.error("YAQP.Functions.ref", e);
 	};
@@ -380,18 +387,53 @@ YAQP.Functions.put = function(obj, room) {
 	}
 };
 
-YAQP.Functions.go = function(to) {
+YAQP.Functions.processEvent = function(event) {
 	try {
-		// YAQP.Functions.clearBuffer();
+		switch (typeof event) {
+		case "undefined":
+			return true;
+		case "string" :
+			YAQP.Functions.p(event);
+			return true;
+		case "function" :
+			
+		
+		};
+	} catch (e) {
+		YAQP.Functions.error("YAQP.Functions.processEvent", e);
+	}
+};
+
+/**
+ * Переход из одной комнаты в другую.
+ * 
+ * @param {YAQP.Classes.Room|string} название комнаты или сама 
+ * комната в которую следует перейти.
+ * @param {boolean} устанавливается в true если вызывается при опсании игры
+ */
+YAQP.Functions.go = function(to, ingame) {
+	try {
+		if (!ingame)
+			YAQP.game.go_canceled = false;
 		var room_from = YAQP.Functions.here();
 		var room_to = YAQP.Functions.refRoom(to);
-		room_from.exit(room_from, room_to);
-		room_to.enter(room_from, room_to);
-
+		
+		if (!ingame)
+			room_from.exit(room_from, room_to);
+		if (YAQP.game.go_canceled) {
+			return;
+		}
+		room_to.enter(room_to, room_from);
+		if (YAQP.game.go_canceled) {
+			return;
+		}
+		
 		YAQP.Functions.me().move(room_to);
-
-		room_from.leave(room_from, room_to);
-		room_to.entered(room_from, room_to);
+		
+		if (!ingame)
+			room_from.leave(room_from, room_to);
+		room_to.entered(room_to, room_from);
+		
 	} catch (e) {
 		YAQP.Functions.error("YAQP.Functions.go", e);
 	};
@@ -407,6 +449,12 @@ YAQP.Functions.processMethod = function(method) {
 	return false;
 };
 
+/**
+ * Использовать объект. 
+ * 
+ * @param obj1
+ * @param obj2
+ */
 YAQP.Functions.useTo = function(obj1, obj2) {
 	try {
 		var o1 = YAQP.Functions.refObj(obj1);
@@ -422,6 +470,10 @@ YAQP.Functions.useTo = function(obj1, obj2) {
 	}
 };
 
+/**
+ * Использование объекта. Вызывается при попытке взять предмет.
+ * @param obj
+ */
 YAQP.Functions.use = function(obj) {
 	try {
 		// YAQP.Functions.clearBuffer();

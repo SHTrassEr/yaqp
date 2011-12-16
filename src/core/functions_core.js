@@ -1,5 +1,6 @@
 /**
- * @author SHTrassEr Содержит список вспомогательных функций.
+ * @author SHTrassEr Содержит список вспомогательных функций. Эти функции 
+ * вызываются только из файла 'core.js' при инициализации игры.
  */
 
 /**
@@ -118,11 +119,12 @@ YAQP.FunctionsCore.prepareLinksObjObjs = function(obj) {
 };
 
 /**
- * Служебная функция.
+ * Служебная функция. Проверяет задано допустимое значение для 
+ * названия поля или нет.
  * 
  * @param fieldName
  *            Название поля.
- * @returns {Boolean} ре
+ * @returns {Boolean} результат проверки.
  */
 YAQP.Functions.isValidRoomField = function(fieldName) {
 	switch (fieldName) {
@@ -135,6 +137,14 @@ YAQP.Functions.isValidRoomField = function(fieldName) {
 	}
 };
 
+/**
+ * Служебная функция. Проверяет задано допустимое значение для 
+ * названия поля или нет.
+ * 
+ * @param fieldName
+ *            Название поля.
+ * @returns {Boolean} результат проверки.
+ */
 YAQP.Functions.isValidObjField = function(fieldName) {
 	switch (fieldName) {
 		case "objs" :

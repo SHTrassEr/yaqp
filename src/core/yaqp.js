@@ -121,3 +121,5 @@ YAQP.game.Events = {};
 YAQP.game.buffer = "";
 
 YAQP.game.initialRoom = "main";
+
+YAQP.game.go_canceled = false;

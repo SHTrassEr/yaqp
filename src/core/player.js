@@ -15,7 +15,7 @@ YAQP.Classes.Player = function() {
 	 * @type YAQP.Classes.ObjList
 	 */
 	this.inv = new YAQP.Classes.ObjList();
-	
+
 	this.objs = this.inv;
 
 	/**

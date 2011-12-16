@@ -27,13 +27,13 @@ YAQP.Classes.Obj = function(obj, id) {
 		 * Обработчик вызывается при попытке взять предмет.
 		 */
 		this.tak = undefined;
-		
+
 		this.used = function() {
 		};
 
 		this.use = function() {
 		};
-		
+
 		/**
 		 * Перекидываем все поля и методы из описания объекта в создаваемый
 		 * объект.

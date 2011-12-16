@@ -22,13 +22,15 @@ function() {
 	}
 
 	var inv = YAQP.Functions.inv;
-	var go = YAQP.Functions.go;
+	var go = function(to) {
+		YAQP.Functions.go(to, true);
+		YAQP.game.go_canceled = true;
+	};
 	var p = YAQP.Functions.p;
 	var put = YAQP.Functions.put;
 	var remove = YAQP.Functions.remove;
 	var replace = YAQP.Functions.replace;
-
-
+	var me = YAQP.Functions.me;
 
 	// <%QUEST%>//
 	YAQP.FunctionsCore.prepareObjs(obj);

@@ -1,6 +1,57 @@
 <!DOCTYPE HTML>
 <html>
     <head>
+	<style>
+	#yaqp {
+		width: 800px;
+		font-size: 1.3em;
+	}
+	#yaqpLeft {
+		float: left;
+		width: 600px;
+	}
+	#yaqpRight {
+		float: left;
+		width: 200px;
+	}
+	#yaqpRoomName {
+		width: 100%;
+		text-align: center;
+		margin-bottom: 5px;
+	}
+	
+	#yaqpWays {
+		width: 100%;
+		padding: 0;
+		margin-bottom: 5px;
+		text-align: center;
+	}
+	
+	#yaqpWays  li {
+		list-style:none;
+		display:inline;
+	}
+	#yaqpWays  li  a{
+		list-style:none;
+		display:inline;
+		padding:3px 0.5em;
+	}
+	
+	#yaqpBuffer {
+		width: 100%;
+		margin-top: 10px;
+		font-style: italic;
+	}
+	#yaqpObjs {
+		width: 100%;
+		margin-top: 10px;
+	}
+	
+	#yaqpObjs  li {
+		list-style:none;
+	}
+	</style>
+	
   <script src="/src/jQuery/jquery-1.7.1.js"></script>
   <script src="../src/core/yaqp.js"></script>
   
@@ -27,13 +78,17 @@
     </head>
     <body>
     Quest
-	    <div>
-    		<div id="yaqpInv">&nbsp;</div>
-    		<div id="yaqpRoomName">&nbsp;</div>
-    		<div id="yaqpWays">&nbsp;</div>
-    		<div id="yaqpText">&nbsp;</div>
-			<div id="yaqpBuffer">&nbsp;</div>
-			<div id="yaqpObjs">&nbsp;</div>
+	    <div id="yaqp">
+			<div id="yaqpLeft">
+				<div id="yaqpRoomName">&nbsp;</div>
+				<ul id="yaqpWays">&nbsp;</ul>
+				<div id="yaqpText">&nbsp;</div>
+				<div id="yaqpBuffer">&nbsp;</div>
+				<ul id="yaqpObjs">&nbsp;</ul>
+			</div>
+			<div id="yaqpRight">
+				<ul id="yaqpInv">&nbsp;</ul>
+			</div>
     		<div id="yaqpErrors">&nbsp;</div>
     	</div>
     	
