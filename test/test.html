@@ -153,13 +153,18 @@ test("add items", function() {
     
 	  test("formatNewLine", function() {
 	  	var s = "";
-	  	equal(YAQP.out.formatNewLine(s), s, "empty string");
+	  	equal(YAQP.out.formatStr(s), s, "empty string");
 	  	s = "sfhsdjthje58594eprhesj hjds hdjfha8ry48yrhвыавыпк54ц еып ы";
-	  	equal(YAQP.out.formatNewLine(s), s, "not empty string");
+	  	equal(YAQP.out.formatStr(s), s, "not empty string");
 	  	s = "^";
-	  	equal(YAQP.out.formatNewLine(s), YAQP.out.prefs.newLineTo, "1 replace");
+	  	equal(YAQP.out.formatStr(s), YAQP.out.prefs.newLineTo, "1 replace");
 	  	s = "\\^";
-	  	equal(YAQP.out.formatNewLine(s), s, "0 replace");
+	  	equal(YAQP.out.formatStr(s), "^", "0 replace");
+	  	s = "^^";
+	  	equal(YAQP.out.formatStr(s), YAQP.out.prefs.newLineTo + YAQP.out.prefs.newLineTo, "2 replace");
+	  	s = "\\\\\\^";
+	  	equal(YAQP.out.formatStr(s), "\\^", "1 replace");
+	  	 
 	  	 
 	    });
 	  })();  

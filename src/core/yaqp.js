@@ -125,6 +125,26 @@ YAQP.game.Events = {};
 
 YAQP.game.buffer = "";
 
+YAQP.game.getBuffer = function(){
+	var buffer = YAQP.out.formatStr(YAQP.game.buffer);
+	YAQP.Functions.clearBuffer();
+	return buffer;
+};
+
+YAQP.game.getDsc = function(){
+	try {
+		var here = YAQP.Functions.here();
+		if (here.dsc){
+			return YAQP.out.formatStr(here.dsc);
+		} else 
+			throw "Не могу прочитать here.dsc";
+	} catch (e) {
+		YAQP.Functions.error("YAQP.game.getDsc", e);
+	} 
+	
+};
+
+
 YAQP.game.initialRoom = "main";
 
 YAQP.game.go_canceled = false;

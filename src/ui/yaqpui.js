@@ -95,8 +95,7 @@ YAQP.UI.Functions.RefreshName = function() {
 
 YAQP.UI.Functions.RefreshBuffer = function() {
 	try {
-		YAQP.UI.buffer.innerHTML = YAQP.game.buffer;
-		YAQP.Functions.clearBuffer();
+		YAQP.UI.buffer.innerHTML = YAQP.game.getBuffer();
 	} catch (e) {
 		YAQP.UI.error("YAQP.UI.Functions.RefreshName ", e);
 	};
@@ -104,11 +103,7 @@ YAQP.UI.Functions.RefreshBuffer = function() {
 
 YAQP.UI.Functions.RefreshText = function() {
 	try {
-		var here = YAQP.Functions.here();
-		YAQP.UI.text.innerHTML = "";
-		if (here.dsc) {
-			YAQP.UI.text.innerHTML += here.dsc;
-		}
+		YAQP.UI.text.innerHTML = YAQP.game.getDsc();
 	} catch (e) {
 		YAQP.UI.error("YAQP.UI.Functions.Refresh ", e);
 	}
@@ -129,7 +124,7 @@ YAQP.UI.Functions.objLink = function(obj) {
 	var li = document.createElement("li");
 	var a = document.createElement("a");
 	li.appendChild(a);
-	var ta = document.createTextNode(obj.nam);
+	var ta = document.createTextNode(obj.dsc);
 	a.appendChild(ta);
 	a.setAttribute("onclick", "YAQP.UI.Functions.use('" + obj.getId() + "');");
 	a.setAttribute("href", "#");
