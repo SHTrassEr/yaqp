@@ -577,3 +577,7 @@ YAQP.Functions.toString = function(o) {
 			break;
 	}
 };
+
+YAQP.Functions.prepareStringOut = function(s) {
+	
+};

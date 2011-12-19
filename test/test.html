@@ -18,6 +18,8 @@
   <script src="../src/core/room.js"></script>  
   <script src="../src/core/player.js"></script>
   
+  <script src="../src/core/out.js"></script>
+  
   <script src="../src/core/init.js"></script>
 
   <script>
@@ -145,6 +147,23 @@ test("add items", function() {
 	    //equal( objList.length, 3, "adding existing items ok" );  
 	    });
 	  })();
+	  
+  (function(){
+	  module("test  out ");
+    
+	  test("formatNewLine", function() {
+	  	var s = "";
+	  	equal(YAQP.out.formatNewLine(s), s, "empty string");
+	  	s = "sfhsdjthje58594eprhesj hjds hdjfha8ry48yrhвыавыпк54ц еып ы";
+	  	equal(YAQP.out.formatNewLine(s), s, "not empty string");
+	  	s = "^";
+	  	equal(YAQP.out.formatNewLine(s), YAQP.out.prefs.newLineTo, "1 replace");
+	  	s = "\\^";
+	  	equal(YAQP.out.formatNewLine(s), s, "0 replace");
+	  	 
+	    });
+	  })();  
+  
   
 (function(){
   module("test init game");

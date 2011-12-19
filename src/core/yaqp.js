@@ -113,6 +113,11 @@ YAQP.Functions = {};
  * @namespace Содержит все что связано с игрой.
  */
 YAQP.game = {};
+
+/**
+ * @namespace Функции для работы с текстом.
+ */
+YAQP.out = {};
 /**
  * @namespace Собития
  */
