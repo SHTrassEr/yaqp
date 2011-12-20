@@ -30,28 +30,13 @@ YAQP.Functions.extend(YAQP.Classes.ObjList, YAQP.Classes.ObjectList);
 YAQP.Classes.ObjList.prototype.add = function(o) {
 	try {
 		switch (typeof o) {
-			case "undefined" :
-				throw "Объект не является предметом: 'undefined'";
-				break;
 			case "string" :
-				if (YAQP.game.objs[o]) {
-					if (YAQP.Functions.isObj(YAQP.game.objs[o])) {
-						return YAQP.Classes.ObjList.superclass.add.apply(this,
-								[YAQP.game.objs[o]]);
-					} else
-						throw "Объект содержится в глобальном списке предметов, "
-								+ " но не является предметом: '" + o + "'";
-				} else
-					throw "Объект не найден в глобальном списке предметов: '"
-							+ o + "'";
-				break;
 			case "object" :
-				if (YAQP.Functions.isObj(o)) {
-					return YAQP.Classes.ObjList.superclass.add.apply(this, [o]);
-				} else
-					throw "Объект не является предметом: '" + o.toString()
-							+ "'.";
-				break;
+				return YAQP.Classes.ObjList.superclass.add.apply(this,
+						[YAQP.Functions.refObj(o)]);
+			default :
+				throw "Объект не является игровым предметом o : "
+					+ YAQP.Functions.quotes(o);
 		}
 	} catch (e) {
 		YAQP.Functions.error("YAQP.Classes.ObjList.add ", e);

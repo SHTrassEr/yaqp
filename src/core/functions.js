@@ -71,7 +71,7 @@ YAQP.Functions.toString = function(o) {
 
 /**
  * Проверяет, является ли переданный параметр комнатой, то есть 
- * принадлежит ли он к классу {@links YAQP.Classes.Room}. Проверяется два условия. 
+ * принадлежит ли он к классу {@link YAQP.Classes.Room}. Проверяется два условия. 
  * 1. typeof o == "object"
  * 2. o.__type == YAQP.Classes.ObjectTypes.Room
  * 
@@ -93,7 +93,7 @@ YAQP.Functions.isRoom = function(o) {
 
 /**
  * Проверяет, является ли переданный объект игровым предметом, то есть 
- * принадлежит ли он к классу {@links YAQP.Classes.Obj}. Проверяется два условия. 
+ * принадлежит ли он к классу {@link YAQP.Classes.Obj}. Проверяется два условия. 
  * 1. typeof o == "object"
  * 2. o.__type == YAQP.Classes.ObjectTypes.Obj
  * 
@@ -115,7 +115,7 @@ YAQP.Functions.isObj = function(o) {
 
 /**
  * Проверяет, является ли переданный объект игроком, то есть 
- * принадлежит ли он к классу {@links YAQP.Classes.Player}. Проверяется два условия. 
+ * принадлежит ли он к классу {@link YAQP.Classes.Player}. Проверяется два условия. 
  * 1. typeof o == "object"
  * 2. o.__type == YAQP.Classes.ObjectTypes.Player
  * 
@@ -137,7 +137,7 @@ YAQP.Functions.isPlayer = function(o) {
 
 /**
  * Проверяет, является ли переданный параметр списком игровых предметов, то есть
- * принадлежит ли он к классу {@links YAQP.Classes.ObjList}. Проверяется два условия. 
+ * принадлежит ли он к классу {@link YAQP.Classes.ObjList}. Проверяется два условия. 
  * 1. typeof o == "object"
  * 2. o.__type == YAQP.Classes.ObjectTypes.ObjList
  * 
@@ -159,7 +159,7 @@ YAQP.Functions.isObjList = function(o) {
 
 /**
  * Проверяет, является ли переданный параметр списком комнат, то есть принадлежит
- * ли он к классу {@links YAQP.Classes.RoomList}. Проверяется два условия. 
+ * ли он к классу {@link YAQP.Classes.RoomList}. Проверяется два условия. 
  * 1. typeof o == "object"
  * 2. o.__type == YAQP.Classes.ObjectTypes.RoomList
  * 
@@ -181,7 +181,7 @@ YAQP.Functions.isRoomList = function(o) {
 
 /**
  * Возвращает ссылку на игрока. В настоящее время доступен только один игрок,
- * ссылка на него хранится в {@links YAQP.game.pl}. Тем не менее все манипуляции 
+ * ссылка на него хранится в {@link YAQP.game.pl}. Тем не менее все манипуляции 
  * с игроком рекомендуется делать через эту функцию. Не надо получать игрока напрямую
  * через YAQP.game.pl  
  * 
@@ -226,7 +226,7 @@ YAQP.Functions.from = function() {
 
 /**
  * Возвращает инвентарь текущего игрока игрока. При помощи функции 
- * {@links YAQP.Functions.me} получает ссылку на текущего игрока и 
+ * {@link YAQP.Functions.me} получает ссылку на текущего игрока и 
  * возвращает его инвентарь. 
  * 
  * @returns {YAQP.Classes.ObjList} Инвентарь.
@@ -249,8 +249,7 @@ YAQP.Functions.inv = function() {
  * либо сгенерирует ошибку. Если в качестве параметра передан объект, то
  * проверяется, является ли этот объект комнатой.
  * 
- * @param {YAQP.Classes.Room |
- *            string} название комнаты, идентификатор либо сама комната.
+ * @param {YAQP.Classes.Room|string} name название комнаты, идентификатор либо сама комната.
  * @returns {YAQP.Classes.Room} Ссылка на искомую комнату.
  */
 YAQP.Functions.refRoom = function(name) {
@@ -286,8 +285,7 @@ YAQP.Functions.refRoom = function(name) {
  * либо сгенерирует ошибку. Если в качестве параметра передан объект, то
  * проверяется, является ли этот объект игровым предметом.
  * 
- * @param {YAQP.Classes.obj |
- *            string} название предмета, идентификатор либо сам предмет.
+ * @param {YAQP.Classes.obj|string} name название предмета, идентификатор либо сам предмет.
  * @returns {YAQP.Classes.obj} Ссылка на искомый игровой предмет.
  */
 YAQP.Functions.refObj = function(name) {
@@ -314,13 +312,12 @@ YAQP.Functions.refObj = function(name) {
 };
 
 /**
- * Получает игровой предмет или комнату. Использует функции {@links YAQP.Functions.refObj} и
- * {@links YAQP.Functions.refRoom}. Если переданный параметр не является ни комнатой ни 
+ * Получает игровой предмет или комнату. Использует функции {@link YAQP.Functions.refObj} и
+ * {@link YAQP.Functions.refRoom}. Если переданный параметр не является ни комнатой ни 
  * игровым предметом, то генерируется ошибка. На данный момент нигде не используется, так как 
  * всегда из контекста ясно, что мы хотим найти: предмет или комнату. Возможно, что 
  * эта функция в дальнейшем будет удалена. Иди же оставлена для совместимости со STEAD.  
- * @param {YAQP.Classes.obj |
- *            string} название предмета/комнаты, идентификатор либо предмет/комната.
+ * @param {YAQP.Classes.obj|string} name название предмета/комнаты, идентификатор либо предмет/комната.
  * @returns {YAQP.Classes.obj} Ссылка на искомый игровой предмет/комнату.
  */
 
@@ -351,12 +348,11 @@ YAQP.Functions.ref = function(name) {
 /**
  * Возвращает список объектов указанной комнаты; если комната не указана, то
  * возвращает список объектов текущей комнаты. Текущая комната запрашиваетя через функцию 
- * {@links YAQP.Functions.here()}. Если же комната указана, то ссылка на нее запрашивается
- * через функцию {@links YAQP.Functions.refRoom}. Возможно,
- * в дальнейшем эти проверки можно будет убрать. 
+ * {@link YAQP.Functions.here}. Если же комната указана, то ссылка на нее запрашивается
+ * через функцию {@link YAQP.Functions.refRoom}. Эта функция либо возвращает список
+ * объектов (класс {@link YAQP.Classes.ObjList}), либо генерирует ошибку. 
  * 
-  * @param {YAQP.Classes.Room |
- *            string} название комнаты, идентификатор либо сама комната.
+ * @param {YAQP.Classes.Room|string} room название комнаты, идентификатор либо сама комната.
  * 
  * @returns {YAQP.Classes.ObjList} Объекты сцены.
  */
@@ -390,72 +386,117 @@ YAQP.Functions.objs = function(room) {
 };
 
 /**
- * Возвращает список переходов с указанной сцены; если сцена не указана, то
- * возвращает список переходов с текущей сцены
+ * Возвращает список переходов с указанной комнаты; если сцена не указана, то
+ * возвращает список переходов с текущей комнаты. Список переходов содержится в 
+ * {@link YAQP.Classes.Room.ways}. Текущая комната запрашиваетя через функцию 
+ * {@link YAQP.Functions.here}. Если же комната указана, то ссылка на нее запрашивается
+ * через функцию {@link YAQP.Functions.refRoom}.  Эта функция либо возвращает список
+ * переходов (класс {@link YAQP.Classes.RoomList}), либо генерирует ошибку. 
+ * 
+ * @param {YAQP.Classes.Room|string} room название комнаты, идентификатор либо сама комната.
  * 
  * @returns {YAQP.Classes.RoomList} Список переходов.
  */
-YAQP.Functions.ways = function(o) {
+YAQP.Functions.ways = function(room) {
 	try {
-		if (o === undefined) {
-			if (YAQP.Functions.isRoom(YAQP.Functions.here())) {
-				if (YAQP.Functions.isObjList(YAQP.Functions.here().ways)) {
-					return YAQP.Functions.here().ways;
-				} else
-					throw "В текущей сцене найден не инициализированный"
-							+ " список переходов YAQP.Functions.here() : "
-							+ YAQP.Functions.quotes(YAQP.Functions.here())
-							+ " ways : "
-							+ YAQP.Functions
-									.quotes(YAQP.Functions.here().ways);
-			}
-		} else if (YAQP.Functions.isRoom(o)) {
-			if (YAQP.Functions.isObjList(o.ways)) {
-				return o.ways;
+		if (room === undefined) {
+			if (YAQP.Functions.isObjList(YAQP.Functions.here().ways)) {
+				return YAQP.Functions.here().ways;
+			} else
+				throw "В текущей сцене найден не инициализированный"
+						+ " список переходов YAQP.Functions.here() : "
+						+ YAQP.Functions.quotes(YAQP.Functions.here())
+						+ " ways : "
+						+ YAQP.Functions
+								.quotes(YAQP.Functions.here().ways);
+		} else  {
+			var r = YAQP.Functions.refRoom(room); 
+			if (YAQP.Functions.isObjList(r.ways)) {
+				return r.ways;
 			} else {
 				throw "В переданной сцене найден не инициализированный"
-						+ " список переходов o : " + YAQP.Functions.quotes(o)
-						+ " objs : " + YAQP.Functions.quotes(o.ways);
-
+						+ " список переходов o : " + YAQP.Functions.quotes(room)
+						+ " objs : " + YAQP.Functions.quotes(r.ways);
 			}
-		} else
-			throw "Параметр не является сценой o : "
-					+ YAQP.Functions.quotes(o);
+		}
 	} catch (e) {
-		YAQP.Functions.error("YAQP.Functions.objs", e);
+		YAQP.Functions.error("YAQP.Functions.ways", e);
 	}
 };
 
-
-
+/**
+ * Удаляет предмет из указанной комнаты или из инвентаря игрока; если комната не указана, то
+ * удаляет предмет из текущей комнаты. Текущая комната запрашиваетя через функцию 
+ * {@link YAQP.Functions.here}. Если же комната указана, то ссылка на нее запрашивается
+ * через функцию {@link YAQP.Functions.refRoom}. Ссылка на объект запрашивается через функцию 
+ * {@link YAQP.Functions.refObj}. Если объект удаляется из комнаты, то 
+ * его {@link YAQP.Classes.Obj.where} становится равным undefined, если же нет --- то остается
+ * без изменений.
+ * 
+ * @param {YAQP.Classes.Obj|string} obj название предмета, идентификатор либо сам предмет.
+ * @param {YAQP.Classes.Room|string} room название комнаты, идентификатор либо сама комната.
+ * @returns {boolean} true, если объект удалось удалить, false в противном случае.
+ */
 YAQP.Functions.remove = function(obj, room) {
 	try {
 		var o = YAQP.Functions.refObj(obj);
-		if (YAQP.Functions.isPlayer(room)) {
-			room.objs.del(o);
+		if (room === undefined) {
+			
+		} else if (YAQP.Functions.isPlayer(room)) {
+			if (room.objs.del(o)) {
+				o.where = undefined
+				return true;
+			}
 		} else {
 			var r = YAQP.Functions.refRoom(room);
-			if (r.objs) {
-				r.objs.del(o);
+			if (YAQP.Functions.isObjList(r.objs)) {
+				if (r.objs.del(o)) {
+					o.where = undefined
+					return true;
+				}
 			} else
 				throw "В конмнате не инициализирован скисок объектов: room : '"
 						+ YAQP.Functions.toString(room) + "', obj : '"
 						+ YAQP.Functions.toString(obj) + "'";
 		}
+		return false;
 	} catch (e) {
 		YAQP.Functions.error("YAQP.Functions.remove", e);
 	}
 };
 
+/**
+ * Заменяет один объект в указанной комнате на другой; если комната не указана,
+ * то замена производится в текущей комнате. Текущая комната запрашиваетя через функцию 
+ * {@link YAQP.Functions.here}. Если комната указана, то ссылка на нее запрашивается
+ * через функцию {@link YAQP.Functions.refRoom}. Ссылки на объекты запрашиваются через функцию 
+ * {@link YAQP.Functions.refObj}. Если объект-источник не найден в списке, то список
+ * остается без изменений. Если объект-источник удаляется из комнаты, то 
+ * его {@link YAQP.Classes.Obj.where} становится равным undefined. 
+ * {@link YAQP.Classes.Obj.where} объекта для замены становится равным комнате.
+ * 
+ * @param {YAQP.Classes.Obj|string} objSrc название предмета-источника, 
+ * 	идентификатор либо сам предмет.
+ * @param {YAQP.Classes.Obj|string} objDst название предмета для замены, 
+ * 	идентификатор либо сам предмет.
+ * @param {YAQP.Classes.Room|YAQP.Classes.Player|string} room название комнаты, 
+ * идентификатор, сама комната либо ссылка на игрока.
+ */
 YAQP.Functions.replace = function(objSrc, objDst, room) {
 	try {
 		var list;
+		var os = YAQP.Functions.refObj(objSrc);
+		var od = YAQP.Functions.refObj(objDst);
+		
 		if (YAQP.Functions.isPlayer(room)) {
 			list = YAQP.Functions.inv();
 		} else
 			list = YAQP.Functions.refRoom(room).objs;
-		list.replace(YAQP.Functions.refObj(objSrc), YAQP.Functions
-						.refObj(objDst));
+		if (list.replace(os, od)) {
+			os.where = undefined;
+			return true;	
+		} else
+			return false;
 	} catch (e) {
 		YAQP.Functions.error("YAQP.Functions.replace", e);
 	}

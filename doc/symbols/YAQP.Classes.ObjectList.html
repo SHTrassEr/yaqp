@@ -211,6 +211,8 @@ ul.inheritsList
 	
 	<li><a href="../symbols/YAQP.Functions.html">YAQP.Functions</a></li>
 	
+	<li><a href="../symbols/YAQP.FunctionsCore.html">YAQP.FunctionsCore</a></li>
+	
 	<li><a href="../symbols/YAQP.game.html">YAQP.game</a></li>
 	
 </ul>
@@ -233,7 +235,7 @@ ul.inheritsList
 				
 				
 				
-					<br /><i>Defined in: </i> <a href="../symbols/src/src_objectlist.js.html">objectlist.js</a>.
+					<br /><i>Defined in: </i> <a href="../symbols/src/src_core_objectlist.js.html">objectlist.js</a>.
 				
 			</p>
 
@@ -309,6 +311,15 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/YAQP.Classes.ObjectList.html#disable_all">disable_all</a></b>()
+								</div>
+								<div class="description">Скрывает все объекты в списке.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
 								<div class="fixedFont"><b><a href="../symbols/YAQP.Classes.ObjectList.html#enable">enable</a></b>(o)
 								</div>
 								<div class="description">Скрытие объекта в списке; отличается от удаления тем, что может быть
@@ -319,9 +330,9 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/YAQP.Classes.ObjectList.html#look">look</a></b>(o, lookHidden)
+								<div class="fixedFont"><b><a href="../symbols/YAQP.Classes.ObjectList.html#enable_all">enable_all</a></b>()
 								</div>
-								<div class="description">Поиск объекта.</div>
+								<div class="description">Показывает все объекты в списке.</div>
 							</td>
 						</tr>
 					
@@ -346,9 +357,18 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/YAQP.Classes.ObjectList.html#srch">srch</a></b>(o)
+								<div class="fixedFont"><b><a href="../symbols/YAQP.Classes.ObjectList.html#srch">srch</a></b>(o, lookHidden)
 								</div>
 								<div class="description">Поиск объекта.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/YAQP.Classes.ObjectList.html#zap">zap</a></b>()
+								</div>
+								<div class="description">Обнуление списка.</div>
 							</td>
 						</tr>
 					
@@ -440,7 +460,7 @@ ul.inheritsList
 					<a name="del"> </a>
 					<div class="fixedFont">
 					
-					<span class="light">{boolean|undefined}</span>
+					<span class="light">{boolean}</span>
 					<b>del</b>(o)
 					
 					</div>
@@ -471,8 +491,8 @@ ul.inheritsList
 							<dl class="detailList">
 							<dt class="heading">Returns:</dt>
 							
-								<dd><span class="light fixedFont">{boolean|undefined}</span> возвращает true, если объект удалось удалить,
-         либо undefined, если объект не найден.</dd>
+								<dd><span class="light fixedFont">{boolean}</span> возвращает true, если объект удалось удалить,
+         либо false, если объект не найден.</dd>
 							
 							</dl>
 						
@@ -526,6 +546,31 @@ ul.inheritsList
 
 					<hr />
 				
+					<a name="disable_all"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>disable_all</b>()
+					
+					</div>
+					<div class="description">
+						Скрывает все объекты в списке.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
 					<a name="enable"> </a>
 					<div class="fixedFont">
 					
@@ -571,15 +616,15 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="look"> </a>
+					<a name="enable_all"> </a>
 					<div class="fixedFont">
 					
-					<span class="light">{number|undefined}</span>
-					<b>look</b>(o, lookHidden)
+					
+					<b>enable_all</b>()
 					
 					</div>
 					<div class="description">
-						Поиск объекта. Функция возвращает индекс найденного объекта в списке.
+						Показывает все объекты в списке.
 						
 						
 					</div>
@@ -587,35 +632,9 @@ ul.inheritsList
 					
 					
 						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<span class="light fixedFont">{<a href="../symbols/YAQP.Classes.Object.html">YAQP.Classes.Object</a>|string}</span> <b>o</b>
-									
-								</dt>
-								<dd>объект поиска. Либо строка с id объекта, либо сам объект.</dd>
-							
-								<dt>
-									<span class="light fixedFont">{boolean}</span> <b>lookHidden</b>
-									
-								</dt>
-								<dd>Искать скрытые объекты или нет. По умолчанию скрытые
-           объекты не ищутся.</dd>
-							
-							</dl>
 						
 						
 						
-						
-						
-							<dl class="detailList">
-							<dt class="heading">Returns:</dt>
-							
-								<dd><span class="light fixedFont">{number|undefined}</span> возвращает индекс найденного объекта, либо
-         undefined если объект не найден.</dd>
-							
-							</dl>
 						
 						
 						
@@ -675,7 +694,8 @@ ul.inheritsList
 					</div>
 					<div class="description">
 						Замена объекта в списке. Если объект, на который следует заменить (oNew) уже
-есть в списке, то просто удаляется объект замены (oOld)
+есть в списке, то просто удаляется объект замены (oOld). Если исходный 
+объект не найден, то список остается без изменений;
 						
 						
 					</div>
@@ -721,7 +741,7 @@ ul.inheritsList
 					<div class="fixedFont">
 					
 					<span class="light">{number|undefined}</span>
-					<b>srch</b>(o)
+					<b>srch</b>(o, lookHidden)
 					
 					</div>
 					<div class="description">
@@ -742,6 +762,13 @@ ul.inheritsList
 								</dt>
 								<dd>объект поиска. Либо строка с id объекта, либо сам объект.</dd>
 							
+								<dt>
+									<span class="light fixedFont">{boolean}</span> <b>lookHidden</b>
+									
+								</dt>
+								<dd>Искать скрытые объекты или нет. По умолчанию скрытые
+           объекты не ищутся.</dd>
+							
 							</dl>
 						
 						
@@ -755,6 +782,31 @@ ul.inheritsList
          undefined если объект не найден.</dd>
 							
 							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="zap"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>zap</b>()
+					
+					</div>
+					<div class="description">
+						Обнуление списка.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
 						
 						
 						
@@ -773,7 +825,7 @@ ul.inheritsList
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Sat Dec 10 2011 22:32:22 GMT+0900 (IRKT)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Tue Dec 20 2011 22:44:35 GMT+0900 (IRKT)
 		</div>
 	</body>
 </html>

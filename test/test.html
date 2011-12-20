@@ -7,7 +7,6 @@
 
   <script src="qunit/jquery.js"></script>
   <script src="../src/core/yaqp.js"></script>
-  
   <script src="../src/core/functions_core.js"></script>
   <script src="../src/core/functions.js"></script>
   <script src="../src/core/object.js"></script>
@@ -66,13 +65,13 @@ test("hide and enable items", function() {
   equal( objectList["id2"].enable()  , true, "enable obj2" );  
   equal( objectList.srch(obj2) , obj2, "find enabled obj2" );  
   
-  equal( objectList.disable(obj4) ,undefined, "cannot disable an unexisten obj4" );  
-  equal( objectList.enable(obj4) ,undefined, "cannot enable an unexisten obj4" );  
+  equal( objectList.disable(obj4) ,false, "cannot disable an unexisten obj4" );  
+  equal( objectList.enable(obj4) ,false, "cannot enable an unexisten obj4" );  
 });
 
 test("delete items", function() {
   equal( objectList.disable(obj1) , true, "disable obj1" );  
-  equal( objectList.del(obj1) , undefined, "cannot delete disabled obj1" );  
+  equal( objectList.del(obj1) , false, "cannot delete disabled obj1" );  
   equal( objectList.enable(obj1)  , true, "enable obj1" );  
   equal( objectList.del(obj1) , true, "delete obj1" );  
   equal( objectList.srch(obj1) , undefined, "cannot find deleted obj1" ); 
@@ -96,6 +95,7 @@ test("replace items", function() {
 
 })();
 
+/*
   (function(){
 module("test  objlist ");
 
@@ -147,7 +147,7 @@ test("add items", function() {
 	    //equal( objList.length, 3, "adding existing items ok" );  
 	    });
 	  })();
-	  
+	  */
   (function(){
 	  module("test  out ");
     

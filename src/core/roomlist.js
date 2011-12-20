@@ -30,28 +30,13 @@ YAQP.Functions.extend(YAQP.Classes.RoomList, YAQP.Classes.ObjectList);
 YAQP.Classes.RoomList.prototype.add = function(o) {
 	try {
 		switch (typeof o) {
-			case "undefined" :
-				throw "Объект не является сценой: 'undefined'";
-				break;
 			case "string" :
-				if (YAQP.game.rooms[o]) {
-					if (YAQP.Functions.isRoom(YAQP.game.rooms[o])) {
-						return YAQP.Classes.RoomList.superclass.add.apply(this,
-								[YAQP.game.rooms[o]]);
-					} else
-						throw "Объект содержится в глобальном списке сцен, "
-								+ " но не является сценой: '" + o + "'";
-				} else
-					throw "Объект не найден в глобальном списке сцен: '" + o
-							+ "'";
-				break;
 			case "object" :
-				if (YAQP.Functions.isRoom(o)) {
-					return YAQP.Classes.RoomList.superclass.add
-							.apply(this, [o]);
-				} else
-					throw "Объект не является сценой: '" + o.toString() + "'.";
-				break;
+				return YAQP.Classes.RoomList.superclass.add.apply(this,
+					[YAQP.Functions.refRoom(o)]);
+			default :
+				throw "Объект не является сценой: o : "
+					+ YAQP.Functions.quotes(o);
 		}
 	} catch (e) {
 		YAQP.Functions.error("YAQP.Classes.RoomList.add ", e);

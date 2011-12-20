@@ -88,7 +88,7 @@ YAQP.Classes.ObjectList.prototype.disable = function(o) {
 	if (obj !== undefined) {
 		return obj.disable();
 	}
-	return undefined;
+	return false;
 };
 
 /**
@@ -105,7 +105,7 @@ YAQP.Classes.ObjectList.prototype.enable = function(o) {
 	if (obj !== undefined) {
 		return obj.enable();
 	}
-	return undefined;
+	return false;
 };
 
 /**
@@ -113,8 +113,8 @@ YAQP.Classes.ObjectList.prototype.enable = function(o) {
  * 
  * @param {YAQP.Classes.Object|string}
  *            o объект. Либо строка с id объекта, либо сам объект.
- * @returns {boolean|undefined} возвращает true, если объект удалось удалить,
- *          либо undefined, если объект не найден.
+ * @returns {boolean} возвращает true, если объект удалось удалить,
+ *          либо false, если объект не найден.
  */
 YAQP.Classes.ObjectList.prototype.del = function(o) {
 	var obj = this.srch(o);
@@ -122,7 +122,7 @@ YAQP.Classes.ObjectList.prototype.del = function(o) {
 		delete this[obj.__id];
 		return true;
 	}
-	return undefined;
+	return false;
 };
 /**
  * Удаление объекта из списка. Скрытые объекты тоже удаляются.
@@ -138,12 +138,13 @@ YAQP.Classes.ObjectList.prototype.purge = function(o) {
 		delete this[obj.__id];
 		return true;
 	}
-	return undefined;
+	return false;
 };
 
 /**
  * Замена объекта в списке. Если объект, на который следует заменить (oNew) уже
- * есть в списке, то просто удаляется объект замены (oOld)
+ * есть в списке, то просто удаляется объект замены (oOld). Если исходный 
+ * объект не найден, то список остается без изменений; 
  * 
  * @param {YAQP.Classes.Object|string}
  *            oOld объект поиска. Либо строка с id объекта, либо сам объект.
@@ -163,9 +164,12 @@ YAQP.Classes.ObjectList.prototype.replace = function(oOld, oNew) {
 		if (oOld === oNew)
 			return true;
 
-		this.del(oOld);
-		this.add(oNew);
-		return true;
+		if (this.del(oOld)) {
+			this.add(oNew);
+			return true;
+		} else
+			return false;
+
 	} catch (e) {
 		YAQP.Functions.error("YAQP.Classes.ObjectList.replace ", e);
 	};

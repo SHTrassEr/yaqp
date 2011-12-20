@@ -211,6 +211,8 @@ ul.inheritsList
 	
 	<li><a href="../symbols/YAQP.Functions.html">YAQP.Functions</a></li>
 	
+	<li><a href="../symbols/YAQP.FunctionsCore.html">YAQP.FunctionsCore</a></li>
+	
 	<li><a href="../symbols/YAQP.game.html">YAQP.game</a></li>
 	
 </ul>
@@ -233,7 +235,7 @@ ul.inheritsList
 				Содержит базовые функции.
 				
 				
-					<br /><i>Defined in: </i> <a href="../symbols/src/src_yaqp.js.html">yaqp.js</a>.
+					<br /><i>Defined in: </i> <a href="../symbols/src/src_core_yaqp.js.html">yaqp.js</a>.
 				
 			</p>
 
@@ -281,6 +283,15 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&lt;static&gt; &nbsp;</td>
 							<td class="nameDescription">
+								<div class="fixedFont">YAQP.Functions.<b><a href="../symbols/YAQP.Functions.html#.error">error</a></b>(msg, Дополнительная)
+								</div>
+								<div class="description">Функция обработки ошибок.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
 								<div class="fixedFont">YAQP.Functions.<b><a href="../symbols/YAQP.Functions.html#.extend">extend</a></b>(Child, Parent)
 								</div>
 								<div class="description">Функция делает класс Child потомком класса Parent.</div>
@@ -290,9 +301,27 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&lt;static&gt; &nbsp;</td>
 							<td class="nameDescription">
+								<div class="fixedFont">YAQP.Functions.<b><a href="../symbols/YAQP.Functions.html#.from">from</a></b>()
+								</div>
+								<div class="description">Возвращает прошлую сцену, на которой находился текущий игрок.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">YAQP.Functions.<b><a href="../symbols/YAQP.Functions.html#.go">go</a></b>(название, устанавливается)
+								</div>
+								<div class="description">Переход из одной комнаты в другую.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
 								<div class="fixedFont">YAQP.Functions.<b><a href="../symbols/YAQP.Functions.html#.here">here</a></b>()
 								</div>
-								<div class="description">Возвращает текущую сцену.</div>
+								<div class="description">Возвращает комнату в которой находится текущий игрок.</div>
 							</td>
 						</tr>
 					
@@ -301,62 +330,215 @@ ul.inheritsList
 							<td class="nameDescription">
 								<div class="fixedFont">YAQP.Functions.<b><a href="../symbols/YAQP.Functions.html#.inv">inv</a></b>()
 								</div>
-								<div class="description">Возвращает инвентарь игрока.</div>
+								<div class="description">Возвращает инвентарь текущего игрока игрока.</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&lt;static&gt; &nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont">YAQP.Functions.<b><a href="../symbols/YAQP.Functions.html#.isObj">isObj</a></b>()
+								<div class="fixedFont">YAQP.Functions.<b><a href="../symbols/YAQP.Functions.html#.isObj">isObj</a></b>(o)
 								</div>
-								<div class="description">Проверяет, является ли переданный объект игровым объектом.</div>
+								<div class="description">Проверяет, является ли переданный объект игровым предметом, то есть 
+принадлежит ли он к классу <a href="../symbols/YAQP.Classes.Obj.html">YAQP.Classes.Obj</a>.</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&lt;static&gt; &nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont">YAQP.Functions.<b><a href="../symbols/YAQP.Functions.html#.isRoom">isRoom</a></b>()
+								<div class="fixedFont">YAQP.Functions.<b><a href="../symbols/YAQP.Functions.html#.isObjList">isObjList</a></b>(o)
 								</div>
-								<div class="description">Проверяет, является ли переданный объект комнатой.</div>
+								<div class="description">Проверяет, является ли переданный параметр списком игровых предметов, то есть
+принадлежит ли он к классу <a href="../symbols/YAQP.Classes.ObjList.html">YAQP.Classes.ObjList</a>.</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&lt;static&gt; &nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont">YAQP.Functions.<b><a href="../symbols/YAQP.Functions.html#.objs">objs</a></b>(o)
+								<div class="fixedFont">YAQP.Functions.<b><a href="../symbols/YAQP.Functions.html#.isPlayer">isPlayer</a></b>(o)
 								</div>
-								<div class="description">Возвращает список объектов указанной сцены; если сцена не указана, то
-возвращает список объектов текущей сцены</div>
+								<div class="description">Проверяет, является ли переданный объект игроком, то есть 
+принадлежит ли он к классу <a href="../symbols/YAQP.Classes.Player.html">YAQP.Classes.Player</a>.</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&lt;static&gt; &nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont">YAQP.Functions.<b><a href="../symbols/YAQP.Functions.html#.prepareLinksRoomObjs">prepareLinksRoomObjs</a></b>(room)
+								<div class="fixedFont">YAQP.Functions.<b><a href="../symbols/YAQP.Functions.html#.isRoom">isRoom</a></b>(o)
 								</div>
-								<div class="description">Служебная функция, вызывается один раз при создании игры.</div>
+								<div class="description">Проверяет, является ли переданный параметр комнатой, то есть 
+принадлежит ли он к классу <a href="../symbols/YAQP.Classes.Room.html">YAQP.Classes.Room</a>.</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&lt;static&gt; &nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont">YAQP.Functions.<b><a href="../symbols/YAQP.Functions.html#.prepareObjs">prepareObjs</a></b>(obj)
+								<div class="fixedFont">YAQP.Functions.<b><a href="../symbols/YAQP.Functions.html#.isRoomList">isRoomList</a></b>(o)
 								</div>
-								<div class="description">Служебная функция, вызывается один раз при создании игры.</div>
+								<div class="description">Проверяет, является ли переданный параметр списком комнат, то есть принадлежит
+ли он к классу <a href="../symbols/YAQP.Classes.RoomList.html">YAQP.Classes.RoomList</a>.</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&lt;static&gt; &nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont">YAQP.Functions.<b><a href="../symbols/YAQP.Functions.html#.prepareRooms">prepareRooms</a></b>(room)
+								<div class="fixedFont">YAQP.Functions.<b><a href="../symbols/YAQP.Functions.html#.isValidObjField">isValidObjField</a></b>(fieldName)
 								</div>
-								<div class="description">Служебная функция, вызывается один раз при создании игры.</div>
+								<div class="description">Служебная функция.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">YAQP.Functions.<b><a href="../symbols/YAQP.Functions.html#.isValidRoomField">isValidRoomField</a></b>(fieldName)
+								</div>
+								<div class="description">Служебная функция.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">YAQP.Functions.<b><a href="../symbols/YAQP.Functions.html#.me">me</a></b>()
+								</div>
+								<div class="description">Возвращает ссылку на игрока.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">YAQP.Functions.<b><a href="../symbols/YAQP.Functions.html#.objs">objs</a></b>(room)
+								</div>
+								<div class="description">Возвращает список объектов указанной комнаты; если комната не указана, то
+возвращает список объектов текущей комнаты.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">YAQP.Functions.<b><a href="../symbols/YAQP.Functions.html#.quotes">quotes</a></b>(s)
+								</div>
+								<div class="description">Заключает в кавычки переданную строку.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">YAQP.Functions.<b><a href="../symbols/YAQP.Functions.html#.ref">ref</a></b>(name)
+								</div>
+								<div class="description">Получает игровой предмет или комнату.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">YAQP.Functions.<b><a href="../symbols/YAQP.Functions.html#.refObj">refObj</a></b>(name)
+								</div>
+								<div class="description">Получает игровой предмет.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">YAQP.Functions.<b><a href="../symbols/YAQP.Functions.html#.refRoom">refRoom</a></b>(name)
+								</div>
+								<div class="description">Получает комнату.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">YAQP.Functions.<b><a href="../symbols/YAQP.Functions.html#.remove">remove</a></b>(obj, room)
+								</div>
+								<div class="description">Удаляет предмет из указанной комнаты или из инвентаря игрока; если комната не указана, то
+удаляет предмет из текущей комнаты.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">YAQP.Functions.<b><a href="../symbols/YAQP.Functions.html#.replace">replace</a></b>(objSrc, objDst, room)
+								</div>
+								<div class="description">Заменяет один объект в указанной комнате на другой; если комната не указана,
+то замена производится в текущей комнате.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">YAQP.Functions.<b><a href="../symbols/YAQP.Functions.html#.seen">seen</a></b>(obj, room)
+								</div>
+								<div class="description">Возвращает объект, если он присутствует и не отключен на сцене, есть второй необязательный параметр – сцена;</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">YAQP.Functions.<b><a href="../symbols/YAQP.Functions.html#.take">take</a></b>(obj)
+								</div>
+								<div class="description">Перемещает объект в инвентарь игрока.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">YAQP.Functions.<b><a href="../symbols/YAQP.Functions.html#.toString">toString</a></b>(o)
+								</div>
+								<div class="description">Преобразует переданный объект в строку.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">YAQP.Functions.<b><a href="../symbols/YAQP.Functions.html#.use">use</a></b>(obj)
+								</div>
+								<div class="description">Использование объекта.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">YAQP.Functions.<b><a href="../symbols/YAQP.Functions.html#.useTo">useTo</a></b>(obj1, obj2)
+								</div>
+								<div class="description">Использовать объект.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">YAQP.Functions.<b><a href="../symbols/YAQP.Functions.html#.ways">ways</a></b>(room)
+								</div>
+								<div class="description">Возвращает список переходов с указанной комнаты; если сцена не указана, то
+возвращает список переходов с текущей комнаты.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">YAQP.Functions.<b><a href="../symbols/YAQP.Functions.html#.where">where</a></b>(o)
+								</div>
+								<div class="description">Возвращает сцену в которой помещен объект (если он был добавлен с
+использованием функций put, drop, move)</div>
 							</td>
 						</tr>
 					
@@ -408,6 +590,51 @@ ul.inheritsList
 					Method Detail
 				</div>
 				
+					<a name=".error"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">YAQP.Functions.</span><b>error</b>(msg, Дополнительная)
+					
+					</div>
+					<div class="description">
+						Функция обработки ошибок.
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/src_core_functions.js.html">functions.js</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{string}</span> <b>msg</b>
+									
+								</dt>
+								<dd>сообщение об ошибки.</dd>
+							
+								<dt>
+									<span class="light fixedFont">{string|Error}</span> <b>Дополнительная</b>
+									
+								</dt>
+								<dd>информация об ошибке.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
 					<a name=".extend"> </a>
 					<div class="fixedFont">&lt;static&gt; 
 					
@@ -419,7 +646,7 @@ ul.inheritsList
 						Функция делает класс Child потомком класса Parent.
 						
 							<br />
-							<i>Defined in: </i> <a href="../symbols/src/src_functions.js.html">functions.js</a>.
+							<i>Defined in: </i> <a href="../symbols/src/src_core_functions.js.html">functions.js</a>.
 						
 						
 					</div>
@@ -453,18 +680,18 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name=".here"> </a>
+					<a name=".from"> </a>
 					<div class="fixedFont">&lt;static&gt; 
 					
-					<span class="light">{<a href="../symbols/YAQP.Classes.ObjList.html">YAQP.Classes.ObjList</a>}</span>
-					<span class="light">YAQP.Functions.</span><b>here</b>()
+					<span class="light">{<a href="../symbols/YAQP.Classes.Room.html">YAQP.Classes.Room</a>}</span>
+					<span class="light">YAQP.Functions.</span><b>from</b>()
 					
 					</div>
 					<div class="description">
-						Возвращает текущую сцену.
+						Возвращает прошлую сцену, на которой находился текущий игрок.
 						
 							<br />
-							<i>Defined in: </i> <a href="../symbols/src/src_functions.js.html">functions.js</a>.
+							<i>Defined in: </i> <a href="../symbols/src/src_core_functions.js.html">functions.js</a>.
 						
 						
 					</div>
@@ -479,7 +706,88 @@ ul.inheritsList
 							<dl class="detailList">
 							<dt class="heading">Returns:</dt>
 							
-								<dd><span class="light fixedFont">{<a href="../symbols/YAQP.Classes.ObjList.html">YAQP.Classes.ObjList</a>}</span> Инвентарь.</dd>
+								<dd><span class="light fixedFont">{<a href="../symbols/YAQP.Classes.Room.html">YAQP.Classes.Room</a>}</span> Прошлая сцена</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".go"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">YAQP.Functions.</span><b>go</b>(название, устанавливается)
+					
+					</div>
+					<div class="description">
+						Переход из одной комнаты в другую.
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/src_core_functions.js.html">functions.js</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/YAQP.Classes.Room.html">YAQP.Classes.Room</a>|string}</span> <b>название</b>
+									
+								</dt>
+								<dd>комнаты или сама 
+комната в которую следует перейти.</dd>
+							
+								<dt>
+									<span class="light fixedFont">{boolean}</span> <b>устанавливается</b>
+									
+								</dt>
+								<dd>в true если вызывается при опсании игры</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".here"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{<a href="../symbols/YAQP.Classes.Room.html">YAQP.Classes.Room</a>}</span>
+					<span class="light">YAQP.Functions.</span><b>here</b>()
+					
+					</div>
+					<div class="description">
+						Возвращает комнату в которой находится текущий игрок.
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/src_core_functions.js.html">functions.js</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/YAQP.Classes.Room.html">YAQP.Classes.Room</a>}</span> Текущая сцена</dd>
 							
 							</dl>
 						
@@ -496,10 +804,12 @@ ul.inheritsList
 					
 					</div>
 					<div class="description">
-						Возвращает инвентарь игрока.
+						Возвращает инвентарь текущего игрока игрока. При помощи функции 
+<a href="../symbols/YAQP.Functions.html#.me">YAQP.Functions.me</a> получает ссылку на текущего игрока и 
+возвращает его инвентарь.
 						
 							<br />
-							<i>Defined in: </i> <a href="../symbols/src/src_functions.js.html">functions.js</a>.
+							<i>Defined in: </i> <a href="../symbols/src/src_core_functions.js.html">functions.js</a>.
 						
 						
 					</div>
@@ -527,14 +837,17 @@ ul.inheritsList
 					<div class="fixedFont">&lt;static&gt; 
 					
 					<span class="light">{boolean}</span>
-					<span class="light">YAQP.Functions.</span><b>isObj</b>()
+					<span class="light">YAQP.Functions.</span><b>isObj</b>(o)
 					
 					</div>
 					<div class="description">
-						Проверяет, является ли переданный объект игровым объектом.
+						Проверяет, является ли переданный объект игровым предметом, то есть 
+принадлежит ли он к классу <a href="../symbols/YAQP.Classes.Obj.html">YAQP.Classes.Obj</a>. Проверяется два условия. 
+1. typeof o == "object"
+2. o.__type == YAQP.Classes.ObjectTypes.Obj
 						
 							<br />
-							<i>Defined in: </i> <a href="../symbols/src/src_functions.js.html">functions.js</a>.
+							<i>Defined in: </i> <a href="../symbols/src/src_core_functions.js.html">functions.js</a>.
 						
 						
 					</div>
@@ -546,10 +859,10 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<span class="light fixedFont">{<a href="../symbols/YAQP.Classes.Room.html">YAQP.Classes.Room</a>}</span> <b>комната.</b>
+									<span class="light fixedFont">{<a href="../symbols/YAQP.Classes.Room.html">YAQP.Classes.Room</a>}</span> <b>o</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>входной параметр.</dd>
 							
 							</dl>
 						
@@ -562,6 +875,106 @@ ul.inheritsList
 							
 								<dd><span class="light fixedFont">{boolean}</span> Возвращает true, если объект является комнатой. Возвращает
          false если объект комнатой не является.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".isObjList"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{boolean}</span>
+					<span class="light">YAQP.Functions.</span><b>isObjList</b>(o)
+					
+					</div>
+					<div class="description">
+						Проверяет, является ли переданный параметр списком игровых предметов, то есть
+принадлежит ли он к классу <a href="../symbols/YAQP.Classes.ObjList.html">YAQP.Classes.ObjList</a>. Проверяется два условия. 
+1. typeof o == "object"
+2. o.__type == YAQP.Classes.ObjectTypes.ObjList
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/src_core_functions.js.html">functions.js</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{YAQP.Classes.ObjectTypes.ObjList|any}</span> <b>o</b>
+									
+								</dt>
+								<dd>входной параметр.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{boolean}</span> Возвращает true, если объект является комнатой. Возвращает
+         false если объект комнатой не является.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".isPlayer"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{boolean}</span>
+					<span class="light">YAQP.Functions.</span><b>isPlayer</b>(o)
+					
+					</div>
+					<div class="description">
+						Проверяет, является ли переданный объект игроком, то есть 
+принадлежит ли он к классу <a href="../symbols/YAQP.Classes.Player.html">YAQP.Classes.Player</a>. Проверяется два условия. 
+1. typeof o == "object"
+2. o.__type == YAQP.Classes.ObjectTypes.Player
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/src_core_functions.js.html">functions.js</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/YAQP.Classes.Player.html">YAQP.Classes.Player</a>|any}</span> <b>o</b>
+									
+								</dt>
+								<dd>входной параметр.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{boolean}</span> Возвращает true, если параметр является игроком. Возвращает
+         false если параметр комнатой не является.</dd>
 							
 							</dl>
 						
@@ -574,14 +987,17 @@ ul.inheritsList
 					<div class="fixedFont">&lt;static&gt; 
 					
 					<span class="light">{boolean}</span>
-					<span class="light">YAQP.Functions.</span><b>isRoom</b>()
+					<span class="light">YAQP.Functions.</span><b>isRoom</b>(o)
 					
 					</div>
 					<div class="description">
-						Проверяет, является ли переданный объект комнатой.
+						Проверяет, является ли переданный параметр комнатой, то есть 
+принадлежит ли он к классу <a href="../symbols/YAQP.Classes.Room.html">YAQP.Classes.Room</a>. Проверяется два условия. 
+1. typeof o == "object"
+2. o.__type == YAQP.Classes.ObjectTypes.Room
 						
 							<br />
-							<i>Defined in: </i> <a href="../symbols/src/src_functions.js.html">functions.js</a>.
+							<i>Defined in: </i> <a href="../symbols/src/src_core_functions.js.html">functions.js</a>.
 						
 						
 					</div>
@@ -593,10 +1009,10 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<span class="light fixedFont">{<a href="../symbols/YAQP.Classes.Room.html">YAQP.Classes.Room</a>}</span> <b>комната.</b>
+									<span class="light fixedFont">{<a href="../symbols/YAQP.Classes.Room.html">YAQP.Classes.Room</a>|any}</span> <b>o</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>входной параметр.</dd>
 							
 							</dl>
 						
@@ -617,19 +1033,21 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name=".objs"> </a>
+					<a name=".isRoomList"> </a>
 					<div class="fixedFont">&lt;static&gt; 
 					
-					<span class="light">{<a href="../symbols/YAQP.Classes.ObjList.html">YAQP.Classes.ObjList</a>}</span>
-					<span class="light">YAQP.Functions.</span><b>objs</b>(o)
+					<span class="light">{boolean}</span>
+					<span class="light">YAQP.Functions.</span><b>isRoomList</b>(o)
 					
 					</div>
 					<div class="description">
-						Возвращает список объектов указанной сцены; если сцена не указана, то
-возвращает список объектов текущей сцены
+						Проверяет, является ли переданный параметр списком комнат, то есть принадлежит
+ли он к классу <a href="../symbols/YAQP.Classes.RoomList.html">YAQP.Classes.RoomList</a>. Проверяется два условия. 
+1. typeof o == "object"
+2. o.__type == YAQP.Classes.ObjectTypes.RoomList
 						
 							<br />
-							<i>Defined in: </i> <a href="../symbols/src/src_functions.js.html">functions.js</a>.
+							<i>Defined in: </i> <a href="../symbols/src/src_core_functions.js.html">functions.js</a>.
 						
 						
 					</div>
@@ -641,10 +1059,193 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>o</b>
+									<span class="light fixedFont">{object}</span> <b>o</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>входной параметр.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{boolean}</span> Возвращает true, если объект является комнатой. Возвращает
+         false если объект комнатой не является.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".isValidObjField"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{Boolean}</span>
+					<span class="light">YAQP.Functions.</span><b>isValidObjField</b>(fieldName)
+					
+					</div>
+					<div class="description">
+						Служебная функция. Проверяет задано допустимое значение для 
+названия поля или нет.
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/src_core_functions_core.js.html">functions_core.js</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>fieldName</b>
+									
+								</dt>
+								<dd>Название поля.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Boolean}</span> результат проверки.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".isValidRoomField"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{Boolean}</span>
+					<span class="light">YAQP.Functions.</span><b>isValidRoomField</b>(fieldName)
+					
+					</div>
+					<div class="description">
+						Служебная функция. Проверяет задано допустимое значение для 
+названия поля или нет.
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/src_core_functions_core.js.html">functions_core.js</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>fieldName</b>
+									
+								</dt>
+								<dd>Название поля.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Boolean}</span> результат проверки.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".me"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{<a href="../symbols/YAQP.Classes.Player.html">YAQP.Classes.Player</a>}</span>
+					<span class="light">YAQP.Functions.</span><b>me</b>()
+					
+					</div>
+					<div class="description">
+						Возвращает ссылку на игрока. В настоящее время доступен только один игрок,
+ссылка на него хранится в YAQP.game.pl. Тем не менее все манипуляции 
+с игроком рекомендуется делать через эту функцию. Не надо получать игрока напрямую
+через YAQP.game.pl
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/src_core_functions.js.html">functions.js</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/YAQP.Classes.Player.html">YAQP.Classes.Player</a>}</span> игрок</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".objs"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{<a href="../symbols/YAQP.Classes.ObjList.html">YAQP.Classes.ObjList</a>}</span>
+					<span class="light">YAQP.Functions.</span><b>objs</b>(room)
+					
+					</div>
+					<div class="description">
+						Возвращает список объектов указанной комнаты; если комната не указана, то
+возвращает список объектов текущей комнаты. Текущая комната запрашиваетя через функцию 
+<a href="../symbols/YAQP.Functions.html#.here">YAQP.Functions.here</a>. Если же комната указана, то ссылка на нее запрашивается
+через функцию <a href="../symbols/YAQP.Functions.html#.refRoom">YAQP.Functions.refRoom</a>. Эта функция либо возвращает список
+объектов (класс <a href="../symbols/YAQP.Classes.ObjList.html">YAQP.Classes.ObjList</a>), либо генерирует ошибку.
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/src_core_functions.js.html">functions.js</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/YAQP.Classes.Room.html">YAQP.Classes.Room</a>|string}</span> <b>room</b>
+									
+								</dt>
+								<dd>название комнаты, идентификатор либо сама комната.</dd>
 							
 							</dl>
 						
@@ -664,21 +1265,18 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name=".prepareLinksRoomObjs"> </a>
+					<a name=".quotes"> </a>
 					<div class="fixedFont">&lt;static&gt; 
 					
-					
-					<span class="light">YAQP.Functions.</span><b>prepareLinksRoomObjs</b>(room)
+					<span class="light">{string}</span>
+					<span class="light">YAQP.Functions.</span><b>quotes</b>(s)
 					
 					</div>
 					<div class="description">
-						Служебная функция, вызывается один раз при создании игры. 
-На вход получает список сцен, объявленный в файле 
-игры. Функция заносит перечень объектов, объявленных в 
-сцене в глобальный игровой файл.
+						Заключает в кавычки переданную строку.
 						
 							<br />
-							<i>Defined in: </i> <a href="../symbols/src/src_functions.js.html">functions.js</a>.
+							<i>Defined in: </i> <a href="../symbols/src/src_core_functions.js.html">functions.js</a>.
 						
 						
 					</div>
@@ -690,10 +1288,284 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<span class="light fixedFont">{object}</span> <b>room</b>
+									<span class="light fixedFont">{string}</span> <b>s</b>
 									
 								</dt>
-								<dd>список сцен.</dd>
+								<dd>строка.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{string}</span> 's' .</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".ref"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{YAQP.Classes.obj}</span>
+					<span class="light">YAQP.Functions.</span><b>ref</b>(name)
+					
+					</div>
+					<div class="description">
+						Получает игровой предмет или комнату. Использует функции <a href="../symbols/YAQP.Functions.html#.refObj">YAQP.Functions.refObj</a> и
+<a href="../symbols/YAQP.Functions.html#.refRoom">YAQP.Functions.refRoom</a>. Если переданный параметр не является ни комнатой ни 
+игровым предметом, то генерируется ошибка. На данный момент нигде не используется, так как 
+всегда из контекста ясно, что мы хотим найти: предмет или комнату. Возможно, что 
+эта функция в дальнейшем будет удалена. Иди же оставлена для совместимости со STEAD.
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/src_core_functions.js.html">functions.js</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{YAQP.Classes.obj|string}</span> <b>name</b>
+									
+								</dt>
+								<dd>название предмета/комнаты, идентификатор либо предмет/комната.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{YAQP.Classes.obj}</span> Ссылка на искомый игровой предмет/комнату.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".refObj"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{YAQP.Classes.obj}</span>
+					<span class="light">YAQP.Functions.</span><b>refObj</b>(name)
+					
+					</div>
+					<div class="description">
+						Получает игровой предмет. Параметром этой функции может быть либо предмет либо 
+идентификатор предмета. Особенность функции в том, что она либо вернет предмет,
+либо сгенерирует ошибку. Если в качестве параметра передан объект, то
+проверяется, является ли этот объект игровым предметом.
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/src_core_functions.js.html">functions.js</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{YAQP.Classes.obj|string}</span> <b>name</b>
+									
+								</dt>
+								<dd>название предмета, идентификатор либо сам предмет.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{YAQP.Classes.obj}</span> Ссылка на искомый игровой предмет.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".refRoom"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{<a href="../symbols/YAQP.Classes.Room.html">YAQP.Classes.Room</a>}</span>
+					<span class="light">YAQP.Functions.</span><b>refRoom</b>(name)
+					
+					</div>
+					<div class="description">
+						Получает комнату. Параметром этой функции может быть либо комната либо 
+идентификатор комнаты. Особенность функции в том, что она либо вернет комнату,
+либо сгенерирует ошибку. Если в качестве параметра передан объект, то
+проверяется, является ли этот объект комнатой.
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/src_core_functions.js.html">functions.js</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/YAQP.Classes.Room.html">YAQP.Classes.Room</a>|string}</span> <b>name</b>
+									
+								</dt>
+								<dd>название комнаты, идентификатор либо сама комната.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/YAQP.Classes.Room.html">YAQP.Classes.Room</a>}</span> Ссылка на искомую комнату.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".remove"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{boolean}</span>
+					<span class="light">YAQP.Functions.</span><b>remove</b>(obj, room)
+					
+					</div>
+					<div class="description">
+						Удаляет предмет из указанной комнаты или из инвентаря игрока; если комната не указана, то
+удаляет предмет из текущей комнаты. Текущая комната запрашиваетя через функцию 
+<a href="../symbols/YAQP.Functions.html#.here">YAQP.Functions.here</a>. Если же комната указана, то ссылка на нее запрашивается
+через функцию <a href="../symbols/YAQP.Functions.html#.refRoom">YAQP.Functions.refRoom</a>. Ссылка на объект запрашивается через функцию 
+<a href="../symbols/YAQP.Functions.html#.refObj">YAQP.Functions.refObj</a>. Если объект удаляется из комнаты, то 
+его YAQP.Classes.Obj.where становится равным undefined, если же нет --- то остается
+без изменений.
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/src_core_functions.js.html">functions.js</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/YAQP.Classes.Obj.html">YAQP.Classes.Obj</a>|string}</span> <b>obj</b>
+									
+								</dt>
+								<dd>название предмета, идентификатор либо сам предмет.</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/YAQP.Classes.Room.html">YAQP.Classes.Room</a>|string}</span> <b>room</b>
+									
+								</dt>
+								<dd>название комнаты, идентификатор либо сама комната.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{boolean}</span> true, если объект удалось удалить, false в противном случае.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".replace"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">YAQP.Functions.</span><b>replace</b>(objSrc, objDst, room)
+					
+					</div>
+					<div class="description">
+						Заменяет один объект в указанной комнате на другой; если комната не указана,
+то замена производится в текущей комнате. Текущая комната запрашиваетя через функцию 
+<a href="../symbols/YAQP.Functions.html#.here">YAQP.Functions.here</a>. Если комната указана, то ссылка на нее запрашивается
+через функцию <a href="../symbols/YAQP.Functions.html#.refRoom">YAQP.Functions.refRoom</a>. Ссылки на объекты запрашиваются через функцию 
+<a href="../symbols/YAQP.Functions.html#.refObj">YAQP.Functions.refObj</a>. Если объект-источник не найден в списке, то список
+остается без изменений. Если объект-источник удаляется из комнаты, то 
+его YAQP.Classes.Obj.where становится равным undefined. 
+YAQP.Classes.Obj.where объекта для замены становится равным комнате.
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/src_core_functions.js.html">functions.js</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/YAQP.Classes.Obj.html">YAQP.Classes.Obj</a>|string}</span> <b>objSrc</b>
+									
+								</dt>
+								<dd>название предмета-источника, 
+	идентификатор либо сам предмет.</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/YAQP.Classes.Obj.html">YAQP.Classes.Obj</a>|string}</span> <b>objDst</b>
+									
+								</dt>
+								<dd>название предмета для замены, 
+	идентификатор либо сам предмет.</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/YAQP.Classes.Room.html">YAQP.Classes.Room</a>|<a href="../symbols/YAQP.Classes.Player.html">YAQP.Classes.Player</a>|string}</span> <b>room</b>
+									
+								</dt>
+								<dd>название комнаты, 
+идентификатор, сама комната либо ссылка на игрока.</dd>
 							
 							</dl>
 						
@@ -706,22 +1578,18 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name=".prepareObjs"> </a>
+					<a name=".seen"> </a>
 					<div class="fixedFont">&lt;static&gt; 
 					
-					
-					<span class="light">YAQP.Functions.</span><b>prepareObjs</b>(obj)
+					<span class="light">{<a href="../symbols/YAQP.Classes.Obj.html">YAQP.Classes.Obj</a>|null}</span>
+					<span class="light">YAQP.Functions.</span><b>seen</b>(obj, room)
 					
 					</div>
 					<div class="description">
-						Служебная функция, вызывается один раз при создании игры. 
-На вход получает список объектов, объявленный в файле 
-игры. Эти объекты преобразуются в объекты типа 
-<a href="../symbols/YAQP.Classes.Obj.html">YAQP.Classes.Obj</a> и сохраняются в глобальном 
-перечне объектов игры YAQP.game.objs.
+						Возвращает объект, если он присутствует и не отключен на сцене, есть второй необязательный параметр – сцена;
 						
 							<br />
-							<i>Defined in: </i> <a href="../symbols/src/src_functions.js.html">functions.js</a>.
+							<i>Defined in: </i> <a href="../symbols/src/src_core_functions.js.html">functions.js</a>.
 						
 						
 					</div>
@@ -733,10 +1601,62 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<span class="light fixedFont">{object}</span> <b>obj</b>
+									<span class="light fixedFont">{<a href="../symbols/YAQP.Classes.Obj.html">YAQP.Classes.Obj</a>}</span> <b>obj</b>
 									
 								</dt>
-								<dd>список игровых объектов.</dd>
+								<dd>искомый предмет.</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/YAQP.Classes.Room.html">YAQP.Classes.Room</a>}</span> <b>room</b>
+									
+								</dt>
+								<dd>сцена.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/YAQP.Classes.Obj.html">YAQP.Classes.Obj</a>|null}</span> предмет.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".take"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">YAQP.Functions.</span><b>take</b>(obj)
+					
+					</div>
+					<div class="description">
+						Перемещает объект в инвентарь игрока.
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/src_core_functions.js.html">functions.js</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>obj</b>
+									
+								</dt>
+								<dd></dd>
 							
 							</dl>
 						
@@ -749,22 +1669,18 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name=".prepareRooms"> </a>
+					<a name=".toString"> </a>
 					<div class="fixedFont">&lt;static&gt; 
 					
-					
-					<span class="light">YAQP.Functions.</span><b>prepareRooms</b>(room)
+					<span class="light">{string}</span>
+					<span class="light">YAQP.Functions.</span><b>toString</b>(o)
 					
 					</div>
 					<div class="description">
-						Служебная функция, вызывается один раз при создании игры. 
-На вход получает список сцен, объявленный в файле 
-игры. Эти сцены преобразуются в объекты типа 
-<a href="../symbols/YAQP.Classes.Room.html">YAQP.Classes.Room</a> и сохраняются в глобальном 
-перечне сцен игры YAQP.game.rooms.
+						Преобразует переданный объект в строку.
 						
 							<br />
-							<i>Defined in: </i> <a href="../symbols/src/src_functions.js.html">functions.js</a>.
+							<i>Defined in: </i> <a href="../symbols/src/src_core_functions.js.html">functions.js</a>.
 						
 						
 					</div>
@@ -776,16 +1692,205 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<span class="light fixedFont">{object}</span> <b>room</b>
+									<span class="light fixedFont">{any}</span> <b>o</b>
 									
 								</dt>
-								<dd>список сцен.</dd>
+								<dd>объект.</dd>
 							
 							</dl>
 						
 						
 						
 						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{string}</span> Строковое представление объекта.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".use"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">YAQP.Functions.</span><b>use</b>(obj)
+					
+					</div>
+					<div class="description">
+						Использование объекта. Вызывается при попытке взять предмет.
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/src_core_functions.js.html">functions.js</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>obj</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".useTo"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">YAQP.Functions.</span><b>useTo</b>(obj1, obj2)
+					
+					</div>
+					<div class="description">
+						Использовать объект.
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/src_core_functions.js.html">functions.js</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>obj1</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>obj2</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".ways"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{<a href="../symbols/YAQP.Classes.RoomList.html">YAQP.Classes.RoomList</a>}</span>
+					<span class="light">YAQP.Functions.</span><b>ways</b>(room)
+					
+					</div>
+					<div class="description">
+						Возвращает список переходов с указанной комнаты; если сцена не указана, то
+возвращает список переходов с текущей комнаты. Список переходов содержится в 
+YAQP.Classes.Room.ways. Текущая комната запрашиваетя через функцию 
+<a href="../symbols/YAQP.Functions.html#.here">YAQP.Functions.here</a>. Если же комната указана, то ссылка на нее запрашивается
+через функцию <a href="../symbols/YAQP.Functions.html#.refRoom">YAQP.Functions.refRoom</a>.  Эта функция либо возвращает список
+переходов (класс <a href="../symbols/YAQP.Classes.RoomList.html">YAQP.Classes.RoomList</a>), либо генерирует ошибку.
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/src_core_functions.js.html">functions.js</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/YAQP.Classes.Room.html">YAQP.Classes.Room</a>|string}</span> <b>room</b>
+									
+								</dt>
+								<dd>название комнаты, идентификатор либо сама комната.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/YAQP.Classes.RoomList.html">YAQP.Classes.RoomList</a>}</span> Список переходов.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".where"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{<a href="../symbols/YAQP.Classes.Room.html">YAQP.Classes.Room</a>}</span>
+					<span class="light">YAQP.Functions.</span><b>where</b>(o)
+					
+					</div>
+					<div class="description">
+						Возвращает сцену в которой помещен объект (если он был добавлен с
+использованием функций put, drop, move)
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/src_core_functions.js.html">functions.js</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/YAQP.Classes.Obj.html">YAQP.Classes.Obj</a>}</span> <b>o</b>
+									
+								</dt>
+								<dd>предмет</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/YAQP.Classes.Room.html">YAQP.Classes.Room</a>}</span> Сцена, в которой размещен предмет.</dd>
+							
+							</dl>
 						
 						
 						
@@ -804,7 +1909,7 @@ ul.inheritsList
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Sat Dec 10 2011 22:32:22 GMT+0900 (IRKT)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Tue Dec 20 2011 22:44:35 GMT+0900 (IRKT)
 		</div>
 	</body>
 </html>

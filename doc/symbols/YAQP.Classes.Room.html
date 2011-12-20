@@ -211,6 +211,8 @@ ul.inheritsList
 	
 	<li><a href="../symbols/YAQP.Functions.html">YAQP.Functions</a></li>
 	
+	<li><a href="../symbols/YAQP.FunctionsCore.html">YAQP.FunctionsCore</a></li>
+	
 	<li><a href="../symbols/YAQP.game.html">YAQP.game</a></li>
 	
 </ul>
@@ -233,7 +235,7 @@ ul.inheritsList
 				
 				
 				
-					<br /><i>Defined in: </i> <a href="../symbols/src/src_room.js.html">room.js</a>.
+					<br /><i>Defined in: </i> <a href="../symbols/src/src_core_room.js.html">room.js</a>.
 				
 			</p>
 
@@ -291,7 +293,9 @@ ul.inheritsList
 								<div class="fixedFont">
 								<b><a href="../symbols/YAQP.Classes.Room.html#forcedsc">forcedsc</a></b>
 								</div>
-								<div class="description">Определяет, выводить описание статической части сцены на каждом ходу(значение true) или только при первом входе на сцену (значение false).</div>
+								<div class="description">Определяет, выводить описание статической части сцены на каждом ходу
+(значение true) или только при первом входе на сцену (значение
+false).</div>
 							</td>
 						</tr>
 					
@@ -315,6 +319,16 @@ ul.inheritsList
 							</td>
 						</tr>
 					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/YAQP.Classes.Room.html#ways">ways</a></b>
+								</div>
+								<div class="description">Список возможных переходов со сцены.</div>
+							</td>
+						</tr>
+					
 					</tbody>
 				</table>
 				
@@ -335,6 +349,42 @@ ul.inheritsList
 						</tr>
 					</thead>
 					<tbody>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/YAQP.Classes.Room.html#enter">enter</a></b>()
+								</div>
+								<div class="description">Вызывается при входе на сцену</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/YAQP.Classes.Room.html#entered">entered</a></b>()
+								</div>
+								<div class="description">Вызывается при входе на сцену после перехода.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/YAQP.Classes.Room.html#exit">exit</a></b>()
+								</div>
+								<div class="description">Вызывается при попытке выйти со сцены, до перехода.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/YAQP.Classes.Room.html#leave">leave</a></b>()
+								</div>
+								<div class="description">Вызывается при выходе со сцены после перехода.</div>
+							</td>
+						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
@@ -415,7 +465,8 @@ ul.inheritsList
 					
 					</div>
 					<div class="description">
-						Описание комнаты. Описание статической части сцены, которое выводится привходе в сцену или выполнении команды look
+						Описание комнаты. Описание статической части сцены, которое выводится
+при входе в сцену или выполнении команды look
 						
 						
 					</div>
@@ -437,7 +488,9 @@ ul.inheritsList
 					
 					</div>
 					<div class="description">
-						Определяет, выводить описание статической части сцены на каждом ходу(значение true) или только при первом входе на сцену (значение false).По-умолчанию установлено false.
+						Определяет, выводить описание статической части сцены на каждом ходу
+(значение true) или только при первом входе на сцену (значение
+false). По-умолчанию установлено false.
 						
 						
 					</div>
@@ -459,7 +512,9 @@ ul.inheritsList
 					
 					</div>
 					<div class="description">
-						Название сцены. Это название будет заголовком сцены при её отображении.Имя сцены также используется для её идентификации при переходах.
+						Название сцены. Это название будет заголовком сцены при её
+отображении. Имя сцены также используется для её идентификации при
+переходах.
 						
 						
 					</div>
@@ -493,6 +548,28 @@ ul.inheritsList
 						
 						
 
+					<hr />
+				
+					<a name="ways"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/YAQP.Classes.RoomList.html">YAQP.Classes.RoomList</a>}</span>
+					<b>ways</b>
+					
+					</div>
+					<div class="description">
+						Список возможных переходов со сцены.
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
 					
 				
 			
@@ -502,6 +579,106 @@ ul.inheritsList
 				<div class="sectionTitle">
 					Method Detail
 				</div>
+				
+					<a name="enter"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>enter</b>()
+					
+					</div>
+					<div class="description">
+						Вызывается при входе на сцену
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="entered"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>entered</b>()
+					
+					</div>
+					<div class="description">
+						Вызывается при входе на сцену после перехода.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="exit"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>exit</b>()
+					
+					</div>
+					<div class="description">
+						Вызывается при попытке выйти со сцены, до перехода.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="leave"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>leave</b>()
+					
+					</div>
+					<div class="description">
+						Вызывается при выходе со сцены после перехода.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
 				
 					<a name="srch"> </a>
 					<div class="fixedFont">
@@ -537,7 +714,8 @@ ul.inheritsList
 							<dl class="detailList">
 							<dt class="heading">Returns:</dt>
 							
-								<dd><span class="light fixedFont">{<a href="../symbols/YAQP.Classes.Object.html">YAQP.Classes.Object</a>|undefined}</span> возвращает найденный объект, либо         undefined если объект не найден.</dd>
+								<dd><span class="light fixedFont">{<a href="../symbols/YAQP.Classes.Object.html">YAQP.Classes.Object</a>|undefined}</span> возвращает найденный объект, либо
+         undefined если объект не найден.</dd>
 							
 							</dl>
 						
@@ -558,7 +736,7 @@ ul.inheritsList
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Sat Dec 10 2011 22:32:22 GMT+0900 (IRKT)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Tue Dec 20 2011 22:44:35 GMT+0900 (IRKT)
 		</div>
 	</body>
 </html>
