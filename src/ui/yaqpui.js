@@ -17,7 +17,7 @@ YAQP.UI.Functions.init = function() {
 
 		YAQP.UI.selectedObject = "";
 
-		YAQP.initGameSync("../src/core/core.js", "/test/quests/tutorial.js");
+		YAQP.initGameSync("src/core/core.js", "test/quests/tutorial.js");
 		YAQP.init();
 
 		YAQP.UI.Functions.Refresh();
@@ -33,10 +33,9 @@ YAQP.UI.Functions.RefreshWays = function() {
 		for (var w in here.ways) {
 			if (here.ways.hasOwnProperty(w)){
 				YAQP.UI.ways
-						.appendChild(YAQP.UI.Functions.goLink(here.ways[w]));
+						.appendChild(YAQP.UI.HTML.goLink(here.ways[w]));
 			}
 		}
-
 	} catch (e) {
 		YAQP.UI.error("YAQP.UI.Functions.RefreshWays ", e);
 	};
@@ -44,14 +43,9 @@ YAQP.UI.Functions.RefreshWays = function() {
 
 YAQP.UI.Functions.RefreshObjs = function() {
 	try {
-		var here = YAQP.Functions.here();
+		
 		YAQP.UI.objs.innerHTML = "";
-		for (var o in here.objs) {
-			if (here.objs.hasOwnProperty(o))
-				YAQP.UI.objs.appendChild(YAQP.UI.Functions
-						.objLink(here.objs[o]));
-		}
-
+		YAQP.UI.Functions.FormatText(YAQP.out.getObjs(), YAQP.UI.objs);
 	} catch (e) {
 		YAQP.UI.error("YAQP.UI.Functions.RefreshObjs ", e);
 	};
@@ -63,7 +57,7 @@ YAQP.UI.Functions.RefreshInv = function() {
 		YAQP.UI.inv.innerHTML = "";
 		for (var o in inv) {
 			if (inv.hasOwnProperty(o))
-				YAQP.UI.inv.appendChild(YAQP.UI.Functions.invLink(inv[o]));
+				YAQP.UI.inv.appendChild(YAQP.UI.HTML.invLink(inv[o]));
 		}
 
 	} catch (e) {
@@ -73,6 +67,7 @@ YAQP.UI.Functions.RefreshInv = function() {
 
 YAQP.UI.Functions.Refresh = function() {
 	try {
+		YAQP.out.refresh();
 		YAQP.UI.Functions.RefreshName();
 		YAQP.UI.Functions.RefreshText();
 		YAQP.UI.Functions.RefreshBuffer();
@@ -95,7 +90,8 @@ YAQP.UI.Functions.RefreshName = function() {
 
 YAQP.UI.Functions.RefreshBuffer = function() {
 	try {
-		YAQP.UI.buffer.innerHTML = YAQP.game.getBuffer();
+		YAQP.UI.buffer.innerHTML = "";
+		YAQP.UI.Functions.FormatText(YAQP.out.getBuffer(), YAQP.UI.buffer);
 	} catch (e) {
 		YAQP.UI.error("YAQP.UI.Functions.RefreshName ", e);
 	};
@@ -103,84 +99,40 @@ YAQP.UI.Functions.RefreshBuffer = function() {
 
 YAQP.UI.Functions.RefreshText = function() {
 	try {
-		YAQP.UI.text.innerHTML = YAQP.game.getDsc();
+		YAQP.UI.text.innerHTML = "";
+		YAQP.UI.Functions.FormatText(YAQP.out.getText(), YAQP.UI.text);
 	} catch (e) {
 		YAQP.UI.error("YAQP.UI.Functions.Refresh ", e);
 	}
 };
 
-YAQP.UI.Functions.goLink = function(room) {
-	var li = document.createElement("li");
-	var a = document.createElement("a");
-	li.appendChild(a);
-	var ta = document.createTextNode(room.nam);
-	a.appendChild(ta);
-	a.setAttribute("onclick", "YAQP.UI.Functions.go('" + room.getId() + "');");
-	a.setAttribute("href", "#");
-	return li;
-};
 
-YAQP.UI.Functions.objLink = function(obj) {
-	var li = document.createElement("li");
-	var a = document.createElement("a");
-	li.appendChild(a);
-	var ta = document.createTextNode(obj.dsc);
-	a.appendChild(ta);
-	a.setAttribute("onclick", "YAQP.UI.Functions.use('" + obj.getId() + "');");
-	a.setAttribute("href", "#");
-	return li;
-};
 
-YAQP.UI.Functions.invLink = function(obj) {
-	var li = document.createElement("li");
-	var a = document.createElement("a");
-	li.appendChild(a);
-	var ta = "";
-	if (obj.getId() === YAQP.UI.selectedObject) {
-		var ta = document.createElement("b");
-		ta.appendChild(document.createTextNode(obj.nam));
-	} else
-		ta = document.createTextNode(obj.nam);
-	a.appendChild(ta);
-	a.setAttribute("onclick", "YAQP.UI.Functions.invClick('" + obj.getId()
-					+ "');");
-	a.setAttribute("href", "#");
-	return li;
-};
-
-YAQP.UI.Functions.invClick = function(obj) {
+YAQP.UI.Functions.FormatText = function(s, node) {
 	try {
-		if (YAQP.UI.selectedObject === "") {
-			YAQP.UI.selectedObject = obj;
-		} else
-			YAQP.UI.selectedObject = "";
-		YAQP.UI.Functions.RefreshInv();
+		var ret = "";
+		switch (typeof s) {
+			case "string" :
+				ret = YAQP.UI.Str.formatStr(s);
+				break;
+			case "object" :
+				ret = "";
+				for (var i = 0; i< s.length; i++){
+					switch (typeof s[i]) {
+						case "string":
+							YAQP.UI.Str.formatStr(s[i] , node);
+							break;
+						case "object":
+							node.appendChild(YAQP.UI.HTML.objLink(s[i]));
+							break;
+					}
+				}
+				break;
+		};
+		return ret;
 	} catch (e) {
-		YAQP.UI.error("YAQP.UI.Functions.invClick ", e);
-	}
-};
-
-YAQP.UI.Functions.go = function(room) {
-	try {
-		YAQP.Functions.go(room);
-		YAQP.UI.Functions.Refresh();
-	} catch (e) {
-		YAQP.UI.error("YAQP.UI.Functions.go ", e);
-	}
-};
-
-YAQP.UI.Functions.use = function(obj) {
-	try {
-		if (YAQP.UI.selectedObject === "") {
-			YAQP.Functions.use(obj);
-		} else {
-			YAQP.Functions.useTo(YAQP.UI.selectedObject, obj);
-			YAQP.UI.selectedObject = "";
-		}
-		YAQP.UI.Functions.Refresh();
-	} catch (e) {
-		YAQP.UI.error("YAQP.UI.Functions.use ", e);
-	}
+		YAQP.UI.error("YAQP.UI.Functions.FormatText ", e);
+	};
 };
 
 YAQP.UI.error = function(msg, e) {

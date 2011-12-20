@@ -31,7 +31,8 @@ function() {
 	var remove = YAQP.Functions.remove;
 	var replace = YAQP.Functions.replace;
 	var me = YAQP.Functions.me;
-
+	var seen = YAQP.Functions.seen;
+	
 	// <%QUEST%>//
 	YAQP.FunctionsCore.prepareObjs(obj);
 	YAQP.FunctionsCore.prepareRooms(room);

@@ -125,8 +125,10 @@ YAQP.game.Events = {};
 
 YAQP.game.buffer = "";
 
+YAQP.game.dsc = "";
+
 YAQP.game.getBuffer = function(){
-	var buffer = YAQP.out.formatStr(YAQP.game.buffer);
+	var buffer = YAQP.game.buffer;
 	YAQP.Functions.clearBuffer();
 	return buffer;
 };
@@ -135,7 +137,7 @@ YAQP.game.getDsc = function(){
 	try {
 		var here = YAQP.Functions.here();
 		if (here.dsc){
-			return YAQP.out.formatStr(here.dsc);
+			return here.dsc;
 		} else 
 			throw "Не могу прочитать here.dsc";
 	} catch (e) {
