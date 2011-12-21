@@ -149,4 +149,8 @@ YAQP.game.getDsc = function(){
 
 YAQP.game.initialRoom = "main";
 
+YAQP.game.prefs = {};
+
+YAQP.game.prefs.delim = "|";
+
 YAQP.game.go_canceled = false;

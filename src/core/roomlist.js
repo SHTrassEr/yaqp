@@ -18,6 +18,8 @@ YAQP.Classes.RoomList = function() {
  */
 YAQP.Functions.extend(YAQP.Classes.RoomList, YAQP.Classes.ObjectList);
 
+YAQP.Classes.RoomList.prototype.__type = YAQP.Classes.ObjectTypes.RoomList;
+
 /**
  * Переопределяем метод добавления обьекта в список. В список могут попасть
  * только обьекты типа YAQP.Classes.ObjectTypes.room. Добавляет объект в список.

@@ -12,7 +12,7 @@ YAQP.UI.HTML.goLink = function(room) {
 	li.appendChild(a);
 	var ta = document.createTextNode(room.nam);
 	a.appendChild(ta);
-	a.setAttribute("onclick", "YAQP.UI.Events.go('" + room.getId() + "');");
+	a.setAttribute("onclick", "YAQP.UI.Events.walk('" + room.getId() + "');");
 	a.setAttribute("href", "#");
 	return li;
 };
@@ -20,8 +20,10 @@ YAQP.UI.HTML.goLink = function(room) {
 YAQP.UI.HTML.objLink = function(obj) {
 	var a = document.createElement("a");
 	var ta = document.createTextNode(obj.text);
+	var r = obj.obj.where;
+	var s = "YAQP.game.rooms['" + r.getId() + "'].objs['" + obj.obj.getId() + "']";
 	a.appendChild(ta);
-	a.setAttribute("onclick", "YAQP.UI.Events.use('" + obj.obj.getId() + "');");
+	a.setAttribute("onclick", "YAQP.UI.Events.use(" + s + ");");
 	a.setAttribute("href", "#");
 	return a;
 };

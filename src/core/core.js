@@ -6,24 +6,16 @@
 function() {
 	var room = {};
 	var obj = {};
+	var game = YAQP.game;
+	
+	YAQP.game.objs = new YAQP.Classes.ObjList();
+	YAQP.game.rooms = new YAQP.Classes.RoomList();
+	
 	// var dlg = {};
 
-	/**
-	 * Обрабатываем поле obj. obj - это массив, который может содержать как
-	 * строку-идентификатор объекта, так и сам объект.
-	 */
-
-	function xact(nam, act) {
-		var obj = {};
-		obj.nam = nam;
-		obj.id = nam;
-		obj.act = act;
-		return new YAQP.Classes.Obj(obj, obj.id);
-	}
-
 	var inv = YAQP.Functions.inv;
-	var go = function(to) {
-		YAQP.Functions.go(to, true);
+	var walk = function(to) {
+		YAQP.Functions.walk(to, true);
 		YAQP.game.go_canceled = true;
 	};
 	var p = YAQP.Functions.p;
@@ -33,9 +25,22 @@ function() {
 	var me = YAQP.Functions.me;
 	var seen = YAQP.Functions.seen;
 	
+	var vobj = YAQP.Functions.vobj;
+	var vway = YAQP.Functions.vobj;	
+	var xact = YAQP.Functions.xact;
+	
+	try {
+	
 	// <%QUEST%>//
+	
+	} catch (e) {
+		YAQP.Functions.error("core.js не удалось загрузить игру", e);
+	}
+	
+	
 	YAQP.FunctionsCore.prepareObjs(obj);
 	YAQP.FunctionsCore.prepareRooms(room);
+	
 	YAQP.FunctionsCore.prepareLinksRoomObjs(room);
 	YAQP.FunctionsCore.prepareLinksRoomWays(room);
 	YAQP.FunctionsCore.prepareLinksObjObjs(obj);

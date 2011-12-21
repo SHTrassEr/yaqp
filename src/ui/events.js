@@ -18,12 +18,12 @@ YAQP.UI.Events.invClick = function(obj) {
 	}
 };
 
-YAQP.UI.Events.go = function(room) {
+YAQP.UI.Events.walk = function(room) {
 	try {
-		YAQP.Functions.go(room);
+		YAQP.Functions.walk(room);
 		YAQP.UI.Functions.Refresh();
 	} catch (e) {
-		YAQP.UI.error("YAQP.UI.Functions.go ", e);
+		YAQP.UI.error("YAQP.UI.Functions.walk ", e);
 	}
 };
 

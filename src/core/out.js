@@ -101,13 +101,18 @@ YAQP.out.formatStr = function(s, obj) {
 	var b_out = [];
 	var pointer = 0;
 	var pointer_start = pointer;
+	var b_obj = obj;
+	
+	var getBuffer = function() {
+		return b_in.substring(pointer_start, pointer);
+	};
 	
 	var printOutObj = function(){
-		b_out.push(new YAQP.out.obj(b_in.substring(pointer_start, pointer), obj)); 
+		b_out.push(new YAQP.out.obj(getBuffer(), b_obj)); 
 	}
 	
 	var printOut = function(){
-		var s = b_in.substring(pointer_start, pointer);
+		var s = getBuffer();
 		if (s != "")
 			b_out.push(s);
 		pointer_start = pointer;
@@ -118,13 +123,17 @@ YAQP.out.formatStr = function(s, obj) {
 		pointer_start = pointer + 1;
 	};
 	
-	var printObject = function(obj) {
+	var printObject = function() {
 		printOut();
+		b_obj = obj;
 		pointer_start = pointer + 1;
 		for( ; pointer < b_in.length; pointer++) {
 			if (b_in[pointer] == "}") {
 				printOutObj();
 				break;
+			} else if (b_in[pointer] == YAQP.game.prefs.delim) {
+				b_obj = YAQP.Functions.refObj(getBuffer());
+				pointer_start = pointer + 1;
 			};
 		};
 		pointer++;

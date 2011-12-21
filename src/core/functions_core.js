@@ -15,7 +15,6 @@
 YAQP.FunctionsCore.prepareObjs = function(obj) {
 	var o = "";
 	try {
-		YAQP.game.objs = new YAQP.Classes.ObjList();
 		for (o in obj)
 			YAQP.game.objs.add(new YAQP.Classes.Obj(obj[o], o));
 	} catch (e) {
@@ -36,7 +35,6 @@ YAQP.FunctionsCore.prepareObjs = function(obj) {
 YAQP.FunctionsCore.prepareRooms = function(room) {
 	var r = "";
 	try {
-		YAQP.game.rooms = new YAQP.Classes.RoomList();
 		for (r in room)
 			YAQP.game.rooms.add(new YAQP.Classes.Room(room[r], r));
 	} catch (e) {

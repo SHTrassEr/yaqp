@@ -439,16 +439,18 @@ YAQP.Functions.ways = function(room) {
  */
 YAQP.Functions.remove = function(obj, room) {
 	try {
+		var r;
 		var o = YAQP.Functions.refObj(obj);
-		if (room === undefined) {
-			
-		} else if (YAQP.Functions.isPlayer(room)) {
+		if (YAQP.Functions.isPlayer(room)) {
 			if (room.objs.del(o)) {
 				o.where = undefined
 				return true;
 			}
 		} else {
-			var r = YAQP.Functions.refRoom(room);
+			if (room === undefined) {
+				r = YAQP.Functions.here();
+			} else
+				r = YAQP.Functions.refRoom(room);
 			if (YAQP.Functions.isObjList(r.objs)) {
 				if (r.objs.del(o)) {
 					o.where = undefined
@@ -458,7 +460,7 @@ YAQP.Functions.remove = function(obj, room) {
 				throw "В конмнате не инициализирован скисок объектов: room : '"
 						+ YAQP.Functions.toString(room) + "', obj : '"
 						+ YAQP.Functions.toString(obj) + "'";
-		}
+		};
 		return false;
 	} catch (e) {
 		YAQP.Functions.error("YAQP.Functions.remove", e);
@@ -487,13 +489,18 @@ YAQP.Functions.replace = function(objSrc, objDst, room) {
 		var list;
 		var os = YAQP.Functions.refObj(objSrc);
 		var od = YAQP.Functions.refObj(objDst);
+		var r;
 		
 		if (YAQP.Functions.isPlayer(room)) {
+			r = room;
 			list = YAQP.Functions.inv();
-		} else
-			list = YAQP.Functions.refRoom(room).objs;
+		} else {
+			r = YAQP.Functions.refRoom(room);
+			list = r.objs;
+		}
 		if (list.replace(os, od)) {
 			os.where = undefined;
+			od.where = r;
 			return true;	
 		} else
 			return false;
@@ -502,22 +509,19 @@ YAQP.Functions.replace = function(objSrc, objDst, room) {
 	}
 };
 
-YAQP.Functions.clearBuffer = function() {
-	try {
-		YAQP.game.buffer = "";
-	} catch (e) {
-		YAQP.Functions.error("YAQP.Functions.p", e);
-	};
-};
-
-YAQP.Functions.p = function(s) {
-	try {
-		YAQP.game.buffer += s;
-	} catch (e) {
-		YAQP.Functions.error("YAQP.Functions.p", e);
-	}
-};
-
+/**
+ * Помещает предмет в указанную комнату или в инвентарь игрока; если комната не указана, то
+ * предмет помещается в текущую комнату. Текущая комната запрашиваетя через функцию 
+ * {@link YAQP.Functions.here}. Если же комната указана, то ссылка на нее запрашивается
+ * через функцию {@link YAQP.Functions.refRoom}. Ссылка на объект запрашивается через функцию 
+ * {@link YAQP.Functions.refObj}. Поле  {@link YAQP.Classes.Obj.where} предмета становится 
+ * равным комнате, в которую он был помещен. Если до вызова этой функции предмет уже находился
+ * в какой-то комнате (или инвентаре), то предмет оттуда удаляется. 
+ * 
+ * @param {YAQP.Classes.Obj|string} obj название предмета, идентификатор либо сам предмет.
+ * @param {YAQP.Classes.Room|string} room название комнаты, идентификатор либо сама комната.
+ * @returns {boolean} true, если объект удалось переместить, false в противном случае.
+ */
 YAQP.Functions.put = function(obj, room) {
 	try {
 		var o = YAQP.Functions.refObj(obj);
@@ -539,6 +543,66 @@ YAQP.Functions.put = function(obj, room) {
 	}
 };
 
+
+/**
+ * Перемещает объект в инвентарь игрока. Для этого вызывается функция 
+ * {@link YAQP.Functions.put}, у которой в качестве 2-го параметра указан
+ * сам игрок.
+ * 
+ * @param {YAQP.Classes.Obj|string} obj название предмета, идентификатор либо сам предмет.
+ */
+YAQP.Functions.take = function(obj) {
+	try {
+		var o = YAQP.Functions.refObj(obj);
+		YAQP.Functions.put(o, YAQP.Functions.me());
+	} catch (e) {
+		YAQP.Functions.error("YAQP.Functions.take", e);
+	};
+};
+
+/**
+ * Очищает буфер. Буфер - это строковая переменная {@link YAQP.game.buffer}. В эту 
+ * переменную заносится динамически сгенерированный контент при помощи функции 
+ * {@YAQP.Functions.p}.
+ */
+YAQP.Functions.clearBuffer = function() {
+	try {
+		YAQP.game.buffer = "";
+	} catch (e) {
+		YAQP.Functions.error("YAQP.Functions.p", e);
+	};
+};
+
+/**
+ * Возвращает все что накопилось в буфере и очищает его. Буфер - это строковая 
+ * переменная {@link YAQP.game.buffer}. В эту 
+ * переменную заносится динамически сгенерированный контент при помощи функции 
+ * {@YAQP.Functions.p}.
+ * 
+ * @returns {string} содержимое буфера.
+ */
+YAQP.Functions.getBuffer = function() {
+	var buffer = YAQP.game.buffer;
+	YAQP.Functions.clearBuffer();
+	return buffer;
+};
+
+/**
+ * Добавляет строку в буфер. Буфер - это строковая 
+ * переменная {@link YAQP.game.buffer}. В эту 
+ * переменную заносится динамически сгенерированный контент при помощи функции 
+ * {@YAQP.Functions.p}.
+ * 
+ * @param {string} s Строка которую нужно занести в буфер.
+ */
+YAQP.Functions.p = function(s) {
+	try {
+		YAQP.game.buffer += s;
+	} catch (e) {
+		YAQP.Functions.error("YAQP.Functions.p", e);
+	}
+};
+
 YAQP.Functions.processEvent = function(event) {
 	try {
 		switch (typeof event) {
@@ -557,13 +621,23 @@ YAQP.Functions.processEvent = function(event) {
 };
 
 /**
- * Переход из одной комнаты в другую.
+ * Переход из одной комнаты в другую. При переходе производятся следующие
+ * действия: 
+ * 1. Вызывается метод {YAQP.Classes.Room.exit} той комнаты, из которой уходит игрок.
+ * 2. Вызывается метод {YAQP.Classes.Room.enter} той комнаты, в которую приходит игрок.
+ * 3. Игрок перемещается в комнату назначения.
+ * 4. Вызывается метод {YAQP.Classes.Room.leave} той комнаты, из которой уходит игрок.
+ * 5. Вызывается метод {YAQP.Classes.Room.entered} той комнаты, в которую приходит игрок.
+ * При этом если в какой-то из вызываемых функций еще раз запрашивается переход в 
+ * другую комнату, то текущий переход завершается.
+ * Текущая комната запрашивается при помощи функции {@links YAQP.Functions.here},
+ * ссылка на комнату назначения - при помощи функции {@links YAQP.Functions.refRoom}.
  * 
- * @param {YAQP.Classes.Room|string} название комнаты или сама 
+ * @param {YAQP.Classes.Room|string} to название комнаты или сама 
  * комната в которую следует перейти.
- * @param {boolean} устанавливается в true если вызывается при опсании игры
+ * @param {boolean} ingame устанавливается в true если вызывается при опсании игры
  */
-YAQP.Functions.go = function(to, ingame) {
+YAQP.Functions.walk = function(to, ingame) {
 	try {
 		if (!ingame)
 			YAQP.game.go_canceled = false;
@@ -587,33 +661,75 @@ YAQP.Functions.go = function(to, ingame) {
 		room_to.entered(room_to, room_from);
 		
 	} catch (e) {
-		YAQP.Functions.error("YAQP.Functions.go", e);
+		YAQP.Functions.error("YAQP.Functions.walk", e);
 	};
 };
 
-YAQP.Functions.processMethod = function(method) {
-	switch (typeof method) {
-		case "string" :
-			YAQP.Functions.p(method);
-			return true;
-			break;
+YAQP.Functions.processMethodReturn = function(ret) {
+	try {
+		switch (typeof ret){
+			case "undefined" :
+				return true;
+			case "boolean" :
+				return ret;
+			case "string" :
+				YAQP.Functions.p(ret);
+				return true;
+			case "object" : 
+				if (typeof ret[0] == "boolean") {
+					if (typeof ret[1] == "string")
+						YAQP.Functions.p(ret[1]);
+					return ret[0];
+				} else if (typeof ret[0] == "string") {
+					YAQP.Functions.p(ret[0]);
+					if (typeof ret[1] == "boolean")
+						return ret[1];
+					return true;
+				}
+		};
+		throw "Недопустимый возврат функции ret : " 
+			+ YAQP.Functions.quotes(ret);
+	} catch (e) {
+		YAQP.Functions.error("YAQP.Functions.processMethodReturn", e);
 	}
-	return false;
+};
+
+YAQP.Functions.processMethod = function(object, method, params, defaultMethod) {
+	try {
+		switch (typeof method) {
+			case "string" :
+				YAQP.Functions.p(method);
+				return true;
+			case "function" :
+				var ret = method.apply(object, params);
+				return YAQP.Functions.processMethodReturn(ret); 
+			case "undefined" :
+				if (defaultMethod !== undefined)
+					return YAQP.Functions.processMethod(object, defaultMethod, params);
+				break;
+		}
+		return false;
+	} catch (e) {
+		YAQP.Functions.error("YAQP.Functions.processMethod", e);
+	}
 };
 
 /**
- * Использовать объект. 
+ * Соединить первый объект со вторым. При этом выполняются следующие
+ * действия: 
+ * 1. Вызывается метод {YAQP.Classes.Obj.use} 1-го объекта.
+ * 2. Вызывается метод {YAQP.Classes.Obj.used} 2-го объекта.
+ * Ссылка на объекты запрашивается при помощи функции  {@links YAQP.Functions.refObj}.
  * 
- * @param obj1
- * @param obj2
+ * @param {YAQP.Classes.Obj|string} obj1 название 1-го предмета, идентификатор либо сам предмет.
+ * @param {YAQP.Classes.Obj|string} obj2 название 2-го предмета, идентификатор либо сам предмет.
  */
 YAQP.Functions.useTo = function(obj1, obj2) {
 	try {
 		var o1 = YAQP.Functions.refObj(obj1);
 		var o2 = YAQP.Functions.refObj(obj2);
-
-		o1.use(o1, o2);
-		o2.used(o2, o1);
+		YAQP.Functions.processMethod(o1, o1.use, [o1, o2], YAQP.game.use);
+		YAQP.Functions.processMethod(o2, o2.used, [o2, o1], YAQP.game.used);
 
 	} catch (e) {
 		YAQP.Functions.error("YAQP.Functions.useTo obj1 : '"
@@ -631,10 +747,10 @@ YAQP.Functions.use = function(obj) {
 		// YAQP.Functions.clearBuffer();
 		var o = YAQP.Functions.refObj(obj);
 		if (o.act)
-			YAQP.Functions.processMethod(o.act);
+			YAQP.Functions.processMethod(o, o.act, [o], YAQP.game.act);
 		if (o.tak) {
-			YAQP.Functions.processMethod(o.tak);
-			YAQP.Functions.take(o);
+			if (YAQP.Functions.processMethod(o, o.tak, [o], YAQP.game.tak))
+				YAQP.Functions.take(o);
 		}
 	} catch (e) {
 		YAQP.Functions.error("YAQP.Functions.use obj : '"
@@ -643,59 +759,33 @@ YAQP.Functions.use = function(obj) {
 };
 
 /**
- * Перемещает объект в инвентарь игрока.
- * 
- * @param obj
- */
-YAQP.Functions.take = function(obj) {
-	try {
-		var o = YAQP.Functions.refObj(obj);
-		YAQP.Functions.put(o, YAQP.Functions.me());
-	} catch (e) {
-		YAQP.Functions.error("YAQP.Functions.take", e);
-	};
-};
-
-
-/**
  * Возвращает сцену в которой помещен объект (если он был добавлен с
- * использованием функций put, drop, move)
+ * использованием функций put, drop, move). Возвращает значение 
+ * {@link YAQP.Classes.Obj.where}. 
+ * Ссылка на объект запрашивается при помощи функции  {@links YAQP.Functions.refObj}.
  * 
  * @param {YAQP.Classes.Obj}
  *            o предмет
  * @returns {YAQP.Classes.Room} Сцена, в которой размещен предмет.
  */
-YAQP.Functions.where = function(o) {
+YAQP.Functions.where = function(obj) {
 	try {
-		switch (typeof o) {
-			case "string" :
-				var oo = YAQP.game.objs.srch(o);
-				if (oo) {
-					return oo.where;
-				} else
-					throw "Объект не найден в глобальном списке предметов o : '"
-							+ YAQP.Functions.toString(o) + "'";
-				break;
-			case "object" :
-				if (YAQP.Functions.isObj(o)) {
-					return o.where;
-				} else
-					throw "Параметр не является предметом.";
-				break;
-		};
+		return YAQP.Functions.refObj(obj).where;
 	} catch (e) {
-		YAQP.Functions.from("YAQP.Functions.where", e);
+		YAQP.Functions.error("YAQP.Functions.where", e);
 	};
 };
 
 /**
- *  Возвращает объект, если он присутствует и не отключен на сцене, есть второй необязательный параметр – сцена;
+ * Возвращает объект, если он присутствует и не отключен на сцене, 
+ * если сцена не указана, то поиск производится в текущей сцене. 
  * 
  * @param {YAQP.Classes.Obj}
  *            obj искомый предмет.
  * @param {YAQP.Classes.Room}
  *            room сцена.
- * @returns {YAQP.Classes.Obj|null} предмет.
+ * @returns {YAQP.Classes.Obj|null} Если предмет найден, то возвращается 
+ * ссылка на него, в противном случае возвращается null.
  * 
  */
 YAQP.Functions.seen = function(obj, room) {
@@ -713,6 +803,41 @@ YAQP.Functions.seen = function(obj, room) {
 		} else
 			return null;
 	} catch (e) {
-		YAQP.Functions.from("YAQP.Functions.seen", e);
+		YAQP.Functions.error("YAQP.Functions.seen", e);
 	};
+};
+
+YAQP.Functions.vobj = function(name, dsc) {
+	var obj = {};
+	obj.nam = name;
+	obj.id = name;
+	obj.dsc = dsc;
+	obj.act = function() {
+		var r = YAQP.Functions.here();
+		var o = r.objs.srch(name);
+		return YAQP.Functions.processMethod(r, r.act, [r, o]);
+	};
+	obj.used = function() {
+		var r = YAQP.Functions.here();
+		var o = r.objs.srch(name);
+		return YAQP.Functions.processMethod(r, r.used, [r, o]);
+	};	
+	return new YAQP.Classes.Obj(obj, name);
+};
+YAQP.Functions.vway = function(name, dsc, walk_to) {
+	var obj = {};
+	obj.nam = name;
+	obj.id = name;
+	obj.dsc = dsc;
+	obj.act = function() {
+		var r = YAQP.Functions.here();
+		var o = r.objs.srch(name);
+		return YAQP.Functions.walk(walk_to);
+	};
+	obj.used = function() {
+		var r = YAQP.Functions.here();
+		var o = r.objs.srch(name);
+		return YAQP.Functions.processMethod(r, r.used, [r, o]);
+	};	
+	return new YAQP.Classes.Obj(obj, name);
 };

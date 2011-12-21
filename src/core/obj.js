@@ -28,11 +28,9 @@ YAQP.Classes.Obj = function(obj, id) {
 		 */
 		this.tak = undefined;
 
-		this.used = function() {
-		};
+		this.used = undefined;
 
-		this.use = function() {
-		};
+		this.use = undefined;
 
 		/**
 		 * Перекидываем все поля и методы из описания объекта в создаваемый
@@ -53,5 +51,5 @@ YAQP.Classes.Obj = function(obj, id) {
 };
 
 YAQP.Functions.extend(YAQP.Classes.Obj, YAQP.Classes.Object);
-
 YAQP.Classes.Obj.prototype.__type = YAQP.Classes.ObjectTypes.Obj;
+

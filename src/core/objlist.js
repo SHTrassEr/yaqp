@@ -18,6 +18,8 @@ YAQP.Classes.ObjList = function() {
  */
 YAQP.Functions.extend(YAQP.Classes.ObjList, YAQP.Classes.ObjectList);
 
+YAQP.Classes.ObjList.prototype.__type = YAQP.Classes.ObjectTypes.ObjList;
+
 /**
  * Переопределяем метод добавления обьекта в список. В список могут попасть
  * только обьекты типа YAQP.Classes.ObjectTypes.Obj. Добавляет объект в список.
