@@ -242,6 +242,23 @@ YAQP.Functions.inv = function() {
 	};
 };
 
+/**
+ * Проверяет, есть ли искомые предмет в инвентаруе текущего игрока игрока. При помощи функции 
+ * {@link YAQP.Functions.inv} получает ссылку на инвентарь текущего игрока.
+ * 
+ * @returns {boolean} возвращает true если предмет найден в инвентаре,
+ * 	false в противном случае.
+ */
+YAQP.Functions.have = function(obj) {
+	try {
+		var o = YAQP.Functions.refObj(obj);
+		if (YAQP.Functions.inv().srch(o)) 
+			return true;
+		return false;
+	} catch (e) {
+		YAQP.Functions.error("YAQP.Functions.have", e);
+	};
+};
 
 /**
  * Получает комнату. Параметром этой функции может быть либо комната либо 
@@ -814,13 +831,13 @@ YAQP.Functions.vobj = function(name, dsc) {
 	obj.dsc = dsc;
 	obj.act = function() {
 		var r = YAQP.Functions.here();
-		var o = r.objs.srch(name);
-		return YAQP.Functions.processMethod(r, r.act, [r, o]);
+		//var o = r.objs.srch(name);
+		return YAQP.Functions.processMethod(r, r.act, [r, name]);
 	};
 	obj.used = function() {
 		var r = YAQP.Functions.here();
-		var o = r.objs.srch(name);
-		return YAQP.Functions.processMethod(r, r.used, [r, o]);
+		//var o = r.objs.srch(name);
+		return YAQP.Functions.processMethod(r, r.used, [r, name]);
 	};	
 	return new YAQP.Classes.Obj(obj, name);
 };

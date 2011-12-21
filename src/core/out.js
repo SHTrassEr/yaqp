@@ -23,7 +23,7 @@ YAQP.out = (function() {
 					return "";
  			};
 		} catch(e) {
-			YAQP.Functions.error("YAQP.out.processValue", e);
+			YAQP.Functions.error("YAQP.out.processValue" + arguments.toSource(), e);
 		};
 	};
 	

@@ -17,7 +17,7 @@ YAQP.UI.Functions.init = function() {
 
 		YAQP.UI.selectedObject = "";
 
-		YAQP.initGameSync("src/core/core.js", "test/quests/tutorial.js");
+		YAQP.initGameSync("src/core/core.js", "test/quests/cat.js");
 		YAQP.init();
 
 		YAQP.UI.Functions.Refresh();
